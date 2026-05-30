@@ -310,7 +310,7 @@
     var sectionEl = document.getElementById('shopify-section-{{ section.id }}');
     if (!sectionEl) return;
 
-    var token      = '{{ section.settings.judgeme_api_token | default: "DbGTmXdgNHIn8d2x_UrgKMOry44" | escape }}';
+    var token      = 'DbGTmXdgNHIn8d2x_UrgKMOry44';
     var shopDomain = 'kfnvri-1a.myshopify.com';
     var url = 'https://judge.me/api/v1/reviews'
             + '?api_token=' + encodeURIComponent(token)
@@ -318,14 +318,18 @@
             + '&per_page={{ section.settings.judgeme_reviews_count | default: 12 }}'
             + '&page=1';
 
+    console.log('[Judge.me] Fetching reviews from:', url);
+
     fetch(url)
       .then(function (res) { return res.json(); })
       .then(function (data) {
-        var minRating = {{ section.settings.judgeme_min_rating | default: 4 }};
+        console.log('[Judge.me] API response:', data);
+        var minRating = {{ section.settings.judgeme_min_rating | default: 1 }};
         var reviews   = (data.reviews || []).filter(function (r) {
           return r.rating >= minRating && r.body && r.body.trim();
         });
-        if (!reviews.length) return;
+        console.log('[Judge.me] Reviews after filter (' + minRating + '+ stars):', reviews.length);
+        if (!reviews.length) { console.warn('[Judge.me] No reviews found. Check if Judge.me has approved reviews.'); return; }
 
         var topHTML = '', bottomHTML = '';
         reviews.forEach(function (r) { topHTML    += buildCard(r); });
