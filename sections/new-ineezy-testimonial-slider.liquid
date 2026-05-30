@@ -263,21 +263,6 @@
       + '</div></div></div>';
   }
 
-  function reinitSliders(sectionEl) {
-    var $s = $(sectionEl);
-    var $t = $s.find('.testimonial-slider-top');
-    var $b = $s.find('.testimonial-slider-bottom');
-    if ($t.hasClass('slick-initialized')) $t.slick('destroy');
-    if ($b.hasClass('slick-initialized')) $b.slick('destroy');
-    var base = { slidesToShow: 3.5, slidesToScroll: 1, arrows: false, dots: false,
-                 infinite: true, autoplay: true, autoplaySpeed: 0, cssEase: 'linear',
-                 pauseOnHover: false,
-                 responsive: [{ breakpoint: 991, settings: { slidesToShow: 2.2 } },
-                               { breakpoint: 768, settings: { slidesToShow: 1.2 } }] };
-    $t.slick(Object.assign({}, base, { speed: 6000 }));
-    $b.slick(Object.assign({}, base, { speed: 9000, rtl: true }));
-  }
-
   function run() {
     var dataEl = document.getElementById('jm-data-' + SID);
     if (!dataEl) return;
@@ -289,8 +274,6 @@
       console.warn('[Judge.me] Failed to parse metafield JSON:', e);
       return;
     }
-
-    console.log('[Judge.me] Metafield data structure:', JSON.stringify(raw).substring(0, 300));
 
     var list = raw.reviews || raw.data || raw;
     if (!Array.isArray(list)) { console.warn('[Judge.me] Unexpected data format:', raw); return; }
@@ -308,17 +291,36 @@
 
     if (!reviews.length) { console.warn('[Judge.me] No reviews passed the filter (min rating: ' + MIN + ').'); return; }
 
-    console.log('[Judge.me] Injecting ' + reviews.length + ' reviews into slider.');
-
     var sectionEl = document.getElementById('shopify-section-' + SID);
     if (!sectionEl) return;
 
+    var useJQuery = typeof $ !== 'undefined' && $.fn && $.fn.slick;
+    var $t = useJQuery ? $(sectionEl).find('.testimonial-slider-top')    : null;
+    var $b = useJQuery ? $(sectionEl).find('.testimonial-slider-bottom') : null;
+
+    // 1. Destroy Slick BEFORE touching innerHTML (avoids parentNode crash)
+    if (useJQuery) {
+      try { if ($t.hasClass('slick-initialized')) $t.slick('destroy'); } catch(e) {}
+      try { if ($b.hasClass('slick-initialized')) $b.slick('destroy'); } catch(e) {}
+    }
+
+    // 2. Replace innerHTML
     var tH = '', bH = '';
     reviews.forEach(function (r) { tH += buildCard(r); });
     reviews.slice().reverse().forEach(function (r) { bH += buildCard(r); });
     sectionEl.querySelector('.testimonial-slider-top').innerHTML    = tH;
     sectionEl.querySelector('.testimonial-slider-bottom').innerHTML = bH;
-    if (typeof $ !== 'undefined' && $.fn && $.fn.slick) reinitSliders(sectionEl);
+
+    // 3. Reinit Slick
+    if (useJQuery) {
+      var base = { slidesToShow: 3.5, slidesToScroll: 1, arrows: false, dots: false,
+                   infinite: true, autoplay: true, autoplaySpeed: 0, cssEase: 'linear',
+                   pauseOnHover: false,
+                   responsive: [{ breakpoint: 991, settings: { slidesToShow: 2.2 } },
+                                 { breakpoint: 768, settings: { slidesToShow: 1.2 } }] };
+      $t.slick(Object.assign({}, base, { speed: 6000 }));
+      $b.slick(Object.assign({}, base, { speed: 9000, rtl: true }));
+    }
   }
 
   if (document.readyState === 'loading') {
