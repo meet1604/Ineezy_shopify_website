@@ -1,0 +1,224 @@
+<section class="shop-grid">
+  <div class="shop-filter-dropdown" style="display:none">
+    <div class="container">
+      <div class="row filter-row">
+        <!-- Collection Filter -->
+        <div class="col-lg-3 col-md-12 filter-col">
+          <div class="shop-filter-title">
+            <h3>Collections</h3>
+          </div>
+          <div class="shop-filter-list">
+            {%- for collection in collections -%}
+              <div class="product-checkbox checkbox checkbox-primary checkbox-small">
+                <input
+                  type="checkbox"
+                  id="collection-{{ collection.handle }}"
+                  class="material-inputs filled-in filter-checkbox"
+                  data-filter="collection"
+                  value="{{ collection.handle }}"
+                >
+                <label for="collection-{{ collection.handle }}">{{ collection.title }}</label>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+
+        <!-- Price Range Slider and Inputs -->
+        <div class="col-lg-3 col-md-12 filter-col">
+          <div class="shop-filter-title">
+            <h3>Price Range</h3>
+          </div>
+          <div class="shop-filter-list range-slider">
+            <div class="slider">
+              <div class="progress" style="left: 0%; right: 0%;"></div>
+            </div>
+            <div class="range-input">
+
+              <input type="range" class="range-min" id="priceMin" min="0" max="2000" value="0" step="50">
+              <input type="range" class="range-max" id="priceMax" min="0" max="2000" value="2000" step="50">
+            </div>
+            <div class="price-input">
+              <div class="form-group">
+                <label for="minPriceInput">Min ₹</label>
+                <input type="number" class="input-min" id="minPriceInput" min="0" max="2000" value="0">
+              </div>
+              <div class="form-group">
+                <label for="maxPriceInput">Max ₹</label>
+                <input type="number" class="input-max" id="maxPriceInput" min="0" max="2000" value="2000">
+              </div>
+            </div>
+            <div>
+              <span id="priceRangeLabel">₹0 - ₹2000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class=" filter-button  filter-col">
+        <div class="button-group mb-0 mt-5 justify-content-end">
+          <button class="btn btn-outline-primary filter-toggle">Close</button>
+          <button class="btn btn-outline-primary" id="clear-filters">Clear</button>
+          <button class="btn btn-primary" id="apply-filters">Filter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="shop-filter">
+      <div class="shop-filter-left">
+        <div class="shop-filter-item">
+          <button class="btn btn-link p-0 filter-toggle">
+            <span class="svg-wrapper">{{ 'new-icon-add.svg' | inline_asset_content }}</span> Filter
+          </button>
+        </div>
+      </div>
+      <div class="shop-filter-right">
+        <div class="shop-filter-item">
+          <div class="select">
+            {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+            <select name="sort_by" class="facet-filters__sort select__select caption-large" id="SortBy">
+              {%- for option in collection.sort_options -%}
+                <option
+                  value="{{ option.value | escape }}"
+                  {% if option.value == sort_by %}selected="selected"{% endif %}
+                >
+                  {{ option.name | escape }}
+                </option>
+              {%- endfor -%}
+            </select>
+            <span class="svg-wrapper">
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shop-product-list">
+      <div class="row" id="product-grid">
+        {%- for product in collection.products -%}
+          <div
+            class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6 product-item"
+            data-collection="{% for col in product.collections %}{{ col.handle }} {% endfor %}"
+            data-price="{{ product.price | money_without_currency | remove: ',' }}"
+            data-title="{{ product.title | handle }}"
+          >
+            {% render 'common-product-card', product: product %}
+          </div>
+        {%- else -%}
+          <div class="col-12">
+            <p>No products found in this collection.</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const filterToggle = document.querySelector('.filter-toggle');
+    const filterDropdown = document.querySelector('.shop-filter-dropdown');
+
+    if (filterToggle && filterDropdown) {
+      filterToggle.addEventListener('click', function () {
+        filterDropdown.classList.toggle('active');
+        $('.shop-filter-dropdown').toggle();
+      });
+    }
+
+    const sortBySelect = document.querySelector('#SortBy');
+    if (sortBySelect) {
+      sortBySelect.addEventListener('change', function () {
+        const value = this.value;
+        const url = new URL(window.location.href);
+        url.searchParams.set('sort_by', value);
+        window.location.href = url.toString();
+      });
+    }
+
+    const filterCheckboxes = document.querySelectorAll('.filter-checkbox');
+    const clearFiltersBtn = document.querySelector('#clear-filters');
+    const applyFiltersBtn = document.querySelector('#apply-filters');
+    const productItems = document.querySelectorAll('.product-item');
+
+    const priceMinInput = document.getElementById('priceMin');
+    const priceMaxInput = document.getElementById('priceMax');
+    const minPriceBox = document.getElementById('minPriceInput');
+    const maxPriceBox = document.getElementById('maxPriceInput');
+    const priceLabel = document.getElementById('priceRangeLabel');
+
+    function syncInputs() {
+      let min = parseInt(priceMinInput.value);
+      let max = parseInt(priceMaxInput.value);
+
+      if (min > max) {
+        [min, max] = [max, min];
+      }
+
+      minPriceBox.value = min;
+      maxPriceBox.value = max;
+      priceLabel.textContent = `₹${min} - ₹${max}`;
+    }
+
+    function syncSliders() {
+      let min = parseInt(minPriceBox.value);
+      let max = parseInt(maxPriceBox.value);
+
+      if (min > max) {
+        [min, max] = [max, min];
+      }
+
+      priceMinInput.value = min;
+      priceMaxInput.value = max;
+      priceLabel.textContent = `₹${min} - ₹${max}`;
+    }
+
+    priceMinInput.addEventListener('input', syncInputs);
+    priceMaxInput.addEventListener('input', syncInputs);
+    minPriceBox.addEventListener('input', syncSliders);
+    maxPriceBox.addEventListener('input', syncSliders);
+
+    if (applyFiltersBtn) {
+      applyFiltersBtn.addEventListener('click', function () {
+        filterProducts();
+      });
+    }
+
+    if (clearFiltersBtn) {
+      clearFiltersBtn.addEventListener('click', function () {
+        filterCheckboxes.forEach((checkbox) => checkbox.checked = false);
+        priceMinInput.value = 0;
+        priceMaxInput.value = 2000;
+        minPriceBox.value = 0;
+        maxPriceBox.value = 2000;
+        priceLabel.textContent = '₹0 - 2000';
+        productItems.forEach((item) => item.classList.remove('hidden'));
+      });
+    }
+
+    function filterProducts() {
+      const selectedCollections = [];
+      document.querySelectorAll('.filter-checkbox[data-filter="collection"]:checked').forEach((checkbox) => {
+        selectedCollections.push(checkbox.value.toLowerCase());
+      });
+
+      const minPrice = parseFloat(priceMinInput.value);
+      const maxPrice = parseFloat(priceMaxInput.value);
+
+      productItems.forEach((item) => {
+        const itemCollections = item.dataset.collection ? item.dataset.collection.trim().toLowerCase().split(' ') : [];
+        const itemPrice = parseFloat(item.dataset.price);
+
+        const collectionMatch = selectedCollections.length === 0 || selectedCollections.some(col => itemCollections.includes(col));
+        const priceMatch = itemPrice >= minPrice && itemPrice <= maxPrice;
+
+        if (collectionMatch && priceMatch) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+  });
+</script>

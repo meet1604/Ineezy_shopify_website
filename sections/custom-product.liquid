@@ -1,0 +1,137 @@
+{% comment %}
+  File: sections/custom-product.liquid
+  Description: Fully customized single product page with variant blocks like Verlas style (clarity, carat, metal, etc.)
+{% endcomment %}
+
+{% assign current_product = product %}
+<section class="custom-product-wrapper">
+  <form method="post" action="/cart/add">
+    <input type="hidden" name="id" id="product-select" value="">
+
+    <!-- Diamond Section -->
+    <div class="custom-option-block" data-option-index="0">
+      <h3>1. Diamond</h3>
+
+      <div class="sub-option">
+        <label>Choose Diamond Clarity</label>
+        <div class="option-buttons">
+          {% for value in current_product.options_with_values[0].values %}
+            <button type="button" class="clarity-btn" data-value="{{ value }}">{{ value }}</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="sub-option">
+        <label>Choose Carat Weight</label>
+        <div class="option-buttons">
+          {% for value in current_product.options_with_values[1].values %}
+            <button type="button" class="carat-btn" data-value="{{ value }}">{{ value }}</button>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Diamond Info (Static or Dynamic based on metafields) -->
+      <ul class="diamond-info">
+        <li><strong>Secondary Diamond Weight:</strong> 0.75Ct.</li>
+        <li><strong>Total # of Diamonds:</strong> 9</li>
+        <li><strong>Secondary Diamond Shape:</strong> Round</li>
+        <li><strong>Total Carat Weight:</strong> 0.75Ct.</li>
+        <li><strong>Secondary Diamond Setting:</strong> Prong</li>
+      </ul>
+    </div>
+
+    <!-- Metal -->
+    <div class="custom-option-block" data-option-index="2">
+      <h3>2. Metal</h3>
+      <select id="metal-select">
+        {% for value in current_product.options_with_values[2].values %}
+          <option value="{{ value }}">{{ value }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Band Size -->
+    <div class="custom-option-block" data-option-index="3">
+      <h3>3. Band Size</h3>
+      <select id="band-size-select">
+        <option value="">Choose Option</option>
+        {% for size in (4..12) %}
+          <option value="{{ size }}">{{ size }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <!-- Engraving -->
+    <div class="custom-option-block" data-option-index="4">
+      <h3>4. Engraving</h3>
+      <input type="text" name="properties[Engraving]" placeholder="Optional">
+    </div>
+
+    <!-- Price + Add to Cart -->
+    <div class="product-price">
+      <strong class="price">{{ current_product.price | money }}</strong>
+    </div>
+
+    <button type="submit" class="btn btn--add-to-cart" disabled>Add to Cart</button>
+  </form>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const productVariants = {{ product.variants | json }};
+    const clarityButtons = document.querySelectorAll('.clarity-btn');
+    const caratButtons = document.querySelectorAll('.carat-btn');
+    const metalSelect = document.getElementById('metal-select');
+    const bandSizeSelect = document.getElementById('band-size-select');
+    const variantInput = document.getElementById('product-select');
+    const priceDisplay = document.querySelector('.price');
+    const addToCartBtn = document.querySelector('.btn--add-to-cart');
+
+    let selectedOptions = ['', '', '', ''];
+
+    function updateVariant() {
+      const found = productVariants.find(variant => {
+        return variant.options.every((opt, i) => {
+          return !selectedOptions[i] || opt === selectedOptions[i];
+        });
+      });
+
+      if (found) {
+        variantInput.value = found.id;
+        priceDisplay.textContent = Shopify.formatMoney(found.price, "{{ shop.money_format }}");
+        addToCartBtn.disabled = false;
+      } else {
+        variantInput.value = '';
+        priceDisplay.textContent = 'Unavailable';
+        addToCartBtn.disabled = true;
+      }
+    }
+
+    clarityButtons.forEach(btn => btn.addEventListener('click', () => {
+      selectedOptions[0] = btn.dataset.value;
+      updateVariant();
+    }));
+
+    caratButtons.forEach(btn => btn.addEventListener('click', () => {
+      selectedOptions[1] = btn.dataset.value;
+      updateVariant();
+    }));
+
+    metalSelect.addEventListener('change', () => {
+      selectedOptions[2] = metalSelect.value;
+      updateVariant();
+    });
+
+    bandSizeSelect.addEventListener('change', () => {
+      selectedOptions[3] = bandSizeSelect.value;
+      updateVariant();
+    });
+  });
+</script>
+
+<style>
+  .custom-option-block { margin-bottom: 30px; }
+  .option-buttons button { margin-right: 10px; padding: 6px 12px; cursor: pointer; }
+  .product-price { margin-top: 20px; font-size: 20px; font-weight: bold; }
+  .btn--add-to-cart { margin-top: 10px; padding: 10px 20px; }
+</style>

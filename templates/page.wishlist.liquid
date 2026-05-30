@@ -1,0 +1,19 @@
+{% layout 'theme' %}
+
+<!-- <div class="wishlist-page">
+  <h2>Your Wishlist</h2>
+  <div class="wishlist-products-listings" id="wishlist-container">Loading...</div>
+</div> -->
+
+ <div class="all-wishlist">
+     {% assign collection = collections['newest-arrivals'] %}
+     {% if collection %}
+     {% for product in collection.products %}
+     {% render 'common-product-card', product: product %}
+     {% endfor %}
+     {% else %}
+     <p>No products found in the "Newest Arrivals" collection.</p>
+     {% endif %}
+  </div>
+
+

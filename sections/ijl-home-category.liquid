@@ -1,0 +1,45 @@
+<section class="home-category"> 
+  <div class="container">
+    <div class="home-category-wrapper">
+      <div class="home-category-row">
+
+        {% for collection in section.settings.selected_collections %}
+          <div class="home-category-col">
+            <a href="{{ collection.url }}" class="home-category-link" >
+              <div class="home-category-icon">
+                {% if collection.image %}
+                  <img src="{{ collection.image | img_url: 'medium' }}" alt="{{ collection.title }}">
+                {% else %}
+                  <img src="{{ 'new-icon-cart.svg' | asset_url }}" alt="Default Image">
+                {% endif %}
+              </div>
+              <div class="home-category-text">
+                <h6>{{ collection.title }}</h6>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Home Category",
+    "settings": [
+      {
+        "type": "collection_list",
+        "id": "selected_collections",
+        "label": "Select Collections",
+        "limit": 8
+      }
+    ],
+    "presets": [
+      {
+        "name": "Home Category"
+      }
+    ]
+  }
+{% endschema %}

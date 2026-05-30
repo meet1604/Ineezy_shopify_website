@@ -1,0 +1,131 @@
+{% schema %}
+{
+  "name": "Ineezy Best Seller Tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "BEST SELLER COLLECTION"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "SHOP BY THE CATEGORY"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Collection Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title",
+          "default": "MEN'S"
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "N_WEB Ineezy Best Seller Tabs"
+    }
+  ]
+}
+{% endschema %}
+
+<section  class="ineezy-best-seller"  id="ineezy-best-seller-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};" >
+  <div class="container">
+
+    <!-- TOP -->
+    <div class="best-seller-top">
+
+      <div class="new-main-title w-icon mb-0">
+        <p>{{ section.settings.subtitle }}</p>
+
+        <h2>
+          {{ section.settings.title }}
+        </h2>
+      </div>
+
+      <!-- ARROWS -->
+      <div class="slider-arrows">
+
+        <button class="bestSellerPrev-{{ section.id }}">
+          <img src="{{ 'n-web-arrow-left.svg' | asset_url }}" alt="">
+        </button>
+
+        <button class="bestSellerNext-{{ section.id }}">
+          <img src="{{ 'n-web-arrow-right.svg' | asset_url }}" alt="">
+        </button>
+
+      </div>
+
+    </div>
+
+    <!-- TABS -->
+    <div class="best-seller-tabs">
+
+      {% for block in section.blocks %}
+
+        <button 
+          class="tab-btn {% if forloop.first %}active{% endif %}"
+          data-tab="tab-{{ section.id }}-{{ forloop.index }}">
+
+          {{ block.settings.tab_title }}
+
+        </button>
+
+      {% endfor %}
+
+    </div>
+
+    <!-- TAB CONTENT -->
+    {% for block in section.blocks %}
+
+      <div 
+        class="tab-content {% if forloop.first %}active{% endif %}"
+        id="tab-{{ section.id }}-{{ forloop.index }}"
+        {% unless forloop.first %}
+          style="display:none;"
+        {% endunless %}
+      >
+
+        <div class="best-seller-slider">
+
+          {% assign collection = collections[block.settings.collection.handle] %}
+
+          {% for product in collection.products %}
+
+            <div class="product-slide">
+
+              {% render 'common-product-card-v2',
+                product: product
+              %}
+
+            </div>
+
+          {% endfor %}
+
+        </div>
+
+      </div>
+
+    {% endfor %}
+
+  </div>
+</section>

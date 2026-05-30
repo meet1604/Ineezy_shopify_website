@@ -1,0 +1,57 @@
+{% comment %}
+  Renders Product Band Size
+
+  Accepts:
+  - block: {Object} passes in the block information.
+
+
+  Usage:
+  {% render 'product-band-size',
+    block: block
+  %}
+{% endcomment %}
+
+<link rel="stylesheet" href="{{ 'component-product-variant-picker.css' | asset_url }}">
+
+<div class="product-form__input product-form__input--pill band-size" style="max-width: 460px;">
+    <div class="band-size-title">
+        <h6>Band Size*: <span>0 mm</span></h6>
+    </div>
+    <div class="custom-radio band-size-slider" style="max-width: 460px;">
+         {%- if product.category == "Rings" -%}
+            {% for size in (1..8) %}
+                <div class="">
+                    <input type="radio" id="{{size}}" name="properties[Band Size]" form="{{ 'product-form-' | append: section.id }}"
+                        value="{{size}} mm" required>
+                    <label class="form__label" for="{{size}}">{{size}} </label>
+                </div>
+            {% endfor %}
+         {%- elsif product.category == "Bracelet" -%}
+            {% for size in (4..11) %}
+                <div class="">
+                    <input type="radio" id="{{size}}" name="properties[Band Size]" form="{{ 'product-form-' | append: section.id }}"
+                        value="{{size}} mm" required>
+                    <label class="form__label" for="{{size}}">{{size}} </label>
+                </div>
+            {% endfor %}
+        {%- elsif product.category == "Necklace" -%}
+            {% assign sizes = "10,12,16,18,22" | split: "," %}
+            {% for size in sizes %}
+                <div class="">
+                    <input type="radio" id="{{size}}" name="properties[Band Size]" form="{{ 'product-form-' | append: section.id }}"
+                        value="{{size}} mm" required>
+                    <label class="form__label" for="{{size}}">{{size}} </label>
+                </div>
+            {% endfor %}
+        {%- endif -%}
+    </div>
+
+    {%- if product.category == "Rings" -%}
+        <div class="band-size-link">
+            <button  data-toggle="modal" data-bs-toggle="modal" data-bs-target="#band-size-pdf">RING SIZE GUIDE</button>
+        </div>
+    {%- endif -%}
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", () => { document.querySelector("form[novalidate]").removeAttribute("novalidate") })
+</script>

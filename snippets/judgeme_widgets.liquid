@@ -1,0 +1,9 @@
+<div id="judgeme_product_reviews">
+  <div class="jdgm-widget jdgm-review-widget"
+       data-id="{{ product.id }}"
+       data-title="{{ product.title }}"
+       data-url="{{ shop.url }}{{ product.url }}"
+       data-image="{{ product.featured_image | img_url: 'large' }}"
+       data-description="{{ product.description | strip_html | truncate: 100 }}">
+  </div>
+</div>

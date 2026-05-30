@@ -1,0 +1,69 @@
+{% comment %}
+  Renders Product Metal Type
+
+  Accepts:
+  - block: {Object} passes in the block information.
+
+
+  Usage:
+  {% render 'stl-metal-type',
+    block: block
+  %}
+{% endcomment %}
+
+<link rel="stylesheet" href="{{ 'component-product-variant-picker.css' | asset_url }}">
+
+
+<div class="main-variant-picker ">
+  <h5 class="variant-picker-heading">Metal: &nbsp;
+    <span class="variant-picker-heading-span" id="variant-selected-text">14K - Yellow Gold</span>
+  </h5>
+
+  <!-- Type -->
+  <div class="pills-variant">
+    <div class="product-form__input product-form__input--pill pills-variant">
+      <label class="form__label">Type</label>
+      <div class="custom-radio singlevariant">
+        <div class="variant-pill-wrapper">
+          <input type="radio" id="14K" class="variant-pill-input" name="properties[Type]"
+            form="{{ 'product-form-' | append: section.id }}" value="14K" required checked>
+          <label class="variant-radio-label variant-pill-label is-selected" for="14K">14K</label>
+        </div>
+        <div class="variant-pill-wrapper">
+          <input type="radio" id="18K" class="variant-pill-input" name="properties[Type]"
+            form="{{ 'product-form-' | append: section.id }}" value="18K" required>
+          <label class="variant-radio-label variant-pill-label" for="18K">18K</label>
+        </div>
+        <div class="variant-pill-wrapper">
+          <input type="radio" id="Platinum" class="variant-pill-input" name="properties[Type]"
+            form="{{ 'product-form-' | append: section.id }}" value="Platinum" required>
+          <label class="variant-radio-label variant-pill-label" for="Platinum">Platinum</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Color -->
+     <div class="pills-variant">
+        <div class="product-form__input product-form__input--pill  pills-variant-color">
+          <label class="form__label">Color</label>
+          <div class="custom-radio singlevariant">
+            <div class="variant-pill-wrapper">
+              <input type="radio" id="YellowGold" class="variant-pill-input" name="properties[Color]"
+                form="{{ 'product-form-' | append: section.id }}" value="Yellow Gold" required checked>
+              <label class="variant-radio-label variant-pill-label is-selected" for="YellowGold">Yellow Gold</label>
+            </div>
+            <div class="variant-pill-wrapper">
+              <input type="radio" id="WhiteGold" class="variant-pill-input" name="properties[Color]"
+                form="{{ 'product-form-' | append: section.id }}" value="White Gold" required>
+              <label class="variant-radio-label variant-pill-label" for="WhiteGold">White Gold</label>
+            </div>
+            <div class="variant-pill-wrapper">
+              <input type="radio" id="RoseGold" class="variant-pill-input" name="properties[Color]"
+                form="{{ 'product-form-' | append: section.id }}" value="Rose Gold" required>
+              <label class="variant-radio-label variant-pill-label" for="RoseGold">Rose Gold</label>
+            </div>
+          </div>
+        </div>
+     </div>
+</div>

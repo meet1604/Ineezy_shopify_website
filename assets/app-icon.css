@@ -1,0 +1,30 @@
+.btn-outline-primary svg path,
+.product-title-item svg path,
+.dashbaord .dashbaord-card .svg-wrapper svg path,
+.auth-bottom-link a svg path,
+.btn.btn-link svg path,
+.form-group .form-group-icon-start svg path,
+.form-group .form-group-icon-endsvg path{
+    stroke: var(--neutral-black); 
+}
+
+
+
+.main-header .header__icon.wishlist-hero-header-icon svg path{
+
+}
+/* Black FIlter */
+.ineezy-new .ineezy-product-accordion .accordion-button::after,
+.announcement-bar .announcement-bar-wrapper .announcement-bar-item .announcement-bar-link img{
+    filter: brightness(0) saturate(100%) invert(10%) sepia(26%) saturate(417%) hue-rotate(333deg) brightness(97%) contrast(89%);
+}
+/* Black FIlter */
+
+
+
+/* Primary FIlter */
+.ineezy-new .footer-social a:hover img,
+.ineezy-new .footer-contact a:hover img,
+.ineezy-new .footer-menu ul li:hover a img{
+    filter: brightness(0) saturate(100%) invert(57%) sepia(66%) saturate(420%) hue-rotate(5deg) brightness(91%) contrast(87%);
+}

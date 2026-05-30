@@ -1,0 +1,111 @@
+<section class="home-slider">
+  <div class="container-fluid">
+    <div class="home-slider-row row">
+      <div class="home-slider-col col-lg-6 ">
+        <div class="home-text-slider">
+          {% for block in section.blocks %}
+            <div class="home-text-card {% if forloop.first %}active{% endif %}" data-slide-index="{{ forloop.index0 }}">
+              <div class="hediang-title">
+                <div class="d-none small-title">
+                  {% if block.settings.smallheading %}
+                    <p>{{ block.settings.smallheading }}</p>
+                  {% endif %}
+                </div>
+
+                {% if block.settings.heading %}
+                  <h1 class="main-text">{{ block.settings.heading }}</h1>
+                {% endif %}
+
+                {% if block.settings.subheading %}
+                  <p class="main-pera">{{ block.settings.subheading }}</p>
+                {% endif %}
+                <div class="button-group">
+                  {% if block.settings.button_text and block.settings.button_link %}
+            <a href="{{ block.settings.button_link }}" class=" btn btn-primary">
+              {{ block.settings.button_text }}
+              <span class="banner-slider__button-arrow">→</span>
+            </a>
+          {% endif %}
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="home-slider-col col-lg-6">
+        <div class="home-image-slider">
+          {% for block in section.blocks %}
+            {% assign image = block.settings.image %}
+            {% if image != blank %}
+              <div class="home-image-card">
+                <div class="overlay"></div>
+                <img src="{{ image | img_url: 'master' }}" alt="{{ block.settings.image_alt | escape }}">
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Home Banner Slider New",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image Alt Text",
+          "default": "Banner Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Handcrafted & ethically sourced"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "A collection inspired by old-world charm, crafted with moissanites and diamonds."
+        },
+        {
+          "type": "text",
+          "id": "smallheading",
+          "label": "smallheading",
+          "default": "A collection inspired by old-world charm, crafted with moissanites and diamonds."
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Home Banner Slider New",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

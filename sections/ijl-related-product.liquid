@@ -1,0 +1,39 @@
+{% comment %}
+  This section shows related products from the same category (based on product type or tags).
+{% endcomment %}
+
+{% assign current_product_handle = product.handle  %}
+{% assign current_product_type = product.type %}
+<section class="explore-product">
+   <div class="container">
+      <div class="new-main-title w-icon">
+         <h2>Related Products</h2>
+      </div>
+      <div class="explore-slider custom-slick-sliders">
+         {% assign collection = collections['all'] %}
+         {% if collection %}
+           {% for product in collection.products %}
+              {% if product.handle != current_product_handle and product.type == current_product_type %}
+               {% render 'common-product-card-v2', product: product %}
+              {% endif %}   
+           {% endfor %}
+         {% else %}
+           <p>No products found in the "Newest Arrivals" collection.</p>
+         {% endif %}
+      </div>
+   </div>
+</section>
+
+{% schema %}
+{
+  "name": "IJL Related Products",
+  "tag": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "IJL Related Products",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}

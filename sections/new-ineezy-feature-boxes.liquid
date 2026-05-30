@@ -1,0 +1,70 @@
+{% schema %}
+{
+  "name": "Ineezy Feature Boxes",
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "100% Waterproof"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Swim, sweat, shower shine stays. Built for daily wear, every day."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "N_WEB Ineezy Feature Boxes"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="ineezy-feature-boxes">
+  <div class="container">
+    
+    <div class="row g-4 feature-boxes-row">
+
+      {% for block in section.blocks %}
+        <div class="col-lg-4 col-md-4 col-sm-12  feature-boxes-col">
+          
+          <div class="feature-box">
+
+            <div class="feature-icon">
+              {% if block.settings.icon != blank %}
+                <img 
+                  src="{{ block.settings.icon | image_url: width: 100 }}" 
+                  alt="{{ block.settings.title }}"
+                  loading="lazy"
+                >
+              {% endif %}
+            </div>
+
+            <div class="feature-content">
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.description }}</p>
+            </div>
+
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,89 @@
+<section class="ijl-home-popular">
+  {% for block in section.blocks %}
+    <div class="ijl-home-popular-card">
+      <div class="ijl-home-popular-image">
+        {% if block.settings.image %}
+          <img src="{{ block.settings.image | img_url: 'master' }}" alt="Popular Image">
+        {% endif %}
+      </div>
+      <div class="ijl-home-popular-shape {% if block.settings.shape == 'round' %}ijl-home-popular-shape-round{% else %}ijl-home-popular-shape-square{% endif %}">
+        {% comment %}
+          You can also enable shape image if needed
+          <img src="{{ 'ijl-home-popular-shape-1.svg' | asset_url }}" alt="shape">
+        {% endcomment %}
+      </div>
+      <div class="ijl-home-popular-text">
+        <h6>{{ block.settings.title }}</h6>
+        <p>{{ block.settings.description }}</p>
+        {% if block.settings.button_link != blank %}
+          <a href="{{ block.settings.button_link }}" class="btn btn-outline-white">
+            {{ block.settings.button_label }} <span class="banner-slider__button-arrow">→</span>
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% schema %}
+{
+  "name": "Home Popular",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "popular_item",
+      "name": "Popular Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Engagement Rings"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Find your dream engagement ring! Customize it to your liking and personalize"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Label",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        },
+        {
+          "type": "select",
+          "id": "shape",
+          "label": "Shape Style",
+          "default": "round",
+          "options": [
+            { "value": "round", "label": "Round" },
+            { "value": "square", "label": "Square" }
+          ]
+        }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "presets": [
+    {
+      "name": "IJL Home Popular",
+      "blocks": [
+        { "type": "popular_item" },
+        { "type": "popular_item" }
+      ]
+    }
+  ]
+}
+{% endschema %}

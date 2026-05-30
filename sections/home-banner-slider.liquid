@@ -1,0 +1,240 @@
+<style>
+    /* Banner Slider Styles */
+  .banner-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  .banner-slider__wrapper {
+    position: relative;
+    width: 100%;
+  }
+  .banner-slider__slide {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 650px; /* Matches the 1440x650 dimensions in the design */
+  }
+  .banner-slider__slide.active {
+    display: block;
+  }
+  .banner-slider__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .banner-slider__content {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: #2a1c5a; /* Dark purple from the design */
+    max-width: 500px;
+  }
+  .banner-slider__heading {
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    font-family: 'Times New Roman', serif; /* Adjust based on your font */
+  }
+  .banner-slider__subheading {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #333;
+  }
+  .banner-slider__button {
+    display: inline-flex;
+    align-items: center;
+    background-color: #2a1c5a;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+  }
+  .banner-slider__button:hover {
+    background-color: #3b2a7a; /* Slightly lighter purple on hover */
+  }
+  .banner-slider__button-arrow {
+    margin-left: 10px;
+    font-size: 20px;
+  }
+  .banner-slider__dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+  }
+  .banner-slider__dot {
+    width: 12px;
+    height: 12px;
+    background-color: transparent;
+    border: 1px solid var(--primary-color);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .banner-slider__dot.active {
+    background-color: var(--primary-color);
+  }
+  @media (max-width: 768px) {
+    .banner-slider__slide {
+      height: 400px; /* Adjust height for mobile */
+    }
+    .banner-slider__content {
+      left: 5%;
+      max-width: 90%;
+      text-align: center;
+    }
+    .banner-slider__heading {
+      font-size: 32px;
+    }
+    .banner-slider__subheading {
+      font-size: 16px;
+    }
+  }
+</style>
+<div class="main-banner-slider banner-slider">
+  <div class="banner-slider__wrapper">
+    {% for block in section.blocks %}
+      <div class="banner-slider__slide {% if forloop.first %}active{% endif %}" data-slide-index="{{ forloop.index0 }}">
+        {% if block.settings.image %}
+          <img
+            src="{{ block.settings.image | img_url: 'master' }}"
+            alt="{{ block.settings.image_alt | escape }}"
+            class="banner-slider__image"
+          >
+        {% endif %}
+        <div class="banner-slider__content">
+          {% if block.settings.subheading %}
+            <p class="banner-slider__subheading">{{ block.settings.subheading }}</p>
+          {% endif %}
+          {% if block.settings.heading %}
+            <h2 class="banner-slider__heading">{{ block.settings.heading }}</h2>
+          {% endif %}
+          {% if block.settings.subheading2 %}
+            <p class="banner-slider__subheading">{{ block.settings.subheading2 }}</p>
+          {% endif %}
+          {% if block.settings.button_text and block.settings.button_link %}
+            <a href="{{ block.settings.button_link }}" class=" btn btn-primary">
+              {{ block.settings.button_text }}
+              <span class="banner-slider__button-arrow">→</span>
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Navigation Dots -->
+  {% if section.blocks.size > 1 %}
+    <div class="banner-slider__dots">
+      {% for block in section.blocks %}
+        <span
+          class="banner-slider__dot {% if forloop.first %}active{% endif %}"
+          data-slide-index="{{ forloop.index0 }}"
+        ></span>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const slides = document.querySelectorAll('.banner-slider__slide');
+    const dots = document.querySelectorAll('.banner-slider__dot');
+
+    if (slides.length > 1) {
+      const showSlide = (index) => {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('active', i === index);
+        });
+      };
+
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const index = parseInt(dot.getAttribute('data-slide-index'));
+          showSlide(index);
+        });
+      });
+
+      // Optional: Auto-slide every 5 seconds
+      let currentIndex = 0;
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+      }, 5000);
+    }
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Home Banner Slider",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Background Image"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image Alt Text",
+          "default": "Banner Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Handcrafted & ethically sourced"
+        },
+        {
+          "type": "text",
+          "id": "subheading",
+          "label": "Subheading",
+          "default": "A collection inspired by old-world charm, crafted with moissanites and diamonds."
+        },
+        {
+          "type": "text",
+          "id": "subheading2",
+          "label": "Subheading2",
+          "default": "A collection inspired by old-world charm, crafted with moissanites and diamonds."
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text",
+          "default": "Shop Now"
+        },
+        {
+          "type": "url",
+          "id": "button_link",
+          "label": "Button Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Slider",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

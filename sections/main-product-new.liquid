@@ -1,0 +1,148 @@
+<section class="luxury-pdp">
+  <div class="luxury-pdp__container">
+    <!-- LEFT GALLERY -->
+    <div class="luxury-gallery">
+      <div class="luxury-gallery__thumbs">
+        {% for media in product.media %}
+          <button
+            class="luxury-thumb {% if forloop.first %}active{% endif %}"
+            data-media-id="{{ media.id }}"
+          >
+            <img
+              src="{{ media | image_url: width: 120 }}"
+              alt="{{ media.alt }}"
+              loading="lazy"
+            >
+          </button>
+        {% endfor %}
+      </div>
+
+      <div class="luxury-gallery__main">
+        {% for media in product.media %}
+          <div
+            class="luxury-media {% if forloop.first %}active{% endif %}"
+            data-media-id="{{ media.id }}"
+          >
+            {% if media.media_type == 'image' %}
+              <img
+                src="{{ media | image_url: width: 1200 }}"
+                alt="{{ media.alt }}"
+                loading="lazy"
+              >
+            {% elsif media.media_type == 'video' %}
+              {{ media | video_tag: controls: true, autoplay: false, muted: true, loop: true }}
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- RIGHT INFO -->
+    <div class="luxury-info">
+      <div class="luxury-breadcrumb">Home / {{ product.collections.first.title }} / {{ product.title }}</div>
+
+      <h1 class="luxury-title">
+        {{ product.title }}
+      </h1>
+
+      <div class="luxury-rating">★★★★★ <span>(150 Reviews)</span></div>
+
+      <div class="luxury-price">
+        <span class="price-current">
+          {{ product.price | money }}
+        </span>
+
+        {% if product.compare_at_price > product.price %}
+          <span class="price-compare">
+            {{ product.compare_at_price | money }}
+          </span>
+
+          <span class="discount-badge">
+            Save
+            {{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%
+          </span>
+        {% endif %}
+      </div>
+
+      <!-- VARIANTS -->
+      {% unless product.has_only_default_variant %}
+        {% for option in product.options_with_values %}
+          <div class="luxury-option">
+            <label>{{ option.name }}</label>
+
+            <div class="luxury-swatches">
+              {% for value in option.values %}
+                <button class="luxury-swatch">
+                  {{ value }}
+                </button>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+      {% endunless %}
+
+      <!-- QUANTITY -->
+      <div class="luxury-qty">
+        <button class="qty-minus">−</button>
+
+        <input
+          type="number"
+          value="1"
+          min="1"
+          id="Quantity"
+        >
+
+        <button class="qty-plus">+</button>
+      </div>
+
+      <!-- BUY BUTTONS -->
+      {% form 'product', product %}
+        <input
+          type="hidden"
+          name="id"
+          value="{{ product.selected_or_first_available_variant.id }}"
+        >
+
+        <button
+          type="submit"
+          class="luxury-add-cart"
+        >
+          ADD TO CART
+        </button>
+
+        {{ form | payment_button }}
+      {% endform %}
+
+      <!-- TRUST -->
+      <div class="luxury-trust">
+        <div class="trust-item">Waterproof Jewelry</div>
+
+        <div class="trust-item">Anti Tarnish</div>
+
+        <div class="trust-item">COD Available</div>
+
+        <div class="trust-item">Fast Shipping</div>
+      </div>
+
+      <!-- ACCORDION -->
+      <div class="luxury-accordion">
+        <details open>
+          <summary>Description</summary>
+          <div>
+            {{ product.description }}
+          </div>
+        </details>
+
+        <details>
+          <summary>Shipping & Returns</summary>
+          <div>Ships within 3-5 business days.</div>
+        </details>
+
+        <details>
+          <summary>Care Guide</summary>
+          <div>Keep away from chemicals and perfumes.</div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>

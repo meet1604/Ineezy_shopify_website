@@ -1,0 +1,79 @@
+
+<section class="faq">
+  <div class="container">
+    <div class="accordion" id="accordionExample">
+      {% for block in section.blocks %}
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button 
+              class="accordion-button {% unless forloop.first %}collapsed{% endunless %}" 
+              type="button" 
+              data-bs-toggle="collapse" 
+              data-bs-target="#collapse{{ forloop.index }}" 
+              aria-expanded="{{ forloop.first }}" 
+              aria-controls="collapse{{ forloop.index }}">
+              {{ block.settings.question }}
+            </button>
+          </h2>
+          <div 
+            id="collapse{{ forloop.index }}" 
+            class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" 
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              {{ block.settings.answer }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+{% schema %}
+{
+  "name": "IJL Faq",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "What materials are your pieces made from?"
+        },
+      {
+  "type": "richtext",
+  "id": "answer",
+  "label": "Answer",
+  "default": "<p>Our pieces are made from high-quality, anti-tarnish materials including stainless steel and 18K gold plating.</p>"
+}
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "IJL Faq",
+      "category": "Custom",
+      "blocks": [
+        {
+          "type": "faq_item"
+        },
+        {
+          "type": "faq_item"
+        },
+        {
+          "type": "faq_item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

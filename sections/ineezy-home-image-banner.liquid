@@ -1,0 +1,95 @@
+<section class="ineezy-image-banner">
+  <div class="ineezy-main-home-slider">
+
+    {% for block in section.blocks %}
+      <div class="ineezy-home-slider-wrapper" {{ block.shopify_attributes }}>
+
+        <div class="ineezy-image-banner-wrapper">
+          {% if block.settings.banner_image != blank or block.settings.mobile_banner_image != blank %}
+            <picture>
+              {% if block.settings.mobile_banner_image != blank %}
+                <source
+                  media="(max-width: 767px)"
+                  srcset="{{ block.settings.mobile_banner_image | image_url: width: 900 }}"
+                >
+              {% endif %}
+
+              {% if block.settings.banner_image != blank %}
+                <img
+                  src="{{ block.settings.banner_image | image_url: width: 2000 }}"
+                  alt="{{ block.settings.image_alt | escape }}"
+                  class="ineezy-image-banner-img"
+                  loading="lazy"
+                >
+              {% endif %}
+            </picture>
+          {% endif %}
+        </div>
+
+        <div class="ineezy-text-banner-wrapper">
+          {% if block.settings.banner_title != blank %}
+            <h1>{{ block.settings.banner_title }}</h1>
+          {% endif %}
+
+          {% if block.settings.banner_subtitle != blank %}
+            <p>{{ block.settings.banner_subtitle }}</p>
+          {% endif %}
+        </div>
+
+      </div>
+    {% endfor %}
+
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Ineezy Home Image Slider",
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner_image",
+          "label": "Banner Image (Desktop)"
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_banner_image",
+          "label": "Banner Image (Mobile)"
+        },
+        {
+          "type": "text",
+          "id": "image_alt",
+          "label": "Image Alt Text",
+          "default": "Ineezy Banner Image"
+        },
+        {
+          "type": "text",
+          "id": "banner_title",
+          "label": "Banner Title",
+          "default": "Style That Stays"
+        },
+        {
+          "type": "textarea",
+          "id": "banner_subtitle",
+          "label": "Banner Subtitle",
+          "default": "Tarnish-free jewellery made for daily wear and real moments."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Ineezy Image Slider",
+      "category": "Custom",
+      "blocks": [
+        { "type": "slide" },
+        { "type": "slide" }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,143 @@
+{% comment %}
+  Custom Brand Size Block
+  Block for displaying a band size selector with radio buttons in a pill-style layout
+  File: blocks/custom-brand-size.liquid
+  Usage: Include as a block within a section's blocks loop
+{% endcomment %}
+
+{% if block.settings.show_size_selector %}
+  <div class="singlevariant band-size-slider" {{ block.shopify_attributes }}>
+    <h2>{{ block.settings.selector_title }}</h2>
+    <div class="variant-pill-wrapper">
+      {% assign product = all_products[block.settings.product] %}
+      {% assign option = product.options_by_name[block.settings.option_name] %}
+      {% if option %}
+        {% for value in option.values %}
+          <div class="variant-pill">
+            <input 
+              type="radio" 
+              id="{{ product.handle }}-{{ block.id }}-{{ option.name | handleize }}-{{ value | handleize }}" 
+              name="{{ option.name | handleize }}-{{ block.id }}" 
+              value="{{ value | escape }}"
+              {% if option.selected_value == value %}checked{% endif %}
+              data-variant-id="{{ product.variants | where: option.name, value | first | id }}"
+            >
+            <label for="{{ product.handle }}-{{ block.id }}-{{ option.name | handleize }}-{{ value | handleize }}">{{ value }}</label>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>No variants available for this product.</p>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Band Size Selector",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_size_selector",
+      "label": "Show size selector",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "selector_title",
+      "label": "Selector Title",
+      "default": "Choose Band Size"
+    },
+    {
+      "type": "text",
+      "id": "option_name",
+      "label": "Variant Option Name",
+      "default": "Size",
+      "info": "Enter the name of the variant option (e.g., Size, Band Size)"
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "info": "Select the product to display variant options for"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+.singlevariant.band-size-slider {
+  padding: 20px 0;
+  text-align: left;
+}
+.singlevariant.band-size-slider h2 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #333;
+}
+.variant-pill-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.variant-pill {
+  display: inline-block;
+}
+.variant-pill input[type="radio"] {
+  display: none;
+}
+.variant-pill label {
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  line-height: 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: #fff;
+  color: #333;
+  font-size: 0.9em;
+}
+.variant-pill input[type="radio"]:checked + label {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+.variant-pill label:hover {
+  background-color: #f0f0f0;
+}
+@media (max-width: 768px) {
+  .variant-pill-wrapper {
+    gap: 6px;
+  }
+  .variant-pill label {
+    width: 36px;
+    height: 36px;
+    line-height: 20px;
+  }
+}
+{% endstylesheet %}
+
+{% javascript %}
+document.addEventListener('DOMContentLoaded', () => {
+  const sizeInputs = document.querySelectorAll('.band-size-slider input[type="radio"]');
+  sizeInputs.forEach(input => {
+    input.addEventListener('change', (e) => {
+      const variantId = e.target.getAttribute('data-variant-id');
+      if (variantId) {
+        const form = document.querySelector('form[action*="/cart/add"]');
+        if (form) {
+          const variantInput = form.querySelector('input[name="id"]');
+          if (variantInput) {
+            variantInput.value = variantId;
+          }
+        }
+      }
+    });
+  });
+  console.log('Custom Brand Size Block Loaded');
+});
+{% endjavascript %}

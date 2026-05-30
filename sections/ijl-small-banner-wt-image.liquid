@@ -1,0 +1,54 @@
+<section class="small-banner wt-image">
+  <div class="small-banner-wrapper">
+    <div class="small-banner-image">
+      {% if section.settings.banner_image != blank %}
+        <img
+          src="{{ section.settings.banner_image | img_url: 'master' }}"
+          alt="{{ section.settings.banner_image_alt | escape }}"
+        >
+      {% endif %}
+    </div>
+    <div class="container">
+      <div class="small-banner-text">
+        <h2>{{ section.settings.heading }}</h2>
+        <p>{{ section.settings.subtext }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "IJL Small Banner Image",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "banner_image_alt",
+      "label": "Image Alt Text",
+      "default": "Small Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Small Hoop Earrings"
+    },
+    {
+      "type": "textarea",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "From jewellery to stores, shop all of our pieces in the one place."
+    }
+  ],
+  "presets": [
+    {
+      "name": "IJL Small Banner Image"
+    }
+  ]
+}
+{% endschema %}

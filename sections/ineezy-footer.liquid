@@ -1,0 +1,261 @@
+{% schema %}
+{
+  "name": "N_WEB Footer",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Footer Logo"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Anti-tarnish jewelry for everyday glow. Minimal, affordable, and made to last."
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone Number",
+      "default": "+91 823800 0464"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "hello@ineezy.in"
+    },
+    {
+      "type": "link_list",
+      "id": "quick_links",
+      "label": "Quick Links Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "shop_links",
+      "label": "Shop Menu"
+    },
+    {
+      "type": "link_list",
+      "id": "policy_links",
+      "label": "Policy Menu"
+    },
+    {
+      "type": "text",
+      "id": "copyright_text",
+      "label": "Copyright Text",
+      "default": "© 2026 Ineezy. All rights reserved."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "FREE SHIPPING ON ORDERS ABOVE ₹499"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "N_WEB Footer"
+    }
+  ]
+}
+{% endschema %}
+
+<footer class="ineezy-footer">
+
+  <!-- MARQUEE -->
+  {% if section.blocks.size > 0 %}
+
+    <div class="ineezy-marquee">
+
+      <div class="marquee-track">
+
+        {% for i in (1..8) %}
+
+          {% for block in section.blocks %}
+
+            {% if block.type == 'announcement' %}
+
+              <div class="marquee-item">
+
+                <span>{{ block.settings.text }}</span>
+
+                <!-- STAR ICON -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 0L14.9 9.1L24 12L14.9 14.9L12 24L9.1 14.9L0 12L9.1 9.1L12 0Z"/>
+                </svg>
+
+              </div>
+
+            {% endif %}
+
+          {% endfor %}
+
+        {% endfor %}
+
+      </div>
+
+    </div>
+
+  {% endif %}
+
+    <div class="container p-0">
+    <div class="footer-main">
+
+        <!-- ABOUT -->
+        <div class="footer-about">
+
+        {% if section.settings.logo != blank %}
+            <img 
+            src="{{ section.settings.logo | image_url: width: 300 }}"
+            alt="Footer Logo"
+            class="footer-logo"
+            >
+        {% endif %}
+
+        <p class="footer-desc">
+            {{ section.settings.description }}
+        </p>
+
+        <!-- SOCIAL -->
+        <div class="footer-social">
+
+            <a href="#">
+            <img src="{{ 'new-icon-insta.png' | asset_url }}" alt="">
+            </a>
+
+            <a href="#">
+            <img src="{{ 'new-icon-youtube.png' | asset_url }}" alt="">
+            </a>
+
+            <a href="#">
+            <img src="{{ 'new-icon-pintrest.png' | asset_url }}" alt="">
+            </a>
+
+            <a href="#">
+            <img src="{{ 'new-icon-facebook.png' | asset_url }}" alt="">
+            </a>
+
+        </div>
+
+        <!-- CONTACT -->
+        <div class="footer-contact">
+
+            <a href="tel:{{ section.settings.phone }}">
+            <img src="{{ 'new-icon-call-2.png' | asset_url }}" alt="">
+            {{ section.settings.phone }}
+            </a>
+
+            <a href="mailto:{{ section.settings.email }}">
+            <img src="{{ 'new-icon-email.png' | asset_url }}" alt="">
+            {{ section.settings.email }}
+            </a>
+
+        </div>
+
+        </div>
+
+        <!-- QUICK LINKS -->
+        <div class="footer-menu">
+
+        <h4>Quick Links</h4>
+
+        <ul>
+
+            {% for link in section.settings.quick_links.links %}
+
+            <li>
+                <a href="{{ link.url }}">
+                {{ link.title }}
+                </a>
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        </div>
+
+        <!-- SHOP -->
+        <div class="footer-menu">
+
+        <h4>SHOP</h4>
+
+        <ul>
+
+            {% for link in section.settings.shop_links.links %}
+
+            <li>
+                <a href="{{ link.url }}">
+                {{ link.title }}
+                </a>
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        </div>
+
+        <!-- POLICY -->
+        <div class="footer-menu">
+
+        <h4>Ineezy Policy</h4>
+
+        <ul>
+
+            {% for link in section.settings.policy_links.links %}
+
+            <li>
+                <a href="{{ link.url }}">
+                {{ link.title }}
+                </a>
+            </li>
+
+            {% endfor %}
+
+        </ul>
+
+        </div>
+
+    </div>
+    </div>
+    <!-- BOTTOM -->
+    <div class="footer-bottom">
+        <div class="container p-0">
+        <div class="footer-bottom-wrapper">
+            <p>
+                {{ section.settings.copyright_text }}
+            </p>
+
+            <div class="footer-bottom-links">
+
+                {% for link in section.settings.policy_links.links limit:3 %}
+
+                <a href="{{ link.url }}">
+                    {{ link.title }}
+                </a>
+
+                {% unless forloop.last %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0L14.9 9.1L24 12L14.9 14.9L12 24L9.1 14.9L0 12L9.1 9.1L12 0Z"></path>
+                    </svg>
+                {% endunless %}
+
+                {% endfor %}
+
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+</footer>

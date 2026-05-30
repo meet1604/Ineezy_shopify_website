@@ -1,0 +1,390 @@
+{% comment %} 
+{% comment %}
+  Luxury Cart Drawer
+{% endcomment %}
+
+{{ 'ineezy-cart-drawer.css' | asset_url | stylesheet_tag }}
+{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+
+<script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
+<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+
+<cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
+
+  <div id="CartDrawer" class="cart-drawer">
+
+    <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
+
+    <div
+      class="drawer__inner ineezy-cart-drawer"
+      role="dialog"
+      aria-modal="true"
+      aria-label="{{ 'sections.cart.title' | t }}"
+      tabindex="-1"
+    >
+
+      {% if cart == empty %}
+
+        <div class="ineezy-cart-empty">
+
+          <button
+            class="ineezy-cart-close"
+            type="button"
+            onclick="this.closest('cart-drawer').close()"
+          >
+            ✕
+          </button>
+
+          <h2>Your cart is empty</h2>
+
+          <p>Add beautiful pieces to continue shopping.</p>
+
+          <a href="{{ routes.all_products_collection_url }}" class="ineezy-cart-empty-btn">
+            Continue Shopping
+          </a>
+
+        </div>
+
+      {% else %}
+
+        <!-- HEADER -->
+        <div class="ineezy-cart-header">
+
+          <div>
+            <h2>Your Cart</h2>
+            <p>{{ cart.item_count }} item{% if cart.item_count > 1 %}s{% endif %}</p>
+          </div>
+
+          <button
+            class="ineezy-cart-close"
+            type="button"
+            onclick="this.closest('cart-drawer').close()"
+          >
+            ✕
+          </button>
+
+        </div>
+
+        <cart-drawer-items>
+
+          <form
+            action="{{ routes.cart_url }}"
+            id="CartDrawer-Form"
+            class="cart__contents cart-drawer__form"
+            method="post"
+          >
+
+            <div id="CartDrawer-CartItems" class="ineezy-cart-body js-contents">
+
+              <!-- PROGRESS -->
+              {% assign unlock_goal = 3 %}
+              {% assign remaining = unlock_goal | minus: cart.item_count %}
+              {% assign progress = cart.item_count | times: 100 | divided_by: unlock_goal %}
+
+              <div class="ineezy-cart-progress">
+
+                <div class="ineezy-cart-progress__gift">
+                  🎁
+                </div>
+
+                <div class="ineezy-cart-progress__content">
+
+                  <div class="ineezy-cart-progress__top">
+
+                    <div class="ineezy-cart-progress__text">
+
+                      {% if remaining > 0 %}
+                        Add {{ remaining }} more piece to unlock FREE shipping
+                      {% else %}
+                        FREE shipping unlocked 🎉
+                      {% endif %}
+
+                    </div>
+
+                    <div class="ineezy-cart-progress__count">
+                      {{ cart.item_count }}/{{ unlock_goal }}
+                    </div>
+
+                  </div>
+
+                  <div class="ineezy-cart-progress__bar">
+                    <span style="width: {{ progress }}%"></span>
+                  </div>
+
+                </div>
+
+              </div>
+
+              <!-- ITEMS -->
+              <div class="ineezy-cart-items">
+
+                {% for item in cart.items %}
+
+                  <div id="CartDrawer-Item-{{ item.index | plus: 1 }}" class="ineezy-cart-card">
+
+                    <!-- IMAGE -->
+                    <div class="ineezy-cart-card__image">
+
+                      <a href="{{ item.url }}">
+
+                        <img
+                          class="cart-item__image"
+                          src="{{ item.image | image_url: width: 300 }}"
+                          alt="{{ item.image.alt | escape }}"
+                          loading="lazy"
+                          width="150"
+                          height="{{ 150 | divided_by: item.image.aspect_ratio | ceil }}"
+                        >
+
+                      </a>
+
+                    </div>
+
+                    <!-- CONTENT -->
+                    <div class="ineezy-cart-card__content">
+
+                      <div class="ineezy-cart-card__top">
+
+                        <div class="ineezy-cart-card__details">
+
+                          <a href="{{ item.url }}" class="ineezy-cart-card__title">
+                            {{ item.product.title | escape }}
+                          </a>
+
+                          {% if item.product.has_only_default_variant == false %}
+
+                            <div class="ineezy-cart-card__variant">
+
+                              {% for option in item.options_with_values %}
+                                {{ option.name }}: {{ option.value }}
+                              {% endfor %}
+
+                            </div>
+
+                          {% endif %}
+
+                          <div class="ineezy-cart-card__prices">
+
+                            {% if item.original_price > item.final_price %}
+
+                              <span class="compare-price">
+                                {{ item.original_price | money }}
+                              </span>
+
+                            {% endif %}
+
+                            <span class="sale-price">
+                              {{ item.final_price | money }}
+                            </span>
+
+                          </div>
+
+                        </div>
+
+                        <!-- REMOVE -->
+                        <cart-remove-button
+                          id="CartDrawer-Remove-{{ item.index | plus: 1 }}"
+                          data-index="{{ item.index | plus: 1 }}"
+                        >
+
+                          <button
+                            type="button"
+                            class="button button--tertiary cart-remove-button ineezy-remove-btn"
+                            aria-label="{{ 'sections.cart.remove_title' | t: title: item.title | escape }}"
+                            data-variant-id="{{ item.variant.id }}"
+                          >
+
+                            <span class="svg-wrapper">
+                              {{ 'new-icon-trash.svg' | inline_asset_content }}
+                            </span>
+
+                          </button>
+
+                        </cart-remove-button>
+
+                      </div>
+
+                      <!-- BOTTOM -->
+                      <div class="ineezy-cart-card__bottom">
+
+                        <!-- QTY -->
+                        <quantity-popover>
+
+                          <quantity-input class="quantity cart-quantity ineezy-quantity">
+
+                            <button
+                              class="quantity__button"
+                              name="minus"
+                              type="button"
+                            >
+
+                              <span class="visually-hidden">
+                                Decrease quantity
+                              </span>
+
+                              <span class="svg-wrapper">
+                                {{ 'icon-minus.svg' | inline_asset_content }}
+                              </span>
+
+                            </button>
+
+                            <input
+                              class="quantity__input"
+                              type="number"
+                              data-quantity-variant-id="{{ item.variant.id }}"
+                              name="updates[]"
+                              value="{{ item.quantity }}"
+                              data-cart-quantity="{{ cart | item_count_for_variant: item.variant.id }}"
+                              min="0"
+                              data-min="{{ item.variant.quantity_rule.min }}"
+                              {% if item.variant.quantity_rule.max != null %}
+                                max="{{ item.variant.quantity_rule.max }}"
+                              {% endif %}
+                              step="{{ item.variant.quantity_rule.increment }}"
+                              aria-label="{{ 'products.product.quantity.input_label' | t: product: item.product.title | escape }}"
+                              id="Drawer-quantity-{{ item.index | plus: 1 }}"
+                              data-index="{{ item.index | plus: 1 }}"
+                            >
+
+                            <button
+                              class="quantity__button"
+                              name="plus"
+                              type="button"
+                            >
+
+                              <span class="visually-hidden">
+                                Increase quantity
+                              </span>
+
+                              <span class="svg-wrapper">
+                                {{ 'icon-plus.svg' | inline_asset_content }}
+                              </span>
+
+                            </button>
+
+                          </quantity-input>
+
+                          <div
+                            id="CartDrawer-LineItemError-{{ item.index | plus: 1 }}"
+                            class="cart-item__error"
+                            role="alert"
+                          >
+                            <small class="cart-item__error-text"></small>
+                          </div>
+
+                        </quantity-popover>
+
+                        <!-- TOTAL -->
+                        <div class="ineezy-cart-card__total">
+                          {{ item.final_line_price | money }}
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                {% endfor %}
+
+              </div>
+
+              <!-- ACCORDION -->
+              <div class="accordion ineezy-cart-accordion" id="ineezyCartAccordion">
+
+                <div class="accordion-item">
+
+                  <h2 class="accordion-header">
+
+                    <button
+                      class="accordion-button collapsed"
+                      type="button"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#ineezyCartNote"
+                    >
+
+                      Order Special Instructions
+
+                    </button>
+
+                  </h2>
+
+                  <div
+                    id="ineezyCartNote"
+                    class="accordion-collapse collapse"
+                    data-bs-parent="#ineezyCartAccordion"
+                  >
+
+                    <div class="accordion-body">
+
+                      <cart-note class="cart__note field">
+
+                        <textarea
+                          id="CartDrawer-Note"
+                          class="text-area field__input"
+                          name="note"
+                          placeholder="Enter Instructions here ..."
+                        >{{ cart.note }}</textarea>
+
+                      </cart-note>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- FOOTER -->
+            <div class="ineezy-cart-footer">
+
+              <div class="ineezy-cart-summary">
+
+                <h3>Order Summary</h3>
+
+                <div class="ineezy-summary-row">
+                  <span>Subtotal</span>
+                  <span>{{ cart.total_price | money }}</span>
+                </div>
+
+                <div class="ineezy-summary-row muted">
+                  <span>Shipping</span>
+                  <span>Calculated at checkout</span>
+                </div>
+
+                <div class="ineezy-summary-divider"></div>
+
+                <div class="ineezy-summary-total">
+                  <span>Estimated Total</span>
+                  <strong>{{ cart.total_price | money_with_currency }}</strong>
+                </div>
+
+              </div>
+
+              <button
+                type="submit"
+                id="CartDrawer-Checkout"
+                class="ineezy-cart-checkout"
+                name="checkout"
+                form="CartDrawer-Form"
+              >
+                Proceed To Checkout
+              </button>
+
+            </div>
+
+          </form>
+
+        </cart-drawer-items>
+
+      {% endif %}
+
+    </div>
+
+  </div>
+
+</cart-drawer> {% endcomment %}

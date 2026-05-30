@@ -1,0 +1,47 @@
+{% schema %}
+{
+  "name": "Ineezy Hero Slider",
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        { "type": "image_picker", "id": "bg_image", "label": "Background Image" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "More Shine, Less Spend" },
+        { "type": "text", "id": "title", "label": "Title", "default": "CHARM YOUR WAY" },
+        { "type": "text", "id": "button_text", "label": "Button Text", "default": "BUY 2, GET 1 FREE" },
+        { "type": "url", "id": "button_link", "label": "Button Link" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "N_WEB Ineezy Hero Slider" }
+  ]
+}
+{% endschema %}
+
+<section class="ineezy-hero-slider">
+  <div class="ineezy-slider">
+
+    {% for block in section.blocks %}
+      <div class="slide-item">
+        <div class="hero-bg" 
+          style="background-image: url('{{ block.settings.bg_image | image_url: width: 1800 }}');">
+          
+          <div class="hero-content">
+            <p class="subtitle">{{ block.settings.subtitle }}</p>
+            <h1 class="title">{{ block.settings.title }}</h1>
+
+            {% if block.settings.button_text != blank %}
+              <a href="{{ block.settings.button_link }}" class="btn btn-primary">
+                {{ block.settings.button_text }}
+              </a>
+            {% endif %}
+          </div>
+
+        </div>
+      </div>
+    {% endfor %}
+
+  </div>
+</section>

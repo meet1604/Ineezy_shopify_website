@@ -1,0 +1,73 @@
+<section class="ijl-home-journal">
+  <div class="container">
+    <div class="main-title">
+      <h2>{{ section.settings.heading }}</h2>
+      <p>{{ section.settings.subheading }}</p>
+    </div>
+
+    {% assign blog_handle = section.settings.blog %}
+    {% if blogs[blog_handle] %}
+      <div class="ijl-home-journal-slider custom-slick-slider">
+        {% assign posts = blogs[blog_handle].articles | slice: 0, section.settings.post_limit %}
+
+        {% for article in posts %}
+          <div class="ijl-home-journal-slider-card">
+            <div class="journal-image">
+              {% if article.image %}
+                <img src="{{ article.image | img_url: 'master' }}" alt="{{ article.title }}">
+              {% endif %}
+            </div>
+            <div class="journal-text">
+              <h6>
+                {% if article.tags.size > 0 %}
+                  {{ article.tags[0] }} —
+                {% endif %}
+                {{ article.published_at | date: "%B %d, %Y" }}
+              </h6>
+              <h5>{{ article.title }}</h5>
+              <p>{{ article.excerpt | strip_html | truncate: 150 }}</p>
+              <a href="{{ article.url }}" class="btn btn-sm btn-outline-primary">Continue Reading <span class="banner-slider__button-arrow">→</span></a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p style="text-align: center;">Please select a blog in the section settings.</p>
+    {% endif %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "IJL Home Journal",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Selected from our Journal"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Latest trends and inspirations in fashion design."
+    },
+    {
+      "type": "blog",
+      "id": "blog",
+      "label": "Select Blog"
+    },
+    {
+      "type": "number",
+      "id": "post_limit",
+      "label": "Number of Posts",
+      "default": 3
+    }
+  ],
+  "presets": [
+    {
+      "name": "IJL Home Journal"
+    }
+  ]
+}
+{% endschema %}

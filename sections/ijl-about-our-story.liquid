@@ -1,0 +1,55 @@
+<section class="our-story">
+  <div class="container">
+    <div class="row our-story-row">
+      <div class="col-lg-6 col-md-12 our-story-col">
+        <div class="our-story-text">
+          <h3>{{ section.settings.heading }}</h3>
+          <div>{{ section.settings.paragraph1 }}</div>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12 our-story-col">
+        <div class="our-story-image">
+          {% if section.settings.image != blank %}
+            <img
+              src="{{ section.settings.image | image_url: width: 800 }}"
+              alt="{{ section.settings.image.alt | escape }}"
+              loading="lazy"
+            >
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "IJL About Our Story",
+  "tag": "section",
+  "class": "our-story-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "Our Story"
+    },
+    {
+      "type": "richtext",
+      "id": "paragraph1",
+      "label": "Paragraph",
+      "default": "<p>Founded in 2010, International Jeweler Limited was born from a vision to revolutionize the jewelry industry by setting new standards for ethics, sustainability, and transparency.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Our Story Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "IJL About Our Story"
+    }
+  ]
+}
+{% endschema %}

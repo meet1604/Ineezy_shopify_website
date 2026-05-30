@@ -1,0 +1,971 @@
+{{ 'customer.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+  .section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+  padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+  @media screen and (min-width: 750px) {
+  .section-{{ section.id }}-padding {
+  padding-top: {{ section.settings.padding_top }}px;
+  padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  }
+{%- endstyle -%}
+<section class="my-account">
+  <div class="container">
+    <div class="my-account-title-wrapper d-flex justify-content-between align-items-center">
+      <div class="my-account-title-left">
+        <div class="my-account-title">
+          <h6>My Account</h6>
+          <h2>Welcome {{ customer.first_name | default: 'Guest' }}!</h2>
+        </div>
+      </div>
+      <div class="my-account-title-right">
+        <a class="btn btn-outline-primary" href="{{ routes.account_logout_url }}">
+          Log Out <i class="svg-wrapper">{{ 'arrow-right-2.svg' | inline_asset_content }}</i>
+        </a>
+      </div>
+    </div>
+    <div class="my-account-wrapper ">
+      <div class="my-account-left">
+        <div
+          class="my-account-menu nav flex-column nav-pills me-3"
+          id="v-pills-tab"
+          role="tablist"
+          aria-orientation="vertical"
+        >
+          <h6 class="nav-title">MAIN</h6>
+          <button
+            class="nav-link active"
+            id="dashboard-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#dashboard"
+            type="button"
+            role="tab"
+            aria-controls="dashboard"
+            aria-selected="true"
+          >
+            <i class="svg-wrapper">{{ 'new-icon-dashboard.svg' | inline_asset_content }}</i> Dashboard
+          </button>
+          <h6 class="nav-title">ORDERS</h6>
+          <button
+            class="nav-link "
+            id="orders-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#orders"
+            type="button"
+            role="tab"
+            aria-controls="orders"
+            aria-selected="false"
+          >
+            <i class="svg-wrapper">{{ 'new-icon-order.svg' | inline_asset_content }}</i> My Orders
+          </button>
+          <button
+            class="nav-link d-none"
+            id="returns-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#returns"
+            type="button"
+            role="tab"
+            aria-controls="returns"
+            aria-selected="false"
+          >
+            <i class="svg-wrapper">{{ 'new-icon-return.svg' | inline_asset_content }}</i> Returns
+          </button>
+          {% comment %} <h6 class="nav-title">CREDITS</h6> {% endcomment %}
+          {% comment %}
+            <button
+              class="nav-link"
+              id="offers-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#offers"
+              type="button"
+              role="tab"
+              aria-controls="offers"
+              aria-selected="false"
+            >
+              <i class="svg-wrapper">{{ 'new-icon-offer.svg' | inline_asset_content }}</i> Offers/Coupons
+            </button>
+          {% endcomment %}
+          <h6 class="nav-title">ACCOUNT</h6>
+          <button
+            class="nav-link"
+            id="profile-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#profile"
+            type="button"
+            role="tab"
+            aria-controls="profile"
+            aria-selected="false"
+          >
+            <i class="svg-wrapper">{{ 'new-icon-account.svg' | inline_asset_content }}</i> Profile
+          </button>
+          {% comment %}
+            <button
+              class="nav-link "
+              id="wishlist-tab"
+              data-bs-toggle="pill"
+              data-bs-target="#wishlist"
+              type="button"
+              role="tab"
+              aria-controls="wishlist"
+              aria-selected="false"
+            >
+              <i class="svg-wrapper">{{ 'new-icon-wishlight.svg' | inline_asset_content }}</i> Wishlist
+            </button>
+          {% endcomment %}
+          <button
+            class="nav-link"
+            id="shipping-tab"
+            data-bs-toggle="pill"
+            data-bs-target="#shipping"
+            type="button"
+            role="tab"
+            aria-controls="shipping"
+            aria-selected="false"
+          >
+            <i class="svg-wrapper">{{ 'new-icon-location.svg' | inline_asset_content }}</i> Shipping Addresses
+          </button>
+        </div>
+      </div>
+      <div class="my-account-right">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+            <div class="profile-card">
+              {% if customer %}
+                {% comment %}
+                  <div class="profile-card-image">
+                    <img src="{{ 'default-profile.svg' | asset_url }}" alt="{{ customer.name }}'s Profile" class="profile-image">
+                  </div>
+                {% endcomment %}
+                <div class="profile-card-text">
+                  <div class="profile-card-name">
+                    <h4>{{ customer.default_address.first_name }} {{ customer.default_address.last_name }}</h4>
+                    <a id="btn-edit-profile" class="edit-profile btn btn-primary  d-none">
+                      <i class="svg-wrapper">{{ 'new-icon-edit.svg' | inline_asset_content }}</i> Edit Profile</a
+                    >
+                  </div>
+                  <p>{{ customer.email }}</p>
+                  <p>{{ customer.default_address.phone }}</p>
+                  {% if customer.default_address.address1 %}
+                    <p>{{ customer.default_address.address1 }}, {{ customer.default_address.city }}</p>
+                  {% endif %}
+                </div>
+              {% else %}
+                <p>Please log in to view your profile.</p>
+              {% endif %}
+            </div>
+            <div class="dashbaord d-none">
+              <a href="#" class="orderhistory">
+                <div class="dashbaord-card">
+                  <i class="svg-wrapper">{{ 'new-icon-order.svg' | inline_asset_content }}</i>
+                  <h6>My Shoped Orders</h6>
+                  <p>Check your order status</p>
+                </div>
+              </a>
+              <a href="#" class="currentorder">
+                <div class="dashbaord-card">
+                  <i class="svg-wrapper">{{ 'new-icon-order-2.svg' | inline_asset_content }}</i>
+                  <h6>My Orders</h6>
+                  <p>Check your order status</p>
+                </div>
+              </a>
+              <a href="#" class="wishlistbtn">
+                <div class="dashbaord-card">
+                  <i class="svg-wrapper">{{ 'new-icon-wishlight.svg' | inline_asset_content }}</i>
+                  <h6>Wishlist</h6>
+                  <p>Check your order status</p>
+                </div>
+              </a>
+              <a href="#" class="couponsbtn">
+                <div class="dashbaord-card">
+                  <i class="svg-wrapper">{{ 'new-icon-offer.svg' | inline_asset_content }}</i>
+                  <h6>Coupons</h6>
+                  <p>Check your order status</p>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
+            <div class="order-content-container">
+              <div class="tab-title">
+                <h2>My Shop Orders</h2>
+              </div>
+              <div class="order-listing" aria-live="polite">
+                <div class="table-responsive">
+                  {%- if customer.orders.size > 0 -%}
+                    <table role="table" class="table-theme order-history w-100">
+                      <caption class="visually-hidden">
+                        Orders
+                      </caption>
+                      <thead role="rowgroup">
+                        <tr role="row">
+                          <th id="ColumnOrder" scope="col" role="columnheader">Product Details</th>
+                          <th id="ColumnDate" scope="col" role="columnheader" class="text-center">Order Date</th>
+                          <th id="ColumnPayment" scope="col" role="columnheader" class="text-center">Payment Status</th>
+                          <th id="ColumnFulfillment" scope="col" role="columnheader" class="text-center">
+                            Fulfillment Status
+                          </th>
+                          <th id="ColumnTotal" scope="col" role="columnheader" class="text-center">Qty</th>
+                          <th id="ColumnTotal" scope="col" role="columnheader">Amount</th>
+                          <th id="ColumnActions" scope="col" role="columnheader"></th>
+                        </tr>
+                      </thead>
+                      <tbody role="rowgroup">
+                        {%- for order in customer.orders -%}
+                          <tr role="row" class="order-row">
+                            <td
+                              headers="RowOrder{{ order.id }} ColumnImage"
+                              role="cell"
+                              data-label="Image"
+                              class="text-center"
+                            >
+                              <div class="order-image-title">
+                                {% for item in order.line_items %}
+                                  {% if item.image %}
+                                    {% comment %} <img src="{{ item.image | image_url: width: 80 }}" alt="{{ item.title }}" style="max-width: 40px; margin: 2px;" /> {% endcomment %}
+                                    <img
+                                      src="{{ item.image | image_url: width: 80 }}"
+                                      alt="{{ item.title }}"
+                                      style="max-width: 40px; margin: 2px;"
+                                    >
+                                  {% endif %}
+                                {% endfor %}
+                                {{ order.name }}
+                              </div>
+                            </td>
+                            <td
+                              headers="RowOrder{{ order.id }} ColumnDate"
+                              role="cell"
+                              data-label="Date"
+                              class="text-center"
+                            >
+                              {{ order.created_at | time_tag: format: 'date' }}
+                            </td>
+                            {% assign status = order.financial_status_label | downcase %}
+                            <td
+                              headers="RowOrder{{ order.id }} ColumnPayment"
+                              role="cell"
+                              data-label="Payment Status"
+                              class="text-center"
+                            >
+                              <div
+                                class="
+                                  status
+                                  {% case status %}
+                                  {% when 'paid' %} status-paid
+                                  {% when 'pending' %} status-pending
+                                  {% when 'refunded' %} status-refunded
+                                  {% when 'partially paid' %} status-partial
+                                  {% when 'voided' %} status-voided
+                                  {% else %} status-unknown
+                                  {% endcase %}
+                                "
+                              >
+                                {{ order.financial_status_label }}
+                              </div>
+                            </td>
+                            <td
+                              headers="RowOrder{{ order.id }} ColumnFulfillment"
+                              role="cell"
+                              data-label="Fulfillment Status"
+                              class="text-center"
+                            >
+                              {{ order.fulfillment_status_label }}
+                            </td>
+                            <!-- 👇 Qty column -->
+                            <td
+                              headers="RowOrder{{ order.id }} ColumnQty"
+                              role="cell"
+                              data-label="Qty"
+                              class="text-center"
+                            >
+                              {% assign total_qty = 0 %}
+                              {% for item in order.line_items %}
+                                {% assign total_qty = total_qty | plus: item.quantity %}
+                              {% endfor %}
+                              {{ total_qty }}
+                            </td>
+                            <td headers="RowOrder{{ order.id }} ColumnTotal" role="cell" data-label="Total">
+                              {{ order.total_net_amount | money_with_currency }}
+                            </td>
+                            <td headers="RowOrder{{ order.id }} ColumnActions" role="cell" data-label="Actions">
+                              <a href="#" class="view-details-link" data-order-id="{{ order.id }}">
+                                <i class="svg-wrapper">{{ 'arrow-right-2.svg' | inline_asset_content }}</i>
+                              </a>
+                            </td>
+                          </tr>
+                        {%- endfor -%}
+                      </tbody>
+                    </table>
+                  {%- else -%}
+                    <p>No orders found</p>
+                  {%- endif -%}
+                </div>
+              </div>
+              <div class="order-details" style="display: none;" aria-live="polite">
+                <button class="btn btn-sm btn-icon  btn-outline-primary">
+                  <i class="svg-wrapper"> {{ 'arrow-left-2.svg' | inline_asset_content }} </i>
+                </button>
+                <!-- Order details will be injected here via JavaScript -->
+                <button class="back-button">Back</button>
+              </div>
+            </div>
+            <script type="application/json" id="customer-orders-data">
+              {
+                "orders": [
+                  {%- for order in customer.orders %}
+                    {
+                      "id": {{ order.id | json }},
+                      "name": {{ order.name | json }},
+                      "created_at": {{ order.created_at | date: '%Y-%m-%d %H:%M:%S' | json }},
+                      "financial_status_label": {{ order.financial_status_label | json }},
+                      "fulfillment_status_label": {{ order.fulfillment_status_label | json }},
+                      "total_net_amount": {{ order.total_net_amount | money_with_currency | json }},
+                      "cancelled": {{ order.cancelled | json }},
+                      "cancelled_at": {{ order.cancelled_at | date: '%Y-%m-%d %H:%M:%S' | default: '' | json }},
+                      "cancel_reason_label": {{ order.cancel_reason_label | default: '' | json }},
+                      "shipping_address": {
+                        "name": {{ order.shipping_address.name | default: '' | json }},
+                        "address1": {{ order.shipping_address.address1 | default: '' | json }},
+                        "city": {{ order.shipping_address.city | default: '' | json }},
+                        "province_code": {{ order.shipping_address.province_code | default: '' | json }},
+                        "zip": {{ order.shipping_address.zip | default: '' | json }},
+                        "country": {{ order.shipping_address.country | default: '' | json }}
+                      },
+                      "billing_address": {
+                        "name": {{ order.billing_address.name | default: '' | json }},
+                        "address1": {{ order.billing_address.address1 | default: '' | json }},
+                        "city": {{ order.billing_address.city | default: '' | json }},
+                        "province_code": {{ order.billing_address.province_code | default: '' | json }},
+                        "zip": {{ order.billing_address.zip | default: '' | json }},
+                        "country": {{ order.billing_address.country | default: '' | json }}
+                      },
+                      "line_items": [
+                        {%- for line_item in order.line_items %}
+                          {
+                            "key": {{ line_item.key | json }},
+                            "title": {{ line_item.title | json }},
+                            "variant_title": {{ line_item.variant_title | default: 'Default Title' | json }},
+                            "sku": {{ line_item.sku | default: '' | json }},
+                            "final_price": {{ line_item.final_price | money | json }},
+                            "quantity": {{ line_item.quantity | json }},
+                            "final_line_price": {{ line_item.final_line_price | money | json }}
+                          }{% unless forloop.last %},{% endunless %}
+                        {%- endfor %}
+                      ],
+                      "line_items_subtotal_price": {{ order.line_items_subtotal_price | money | json }},
+                      "shipping_methods": [
+                        {%- for method in order.shipping_methods %}
+                          { "title": {{ method.title | json }}, "price": {{ method.price | money | json }} }{% unless forloop.last %},{% endunless %}
+                        {%- endfor %}
+                      ]
+                    }{% unless forloop.last %},{% endunless %}
+                  {%- endfor %}
+                ]
+              }
+            </script>
+          </div>
+          <div class="tab-pane fade" id="returns" role="tabpanel" aria-labelledby="returns-tab">
+            <div class="tab-title">
+              <h2>My Return Orders</h2>
+            </div>
+            <div class="table-responsive">
+              {%- if customer.orders.size > 0 -%}
+                <table role="table" class="order-history w-100 table-theme">
+                  <caption class="visually-hidden">
+                    {{ 'customer.orders.title' | t }}
+                  </caption>
+                  <thead role="rowgroup">
+                    <tr role="row">
+                      <th id="ColumnOrder" scope="col" role="columnheader">{{ 'customer.orders.order_number' | t }}</th>
+                      <th id="ColumnDate" scope="col" role="columnheader">{{ 'customer.orders.date' | t }}</th>
+                      <th id="ColumnPayment" scope="col" role="columnheader">
+                        {{ 'customer.orders.payment_status' | t }}
+                      </th>
+                      <th id="ColumnFulfillment" scope="col" role="columnheader">
+                        {{ 'customer.orders.fulfillment_status' | t }}
+                      </th>
+                      <th id="ColumnTotal" scope="col" role="columnheader">Orders Total</th>
+                      <th id="ColumnReturns" scope="col" role="columnheader">Orders Returns</th>
+                      <!-- New Returns Column -->
+                    </tr>
+                  </thead>
+                  <tbody role="rowgroup">
+                    {%- for order in customer.orders -%}
+                      <tr role="row">
+                        <td
+                          headers="RowOrder{{ order.id }} ColumnImage"
+                          role="cell"
+                          data-label="Image"
+                          class="text-center"
+                        >
+                          <a class="order-image-title " href="{{ order.customer_url }}">
+                            {% for item in order.line_items %}
+                              {% if item.image %}
+                                <img
+                                  src="{{ item.image | image_url: width: 80 }}"
+                                  alt="{{ item.title }}"
+                                  style="max-width: 40px; margin: 2px;"
+                                >
+                              {% endif %}
+                            {% endfor %}
+                            {{ order.name }}
+                          </a>
+                        </td>
+
+                        <td headers="RowOrder ColumnDate" role="cell" data-label="{{ 'customer.orders.date' | t }}">
+                          {{ order.created_at | time_tag: format: 'date' }}
+                        </td>
+                        <td
+                          headers="RowOrder ColumnPayment"
+                          role="cell"
+                          data-label="{{ 'customer.orders.payment_status' | t }}"
+                        >
+                          <div
+                            class="
+                              status
+                              {% case status %}
+                              {% when 'paid' %} status-paid
+                              {% when 'pending' %} status-pending
+                              {% when 'refunded' %} status-refunded
+                              {% when 'partially paid' %} status-partial
+                              {% when 'voided' %} status-voided
+                              {% else %} status-unknown
+                              {% endcase %}
+                            "
+                          >
+                            {{ order.financial_status_label }}
+                          </div>
+                        </td>
+
+                        <td
+                          headers="RowOrder ColumnFulfillment"
+                          role="cell"
+                          data-label="{{ 'customer.orders.fulfillment_status' | t }}"
+                        >
+                          {{ order.fulfillment_status_label }}
+                        </td>
+                        <td
+                          headers="RowOrder ColumnTotal"
+                          role="cell"
+                          data-label="{{ 'customer.orders.total' | t }}"
+                        >
+                          {{ order.total_net_amount | money_with_currency }}
+                        </td>
+                        <td
+                          headers="RowOrder ColumnReturns"
+                          role="cell"
+                          data-label="{{ 'customer.orders.returns' | t }}"
+                        >
+                          {%- assign returns_count = 0 -%}
+                          {%- for fulfillment in order.fulfillments -%}
+                            {%- if fulfillment.status == 'returned' -%}
+                              {%- assign returns_count = returns_count | plus: 1 -%}
+                            {%- endif -%}
+                          {%- endfor -%}
+                          {% if returns_count > 0 %}
+                            {{ returns_count }}
+                            {{ 'customer.orders.returned' | t }}
+                          {% else %}
+                            No Return
+                          {% endif %}
+                        </td>
+                      </tr>
+                    {%- endfor -%}
+                  </tbody>
+                </table>
+              {%- else -%}
+                <p>{{ 'customer.orders.none' | t }}</p>
+              {%- endif -%}
+            </div>
+          </div>
+          <div class="tab-pane fade" id="offers" role="tabpanel" aria-labelledby="offers-tab">
+            <div class="tab-title">
+              <h2>Offers/Coupons</h2>
+            </div>
+            <div class="offer-wrapper">
+              <div class="offer-card">
+                <div class="offer-card-left">
+                  <h2>
+                    20% <br>
+                    OFF
+                  </h2>
+                </div>
+                <div class="offer-card-center">
+                  <p>On minimum purchase of $10,000</p>
+                  <div class="form-group form-group-coupon">
+                    <span>Code:</span>
+                    <input type="email" class="form-control" value="GETEXTRA20">
+                    <button class="btn">
+                      Copy <i class="svg-wrapper">{{ 'new-icon-copy.svg' | inline_asset_content }}</i>
+                    </button>
+                  </div>
+                  <h6>Expire: <span>Sep 30 2022 | 11:59:00 PM</span></h6>
+                </div>
+                <div class="offer-card-right">
+                  <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#details">
+                    View Details <i class="svg-wrapper">{{ 'arrow-right-2.svg' | inline_asset_content }}</i>
+                  </button>
+                </div>
+              </div>
+              <div class="offer-card">
+                <div class="offer-card-left">
+                  <h2>
+                    20% <br>
+                    OFF
+                  </h2>
+                </div>
+                <div class="offer-card-center">
+                  <p>On minimum purchase of $10,000</p>
+                  <div class="form-group form-group-coupon">
+                    <span>Code:</span>
+                    <input type="email" class="form-control" value="GETEXTRA20">
+                    <button class="btn">
+                      Copy <i class="svg-wrapper">{{ 'new-icon-copy.svg' | inline_asset_content }}</i>
+                    </button>
+                  </div>
+                  <h6>Expire: <span>Sep 30 2022 | 11:59:00 PM</span></h6>
+                </div>
+                <div class="offer-card-right">
+                  <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#details">
+                    View Details <i class="svg-wrapper">{{ 'arrow-right-2.svg' | inline_asset_content }}</i>
+                  </button>
+                </div>
+              </div>
+              <div class="offer-card">
+                <div class="offer-card-left">
+                  <h2>
+                    20% <br>
+                    OFF
+                  </h2>
+                </div>
+                <div class="offer-card-center">
+                  <p>On minimum purchase of $10,000</p>
+                  <div class="form-group form-group-coupon">
+                    <span>Code:</span>
+                    <input type="email" class="form-control" value="GETEXTRA20">
+                    <button class="btn">
+                      Copy <i class="svg-wrapper">{{ 'new-icon-copy.svg' | inline_asset_content }}</i>
+                    </button>
+                  </div>
+                  <h6>Expire: <span>Sep 30 2022 | 11:59:00 PM</span></h6>
+                </div>
+                <div class="offer-card-right">
+                  <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#details">
+                    View Details <i class="svg-wrapper">{{ 'arrow-right-2.svg' | inline_asset_content }}</i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div id="offers-content">
+              <div class="account-discounts-section d-none">
+                <h2>Available Order Discounts</h2>
+                <div class="discounts-container">
+                  {% assign money_off_discounts = discount_applications | where: 'type', 'moneyOffOrder' %}
+                  {% if money_off_discounts.size > 0 %}
+                    {% for discount in money_off_discounts %}
+                      <div class="discount-card" data-discount-id="{{ discount.id }}">
+                        <div class="discount-header">
+                          <span class="discount-amount">{{ discount.amount | money }}</span>
+                          <span class="discount-code">{{ discount.code }}</span>
+                        </div>
+                        <div class="discount-details">
+                          {% if discount.minimum_requirement_met %}
+                            <p class="discount-message">Minimum order: {{ discount.minimum_requirement | money }}</p>
+                          {% endif %}
+                          {% if discount.ends_at %}
+                            <p class="discount-expiry">Valid until: {{ discount.ends_at | date: '%B %d, %Y' }}</p>
+                          {% endif %}
+                        </div>
+                      </div>
+                    {% endfor %}
+                  {% else %}
+                    <p class="no-discounts">No order discounts available at this time.</p>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+
+            <!-- Band Size PDF Modal -->
+            <div
+              class="modal fade m-0"
+              id="details"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="modal-title">
+                      <h2>GETEXTRA20</h2>
+                      <p>Use this coupon code for instant discount</p>
+                    </div>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <h6>Descriptions</h6>
+                    <p>
+                      It is a long established fact that a reader will be distracted by the readable content of a page
+                      when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                      distribution of letters, as opposed to using 'Content here, content here', making it look like
+                      readable English.
+                    </p>
+                    <p>
+                      It is a long established fact that a reader will be distracted by the readable content of a page
+                      when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                      distribution of letters, as opposed to using 'Content here, content here', making it look like
+                      readable English.
+                    </p>
+
+                    <h6>Term & Conditions</h6>
+                    <p>
+                      It is a long established fact that a reader will be distracted by the readable content of a page
+                      when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                      distribution of letters, as opposed to using 'Content here, content here', making it look like
+                      readable English.
+                    </p>
+                    <p>
+                      It is a long established fact that a reader will be distracted by the readable content of a page
+                      when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+                      distribution of letters, as opposed to using 'Content here, content here', making it look like
+                      readable English.
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-primary">Cancel</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                      Copy
+                      <i
+                        class="svg-wrapper"
+                      >
+                        {{- 'new-icon-copy.svg' | inline_asset_content -}}
+                      </i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Band Size PDF Modal -->
+          </div>
+          <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+            <div id="user-details" class="tab-pane">
+              <div class="tab-title">
+                <h2>My Account</h2>
+              </div>
+              <div id="error-message" style="color: red; display: none;"></div>
+              <div id="success-message" style="color: green; display: none;"></div>
+              {% if customer %}
+                {% if customer %}
+                  <div class="customer-name-update row">
+                    <div class="col-lg-8 col-md-12">
+                      <ul class="nav nav-tabs" id="myaccountTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button
+                            class="nav-link active"
+                            id="personaldetails-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#personaldetails"
+                            type="button"
+                            role="tab"
+                            aria-controls="personaldetails"
+                            aria-selected="true"
+                          >
+                            Personal Details
+                          </button>
+                        </li>
+                        <li class="nav-item d-none" role="presentation">
+                          <button
+                            class="nav-link"
+                            id="passwordreset-tab"
+                            data-bs-toggle="tab"
+                            data-bs-target="#passwordreset"
+                            type="button"
+                            role="tab"
+                            aria-controls="passwordreset"
+                            aria-selected="false"
+                          >
+                            Change Password
+                          </button>
+                        </li>
+
+                        <!--
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="passw-tab" data-bs-toggle="tab" data-bs-target="#passw" type="button" role="tab" aria-controls="passw" aria-selected="false">My - Password</button>
+                          </li>
+                        -->
+                      </ul>
+                      <div class="tab-content" id="myTabContent">
+                        <div
+                          class="tab-pane fade show active"
+                          id="personaldetails"
+                          role="tabpanel"
+                          aria-labelledby="personaldetails-tab"
+                        >
+                          <!-- --------------------------- Profile Upload ---------------------------- -->
+                          <div class="profile-upload  d-none">
+                            <div class="profile-image">
+                              <img src="{{ " default-profile.svg" | asset_url }}" alt="Valamji">
+                            </div>
+                            <div class="profile-text">
+                              <h6>Your avatar</h6>
+                              <p>PNG or JPG no bigger than 500px wide and tall.</p>
+                              <div class="button-group gap-2 mb-0" style="width:fit-content;">
+                                <button class="btn btn-fileupload btn-primary btn-sm btn-icon ">
+                                  <i class="svg-wrapper">{{ 'new-icon-upload.svg' | inline_asset_content }}</i>
+                                  <input
+                                    type="file"
+                                    ref="{imageRef}"
+                                    accept="image/x-png,image/jpeg,image/jpg"
+                                  >
+                                </button>
+                                <button class="btn btn-outline-primary btn-sm btn-icon ">
+                                  <i class="svg-wrapper">{{ 'new-icon-trash.svg' | inline_asset_content }}</i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+
+                          <form id="customerNameUpdateForm">
+                            <div class="row">
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="firstName">First Name</label>
+                                  <input
+                                    class="form-control"
+                                    type="text"
+                                    id="firstName"
+                                    value="{{ customer.first_name }}"
+                                    required
+                                    readonly
+                                  >
+                                </div>
+                              </div>
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <label for="lastName">Last Name</label>
+                                  <input
+                                    class="form-control"
+                                    type="text"
+                                    id="lastName"
+                                    value="{{ customer.last_name }}"
+                                    required
+                                    readonly
+                                  >
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-group">
+                              <label for="email">Email</label>
+                              <input
+                                class="form-control"
+                                type="email"
+                                id="email"
+                                value="{{ customer.email }}"
+                                required
+                                readonly
+                              >
+                            </div>
+                            {% comment %} <button type="submit" class="btn btn-primary">Save</button> {% endcomment %}
+                          </form>
+                        </div>
+
+                        <div
+                          class="tab-pane fade"
+                          id="passwordreset"
+                          role="tabpanel"
+                          aria-labelledby="passwordreset-tab"
+                        >
+                          <form method="post" action="/account/recover" accept-charset="UTF-8">
+                            <input type="hidden" name="form_type" value="recover_customer_password">
+                            <input type="hidden" name="utf8" value="✓">
+                            <div id="recover_email" class="form-group">
+                              <label for="email">Email</label>
+                              <input
+                                class="form-control"
+                                type="email"
+                                value=""
+                                size="30"
+                                name="email"
+                                id="recover-email"
+                                autocorrect="off"
+                                autocapitalize="off"
+                              >
+                              <p><em class="note">We will send you an email to reset your password.</em></p>
+                            </div>
+                            <div class="action_bottom">
+                              <button class="btn btn-primary" type="submit" value="Submit">Update Password</button>
+                              <!--
+                                <span class="note"> or <a href="#" onclick="hideRecoverPasswordForm()">Cancel</a></span>
+                              -->
+                            </div>
+                          </form>
+                          <!--
+                            <form id="customerNameUpdateForm" >
+                               <div class="row">
+                                 <div class="col-md-6">
+                                   <div class="form-group">
+                                      <label for="firstName">First Name</label>
+                                      <input class="form-control" type="text" id="firstName" value="{{ customer.first_name }}" required />
+                                   </div>
+
+                                 </div>
+                                 <div class="col-md-6">
+                                   <div class="form-group">
+                                      <label for="lastName">Last Name</label>
+                                      <input class="form-control" type="text" id="lastName" value="{{ customer.last_name }}" required />
+                                   </div>
+                                 </div>
+                               </div>
+                               <div class="form-group">
+                                  <label for="email">Email</label>
+                                  <input class="form-control" type="email" id="email" value="{{ customer.email }}" required />
+                               </div>
+                               <button type="submit" class="btn btn-primary">Save</button>
+                            </form>
+                          -->
+                        </div>
+
+                        <div class="tab-pane fade" id="passw" role="tabpanel" aria-labelledby="passw-tab">
+                          <form method="post" id="recover-password-form" accept-charset="UTF-8">
+                            <input type="hidden" name="form_type" value="recover_customer_password">
+                            <input type="hidden" name="utf8" value="✓">
+                            <div id="recover_email">
+                              <label for="email">Email</label>
+                              <input
+                                type="email"
+                                value=""
+                                size="30"
+                                name="email"
+                                id="recover-email"
+                                autocorrect="off"
+                                autocapitalize="off"
+                              >
+                            </div>
+                            <p><em class="note">We will send you an email to reset your password.</em></p>
+                            <div class="action_bottom">
+                              <input class="global-button global-button--primary" type="submit" value="Submit">
+                              <span class="note">
+                                or
+                                <a
+                                  href="#"
+                                  onclick="hideRecoverPasswordForm()"
+                                  >Cancel</a
+                                ></span
+                              >
+                            </div>
+                          </form>
+                          <a href="{{ customer.reset_password_url }}" class="button__text">Reset your password</a>
+                        </div>
+                      </div>
+
+                      <!-- --------------------------- Profile Upload ---------------------------- -->
+
+                      <div id="updateMessage" style="display: none; margin-top: 1rem;"></div>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+          <div class="tab-pane fade " id="wishlist" role="tabpanel" aria-labelledby="wishlist-tab">
+            <div class="tab-title">
+              <h2>Wishlist</h2>
+            </div>
+
+            <div class="all-wishlist row">
+              {% assign collection = collections['newest-arrivals'] %}
+              {% if collection %}
+                {% for product in collection.products %}
+                  <div class="col-md-4">
+                    {% render 'common-product-card', product: product %}
+                  </div>
+                {% endfor %}
+              {% else %}
+                <p>No products found in the "Newest Arrivals" collection.</p>
+              {% endif %}
+            </div>
+            <!--
+              <div class="wishlist-page">
+              <h2>Your Wishlist</h2>
+              <div class="wishlist-products-listings" id="wishlist-container">Loading...</div>
+              </div>
+            -->
+          </div>
+          <div class="tab-pane fade" id="shipping" role="tabpanel" aria-labelledby="shipping-tab">
+            {% comment %} {% render 'main-addresses' %} {% endcomment %}
+
+            {% render 'main-addresses-new' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if customer %}
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+
+      viewDetailsButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          const orderId = button.dataset.orderId;
+          const detailsRow = document.getElementById(`order-details-${orderId}`);
+          const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+          // Toggle visibility
+          if (isExpanded) {
+            detailsRow.style.display = 'none';
+            button.setAttribute('aria-expanded', 'false');
+            button.textContent = 'View Details'; // Adjust based on translation
+          } else {
+            detailsRow.style.display = 'table-row';
+            button.setAttribute('aria-expanded', 'true');
+            button.textContent = 'Hide Details'; // Adjust based on translation
+          }
+        });
+      });
+    });
+  </script>
+{% else %}
+  <p>Please <a href="/account/login">log in</a> to update your profile.</p>
+{% endif %}
+{% schema %}
+{
+  "name": "t:sections.main-account.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

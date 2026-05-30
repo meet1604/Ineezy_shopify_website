@@ -1,0 +1,163 @@
+/* ================= PRODUCT CARD V2 ================= */
+
+.ineezy-new .ineezy-product-card {
+  position: relative;
+  border: 1px solid var(--neutral-2);
+}
+
+/* IMAGE */
+
+.ineezy-new .ineezy-product-image {
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+}
+
+.ineezy-new .ineezy-product-image a {
+  display: block;
+  position: relative;
+}
+
+.ineezy-new .ineezy-product-image img {
+  width: 100%;
+  aspect-ratio: 1/1.3;
+  object-fit: cover;
+  transition: 0.5s ease;
+  display: block;
+}
+
+/* HOVER IMAGE */
+
+.ineezy-new .ineezy-product-image .hover-image {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.ineezy-new .ineezy-product-card:hover .hover-image {
+  opacity: 1;
+}
+
+.ineezy-new .ineezy-product-card:hover .main-image {
+  opacity: 0;
+}
+
+/* WISHLIST */
+
+.ineezy-new .wishlist-btn {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  border-radius: 100px;
+  background: rgba(255,255,255,0.9);
+}
+
+/* CONTENT */
+
+.ineezy-new .ineezy-product-content {
+  padding: 12px;
+}
+
+/* TITLE */
+
+.ineezy-new .product-title {
+  margin: 0 0 10px;
+}
+
+.ineezy-new .product-title a {
+  color: var(--neutral-black);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  text-decoration: none;
+
+    display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+/* PRICE */
+
+.ineezy-new .product-price {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.ineezy-new .sale-price {
+  color: var(--neutral-black);
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+}
+
+.ineezy-new .compare-price {
+  color: #b1acaa;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+  text-decoration-line: line-through;
+}
+
+/* BUTTON */
+
+.ineezy-new .product-btn .btn {
+  width: 100%;
+}
+
+/* MOBILE */
+
+@media(max-width:767px){
+
+  .ineezy-new .wishlist-btn {
+    width: 42px;
+    height: 42px;
+  }
+
+
+    .ineezy-new .product-price {
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.ineezy-new .product-title a{
+  font-size: 14px;
+}
+
+.ineezy-new .compare-price,
+.ineezy-new .sale-price{
+  font-size: 14px;
+  font-weight: 600;
+}
+
+  .ineezy-new .ineezy-product-content {
+    padding: 8px;
+}
+
+    .ineezy-new .product-item {
+        margin-bottom: 8px;
+        padding-left: 4px;
+        padding-right: 4px;
+    }
+
+    .ineezy-new .wishlisthero-floating{
+      position: unset;
+    }
+}

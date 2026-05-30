@@ -1,0 +1,212 @@
+{% schema %}
+{
+  "name": "Ineezy Testimonial Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "SHOP BY THE CATEGORY"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What Our Customers Say"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#F8F5EA"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "review",
+          "label": "Review Text",
+          "default": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Customer Name",
+          "default": "Anisha Chaudhry"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "label": "Rating",
+          "default": 4
+        },
+        {
+          "type": "image_picker",
+          "id": "customer_image",
+          "label": "Customer Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "N_WEB Testimonial Slider"
+    }
+  ]
+}
+{% endschema %}
+
+<section
+  class="ineezy-testimonial-section"
+  style="background-color: {{ section.settings.bg_color }};"
+>
+  <div class="container-fluid p-0">
+    <!-- HEADING -->
+    <div class="new-main-title text-center">
+      <p>{{ section.settings.subtitle }}</p>
+
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+
+    <!-- TOP SLIDER -->
+    <div class="testimonial-slider testimonial-slider-top">
+      {% for block in section.blocks %}
+        <div class="testimonial-item">
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              <p class="review-text">
+                {{ block.settings.review }}
+              </p>
+
+              <div class="testimonial-bottom">
+                <div class="left">
+                  <h4>{{ block.settings.name }}</h4>
+
+                  <div class="stars">
+                    {% for i in (1..5) %}
+                      {% if i <= block.settings.rating %}
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g clip-path="url(#clip0_162_1232)">
+                          <path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#B69238"/>
+                          </g>
+                          <defs>
+                          <clipPath id="clip0_162_1232">
+                          <rect width="14" height="14" fill="white"/>
+                          </clipPath>
+                          </defs>
+                        </svg>
+
+                      {% else %}
+                        <span>
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 14 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g clip-path="url(#clip0_162_1235)">
+                            <path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#E9E5E2"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_162_1235">
+                            <rect width="14" height="14" fill="white"/>
+                            </clipPath>
+                            </defs>
+                          </svg>
+                        </span>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <div class="right">
+                  {% if block.settings.customer_image != blank %}
+                    <img
+                      src="{{ block.settings.customer_image | image_url: width: 100 }}"
+                      alt="{{ block.settings.name }}"
+                    >
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- BOTTOM SLIDER -->
+    <div class="testimonial-slider testimonial-slider-bottom">
+      {% for block in section.blocks reversed %}
+        <div class="testimonial-item">
+          <div class="testimonial-card">
+            <div class="testimonial-content">
+              <p class="review-text">
+                {{ block.settings.review }}
+              </p>
+
+              <div class="testimonial-bottom">
+                <div class="left">
+                  <h4>{{ block.settings.name }}</h4>
+
+                  <div class="stars">
+                    {% for i in (1..5) %}
+                      {% if i <= block.settings.rating %}
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <g clip-path="url(#clip0_162_1232)">
+                          <path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#B69238"/>
+                          </g>
+                          <defs>
+                          <clipPath id="clip0_162_1232">
+                          <rect width="14" height="14" fill="white"/>
+                          </clipPath>
+                          </defs>
+                        </svg>
+
+                      {% else %}
+                        <span>
+                          <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 14 14"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g clip-path="url(#clip0_162_1235)">
+                            <path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#E9E5E2"/>
+                            </g>
+                            <defs>
+                            <clipPath id="clip0_162_1235">
+                            <rect width="14" height="14" fill="white"/>
+                            </clipPath>
+                            </defs>
+                          </svg>
+                        </span>
+                      {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+
+                <div class="right">
+                  {% if block.settings.customer_image != blank %}
+                    <img
+                      src="{{ block.settings.customer_image | image_url: width: 100 }}"
+                      alt="{{ block.settings.name }}"
+                    >
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

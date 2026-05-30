@@ -1,0 +1,56 @@
+{% capture snippet_code %}
+  <div class="form-group">
+    <input class="form-control" type="text" id="AddressFirstName_{{ id_prefix }}" name="address[first_name]" value="{{ form.first_name }}" autocomplete="given-name" placeholder="{{ 'customer.addresses.first_name' | t }}">
+    <label for="AddressFirstName_{{ id_prefix }}">{{ 'customer.addresses.first_name' | t }}</label>
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="text" id="AddressLastName_{{ id_prefix }}" name="address[last_name]" value="{{ form.last_name }}" autocomplete="family-name" placeholder="{{ 'customer.addresses.last_name' | t }}">
+    <label for="AddressLastName_{{ id_prefix }}">{{ 'customer.addresses.last_name' | t }}</label>
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="text" id="AddressCompany_{{ id_prefix }}" name="address[company]" value="{{ form.company }}" autocomplete="organization" placeholder="{{ 'customer.addresses.company' | t }}">
+    <label for="AddressCompany_{{ id_prefix }}">{{ 'customer.addresses.company' | t }}</label>
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="text" id="AddressAddress1_{{ id_prefix }}" name="address[address1]" value="{{ form.address1 }}" autocomplete="address-line1" placeholder="{{ 'customer.addresses.address1' | t }}">
+    <label for="AddressAddress1_{{ id_prefix }}">{{ 'customer.addresses.address1' | t }}</label>
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="text" id="AddressAddress2_{{ id_prefix }}" name="address[address2]" value="{{ form.address2 }}" autocomplete="address-line2" placeholder="{{ 'customer.addresses.address2' | t }}">
+    <label for="AddressAddress2_{{ id_prefix }}">{{ 'customer.addresses.address2' | t }}</label>
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="text" id="AddressCity_{{ id_prefix }}" name="address[city]" value="{{ form.city }}" autocomplete="address-level2" placeholder="{{ 'customer.addresses.city' | t }}">
+    <label for="AddressCity_{{ id_prefix }}">{{ 'customer.addresses.city' | t }}</label>
+  </div>
+  <div class="form-group">
+    <label for="AddressCountry_{{ id_prefix }}">{{ 'customer.addresses.country' | t }}</label>
+    <div class="select">
+      <select class="form-control" id="AddressCountry_{{ id_prefix }}" name="address[country]" data-default="{{ form.country }}" autocomplete="country">
+        {{ all_country_option_tags }}
+      </select>
+      <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+    </div>
+  </div>
+  <div class="form-group" id="AddressProvinceContainer_{{ id_prefix }}" style="display: none;">
+    <label for="AddressProvince_{{ id_prefix }}">{{ 'customer.addresses.province' | t }}</label>
+    <div class="select">
+      <select class="form-control" id="AddressProvince_{{ id_prefix }}" name="address[province]" data-default="{{ form.province }}" autocomplete="address-level1"></select>
+      <span class="svg-wrapper">{{ 'icon-caret.svg' | inline_asset_content }}</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="text" id="AddressZip_{{ id_prefix }}" name="address[zip]" value="{{ form.zip }}" autocomplete="postal-code" placeholder="{{ 'customer.addresses.zip' | t }}">
+    <label for="AddressZip_{{ id_prefix }}">{{ 'customer.addresses.zip' | t }}</label>
+  </div>
+  <div class="form-group">
+    <input class="form-control" type="tel" id="AddressPhone_{{ id_prefix }}" name="address[phone]" value="{{ form.phone }}" autocomplete="tel" placeholder="{{ 'customer.addresses.phone' | t }}">
+    <label for="AddressPhone_{{ id_prefix }}">{{ 'customer.addresses.phone' | t }}</label>
+  </div>
+  <div class="form-group">
+    {{ form.set_as_default_checkbox }}
+    <label for="address_default_address_{{ id_prefix }}">{{ 'customer.addresses.set_default' | t }}</label>
+  </div>
+{% endcapture %}
+{% assign snippet_code = snippet_code | strip %}
+{% if false %}{{ snippet_code }}{% endif %}

@@ -1,0 +1,723 @@
+.ineezy-new .ineezy-new-product-wrapper{
+  background-color: var(--neutral-1)
+}
+
+
+.ineezy-new .ineezy-anniversary-banner {
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.ineezy-new .ineezy-anniversary-banner__content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+
+  padding: 0px;
+
+  border-radius: 32px;
+
+  background: linear-gradient(
+    90deg,
+    #f3eed8 0%,
+    #d2bf63 100%
+  );
+
+  overflow: hidden;
+}
+
+.ineezy-new .ineezy-anniversary-banner__left {
+  display: flex;
+  flex-direction: column;
+  padding: 48px 24px;
+}
+
+.ineezy-new .ineezy-anniversary-banner__subtitle {
+  font-size: 16px;
+  line-height: 140%
+  text-transform: uppercase;
+  color: var(--primary-shade-1);
+  margin-bottom: 0px;
+  font-weight: 500;
+}
+
+.ineezy-new .ineezy-anniversary-banner__title {
+  margin: 0;
+  font-size: 62px;
+  line-height: 100%;
+  font-weight: 400;
+  color: var(--neutral-black);
+}
+
+.ineezy-new .ineezy-anniversary-banner__right {
+position: relative;
+    background: #3b1d0f;
+    color: var(--primary-tint-5);
+    font-size: 24px;
+    line-height: 120%;
+    font-weight: 900;
+    padding: 24px 70px 24px 100px;
+    text-align: center;
+    clip-path: polygon(5% 0, 100% 0, 100% 100%, 5% 100%, 10% 50%);
+}
+
+.ineezy-new .ineezy-anniversary-banner__right span {
+  display: block;
+  line-height: 1.2;
+}
+
+@media screen and (max-width: 1200px) {
+
+  .ineezy-new .ineezy-anniversary-banner__title {
+    font-size: 64px;
+  }
+
+  .ineezy-new .ineezy-anniversary-banner__right {
+    min-width: 500px;
+    font-size: 22px;
+    padding: 28px 50px;
+  }
+
+}
+
+
+
+
+
+
+/* Bread Crumbs css  */
+
+.ineezy-new .ineezy-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 8px  16px;
+  border-radius: 8px;
+  background: var(--primary-tint-2);
+}
+
+.ineezy-new .ineezy-breadcrumb__home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.ineezy-new .ineezy-breadcrumb__home:hover {
+  opacity: 0.7;
+}
+
+.ineezy-new .ineezy-breadcrumb__home svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ineezy-new .ineezy-breadcrumb__divider {
+  font-size: 20px;
+  line-height: 140%;
+  color: var(--neutral-7);
+  font-weight: 300;
+}
+
+.ineezy-new .ineezy-breadcrumb__link,
+.ineezy-new .ineezy-breadcrumb__current {
+  font-size: 16px;
+  line-height: 140%;
+
+  text-decoration: none;
+}
+
+.ineezy-new .ineezy-breadcrumb__link {
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.ineezy-new .ineezy-breadcrumb__link:hover {
+  opacity: 0.7;
+}
+
+.ineezy-new .ineezy-breadcrumb__current {
+  color: var(--neutral-8);
+  font-weight: 500;
+}
+
+.ineezy-new .ineezy-new-product-info{
+  background-color: var(--white);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--neutral-3);
+}
+
+
+/* Ratings css */
+
+.ineezy-new .ineezy-product-rating {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.ineezy-new .ineezy-product-rating__stars {
+  display: flex;
+  align-items: center;
+}
+
+.ineezy-new  .ineezy-product-rating__stars .jdgm-prev-badge {
+  display: flex !important;
+  align-items: center;
+  gap: 6px;
+}
+
+.ineezy-new .ineezy-product-rating__stars > div{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ineezy-new .jdgm-star{
+    font-size: 20px;
+}
+.ineezy-new .jdgm-prev-badge__text {
+  font-size: 16px !important;
+  line-height: 140%
+  color: var(--neutral-9) !important;
+  font-weight: 500;
+}
+
+.ineezy-new .ineezy-product-rating__count {
+  font-size: 14px;
+  color: #777;
+  font-weight: 500;
+}
+
+.ineezy-new .jdgm-prev-badge[data-average-rating='0.00'] {
+  display: none !important;
+}
+
+/* Prodcut Title  */
+.ineezy-new .main-single-product .product-title-wrapper{
+  align-items: flex-start;  
+}
+.ineezy-new .main-single-product .product-title-wrapper .product__title h1{
+  font-size: 32px;
+  line-height: 140%;
+  font-weight: 400;
+  margin-bottom: 0px;
+}
+
+
+
+.ineezy-new #wishlisthero-product-page-button-container button {
+    width: 48px !important;
+    max-width: 48px !important;
+    min-width: 48px;
+    min-height: auto;
+    height: 48px !important;
+    padding: 10px !important;
+    border-radius: 48px !important;
+    border: 0px solid var(--stock-light) !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    opacity: 1 !important;
+}
+
+.ineezy-new #wishlisthero-product-page-button-container button svg{
+  width: 24px;
+  height: 24px;
+}
+
+
+.ineezy-new .divider{
+    border: 0;
+    width: 100%;
+    height: 1px;
+    display: block;
+    background: var(--neutral-3);
+}
+
+.ineezy-new .main-single-product .product-price {
+  margin-bottom: 8px;
+}
+.ineezy-new .main-single-product .product-price .price__container .price__sale{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.ineezy-new .main-single-product .product-price .price__sale span{
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  color: var(--neutral-black);
+  margin: 0px;
+}
+
+.ineezy-new .main-single-product .product-price .price__sale span .price-item--regular{
+  font-weight: 400 ;
+  font-size: 16px;
+  line-height: 140%;
+  letter-spacing: 0%;
+  color: var(--neutral-5);
+  margin: 0px;
+}
+
+.ineezy-new ..main-single-product .product__tax{
+  font-size:16px;
+  line-height: 140%;
+  color: var(--neutral-7);
+}
+
+
+
+.ineezy-new .main-single-product .product-form button{
+    width: 100% !important;
+    font-size: 16px;
+    line-height: 140%;
+    font-weight: 600;
+    min-height: 44px;
+    padding: 12px 24px;
+    background-color: var(--secondary);
+    color: var(--white-color);
+    border-color: var(--secondary);
+    outline: 0 !important;
+    box-shadow: none !important;
+    display: flex;
+    align-items: center;
+    border: 1px solid;
+    justify-content: center;
+    border-radius: 8px;
+    text-decoration: none;
+}
+
+
+.ineezy-new .main-single-product .product-form button:hover{
+  background-color: var(--primary);
+  color: var(--white);
+  border-color: 1px solid var(--white);
+}
+
+
+.ineezy-new .product__info-container .ineezy-icon-with-text {
+  margin: 0px;
+  align-items: flex-start;
+}
+.ineezy-new .product__info-container .ineezy-icon-with-text .icon-with-text-item__icon{
+  min-width: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background-color: var(--neutral-black);
+}
+.ineezy-new .product__info-container .ineezy-icon-with-text .icon-with-text-item{
+  margin-bottom: 4px;
+}
+.ineezy-new .product__info-container .ineezy-icon-with-text .icon-with-text-item{
+  margin-bottom: 4px;
+}
+.ineezy-new .product__info-container .ineezy-icon-with-text .icon-with-text-item span{
+   color: var(--neutral-8);
+   font-size: 16px;
+   line-height: 140%;
+   
+}
+
+
+
+/* Variants Css */
+.ineezy-new .main-variant-picker {
+  margin-top: 24px;
+}
+
+/* =====================================================
+   LABEL
+===================================================== */
+
+.ineezy-new .product-form__input--pill .form__label,
+.ineezy-new .product-form__input .form__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  margin-bottom: 14px;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 140%;
+
+  color: var(--neutral-8);
+}
+
+.ineezy-new .product-form__input .form__label span {
+  font-weight: 700;
+  color: var(--neutral-black);
+}
+
+/* =====================================================
+   COLOR SWATCHES
+===================================================== */
+
+.ineezy-new .ineezy-color-picker {
+  border: 0;
+  padding: 0;
+  margin: 0 0 24px;
+}
+
+.ineezy-new .ineezy-color-picker .form__label {
+  margin-bottom: 14px;
+}
+
+.ineezy-new .ineezy-color-picker .product-form__input {
+  margin: 0;
+}
+
+.ineezy-new .ineezy-color-picker input[type='radio'] {
+  display: none;
+}
+
+.ineezy-new .ineezy-color-picker .ineezy-color-picker-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ineezy-new .ineezy-color-picker .form__label span[data-selected-value] {
+  font-weight: 700;
+}
+
+.ineezy-new .ineezy-color-picker .ineezy-color-picker-wrapper .swatch-input__label {
+    width: 80px;
+    height: 80px;
+    padding: 0;
+    margin: 0 !important;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--neutral-3);
+    background: #fff;
+    cursor: pointer;
+    transition: all .25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: none;
+    outline: none;
+}
+
+
+.ineezy-new .ineezy-color-picker .swatch-input__label:hover {
+  border-color: var(--neutral-black);
+}
+
+.ineezy-new .ineezy-color-picker input:checked + .swatch-input__label {
+  border-color: var(--neutral-black);
+}
+
+.ineezy-new .ineezy-color-picker .ineezy-color-picker-wrapper .swatch {
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  box-shadow: none;
+  border-radius: 0px;
+}
+
+.ineezy-new .ineezy-color-picker .swatch img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+/* =====================================================
+   SIZE BUTTONS
+===================================================== */
+
+.ineezy-new .ineezy-size-picker {
+  border: 0;
+  padding: 0;
+  margin: 0 0 24px;
+}
+.ineezy-new .ineezy-size-picker .ineezy-size-wrapper input[type='radio'] {
+  display: none;
+}
+
+.ineezy-new .ineezy-size-picker .form__label span[data-selected-value] {
+  font-weight: 700;
+}
+
+.ineezy-new .ineezy-size-picker .product-form__input {
+  margin: 0;
+}
+
+.ineezy-new .ineezy-size-picker .variant-pill-wrapper,
+.ineezy-new .ineezy-size-picker .input-wrapper {
+  position: relative;
+}
+
+.ineezy-new .ineezy-size-picker .ineezy-size-wrapper {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+.ineezy-new .ineezy-size-picker .ineezy-size-wrapper .variant-pill-label,
+.ineezy-new .ineezy-size-picker .ineezy-size-wrapper label {
+  min-width: 50px;
+  height: 50px;
+  padding: 0 12px;
+  margin: 0 ;
+  border-radius: 10px;
+  border: 1px solid var(--neutral-3);
+  background: var(--neutral-1) !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--neutral-6);
+  transition: all .25s ease;
+}
+
+.ineezy-new .ineezy-size-picker .variant-pill-label:hover,
+.ineezy-new .ineezy-size-picker label:hover {
+  border-color: var(--neutral-black);
+}
+
+.ineezy-new .ineezy-size-picker input:checked + label,
+.ineezy-new .ineezy-size-picker .variant-pill-input:checked + .variant-pill-label {
+    border-color: var(--neutral-black);
+    background: var(--neutral-black) !important;
+    color: var(--white) !important;
+}
+.ineezy-new .ineezy-size-picker .ineezy-size-wrapper label.disabled:hover,
+.ineezy-new .ineezy-size-picker .ineezy-size-wrapper label.disabled{
+  opacity: 0.5;
+  cursor: no-drop;
+   pointer-events: none;
+}
+
+/* =====================================================
+   DROPDOWN
+===================================================== */
+
+.ineezy-new .ineezy-dropdown-picker {
+  margin-bottom: 24px;
+}
+
+.ineezy-new .ineezy-dropdown-picker .select {
+  position: relative;
+}
+
+.ineezy-new .ineezy-dropdown-picker .select__select {
+  width: 100%;
+  height: 56px;
+
+  border-radius: 12px;
+
+  border: 1px solid var(--neutral-3);
+
+  background: var(--white);
+
+  padding: 0 18px;
+
+  font-size: 15px;
+  color: var(--neutral-black);
+
+  appearance: none;
+}
+
+.ineezy-new .ineezy-dropdown-picker .svg-wrapper {
+  position: absolute;
+
+  top: 50%;
+  right: 18px;
+
+  transform: translateY(-50%);
+
+  pointer-events: none;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media screen and (max-width: 768px) {
+
+  .ineezy-new .ineezy-color-picker .swatch-input__label {
+    width: 72px;
+    height: 72px;
+  }
+
+  .ineezy-new .ineezy-size-picker .variant-pill-label,
+  .ineezy-new .ineezy-size-picker label {
+    min-width: 52px;
+    height: 46px;
+
+    font-size: 14px;
+  }
+
+}
+
+
+
+/* Accordian for prodcut  */
+.ineezy-new .ineezy-product-accordion {
+  margin-top: 16px;
+  border: 0px !important;
+}
+
+.ineezy-new .ineezy-product-accordion .accordion-item {
+  border: 1px solid var(--neutral-3);
+  border-radius: 8px !important;
+  overflow: hidden;
+  background-color: var(--white);
+  margin-bottom: 16px;
+}
+
+.ineezy-new .ineezy-product-accordion button.accordion-button {
+  background-color: var(--white);
+  box-shadow: none !important;
+  padding: 16px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--neutral-black);
+}
+
+
+
+
+.ineezy-new .ineezy-product-accordion button.accordion-button:not(.collapsed) {
+  background-color:var(--white);
+  color:var(--neutral-black);
+}
+
+.ineezy-new .ineezy-product-accordion button.accordion-button:focus {
+  box-shadow: none;
+}
+
+.ineezy-new .ineezy-product-accordion .accordion-button::after {
+  transition: transform 0.3s ease;
+  background-image: url("data:image/svg+xml,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M13.3538%209.64622L8.35378%204.64622C8.30735%204.59973%208.2522%204.56285%208.1915%204.53769C8.13081%204.51252%208.06574%204.49957%208.00003%204.49957C7.93433%204.49957%207.86926%204.51252%207.80856%204.53769C7.74786%204.56285%207.69272%204.59973%207.64628%204.64622L2.64628%209.64622C2.55246%209.74004%202.49976%209.86728%202.49976%209.99997C2.49976%2010.1326%202.55246%2010.2599%202.64628%2010.3537C2.7401%2010.4475%202.86735%2010.5002%203.00003%2010.5002C3.13272%2010.5002%203.25996%2010.4475%203.35378%2010.3537L8.00003%205.70684L12.6463%2010.3537C12.6927%2010.4002%2012.7479%2010.437%2012.8086%2010.4622C12.8693%2010.4873%2012.9343%2010.5002%2013%2010.5002C13.0657%2010.5002%2013.1308%2010.4873%2013.1915%2010.4622C13.2522%2010.437%2013.3073%2010.4002%2013.3538%2010.3537C13.4002%2010.3073%2013.4371%2010.2521%2013.4622%2010.1914C13.4874%2010.1307%2013.5003%2010.0657%2013.5003%209.99997C13.5003%209.93427%2013.4874%209.86921%2013.4622%209.80852C13.4371%209.74782%2013.4002%209.69267%2013.3538%209.64622Z%22%20fill%3D%22black%22/%3E%3C/svg%3E");
+}
+
+.ineezy-new .ineezy-product-accordion .accordion-button:not(.collapsed)::after {
+  transform: rotate(180deg) scale(.9);
+}
+
+.ineezy-new .ineezy-product-accordion .accordion-item .accordion-collapse{
+  background-color: var(--white);
+}
+
+.ineezy-new .ineezy-product-accordion .accordion-body {
+  padding: 0 24px 16px;
+  font-size: 16px;
+  line-height: 180%;
+  color: var(--neutral-8);
+}
+
+/* Accordian for prodcut  */
+
+
+
+
+ /* Main Responsive  */
+
+@media screen and (max-width: 992px) {
+
+  .ineezy-new .ineezy-anniversary-banner__content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 24px;
+    align-items: center;
+  }
+
+  .ineezy-new .ineezy-anniversary-banner__title {
+    font-size: 36px;
+  }
+
+  .ineezy-new .ineezy-anniversary-banner__subtitle {
+    font-size: 14px;
+  }
+
+  .ineezy-new .ineezy-anniversary-banner__left {
+        display: flex;
+    flex-direction: column;
+    padding: 0px;
+    width: 100%;
+    text-align: center;
+  }
+  .ineezy-new .ineezy-anniversary-banner__right {
+    width: 70%;
+    min-width: 70%;
+    font-size: 20;
+    padding: 16px 20px;
+    clip-path: polygon(0 0, 100% 0, 97% 50%, 100% 100%, 0 100%, 3% 50%);
+  }
+
+  .ineezy-new .ineezy-color-swatch {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+  }
+
+  .ineezy-new .variant-pill-label {
+    min-width: 40px;
+    width: 40px;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .ineezy-new .product-form__input .form__label {
+    font-size: 16px;
+  }
+
+}
+
+
+@media(max-width: 767px){
+  .ineezy-new .ineezy-anniversary-banner__content{
+    border-radius: 16px;
+    padding: 16px;
+    gap: 16px;
+  }
+  .ineezy-new .ineezy-anniversary-banner__title {
+      font-size: 32px;
+      line-height: 110%;
+  }
+  .ineezy-new .ineezy-anniversary-banner__right {
+      width: 100%;
+      min-width: 100%;
+      font-size: 16px;
+      padding: 8px 20px;
+  }
+
+
+  /* Bread  Cumb */
+    .ineezy-new .ineezy-breadcrumb {
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .ineezy-new .ineezy-breadcrumb__home svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .ineezy-new .ineezy-breadcrumb__divider {
+      font-size: 16px;
+    }
+
+    .ineezy-new .ineezy-breadcrumb__link,
+    .ineezy-new .ineezy-breadcrumb__current {
+      font-size: 14px;
+    }
+}

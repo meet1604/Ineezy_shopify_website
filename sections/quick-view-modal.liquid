@@ -1,0 +1,75 @@
+<div
+  class="modal fade quick-modal"
+  id="quickViewModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-xl  modal-dialog-centered">
+    <div class="modal-content">
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      <div class="modal-body">
+        <div class="quick-view-wrapper">
+          <div class="quick-view-left">
+            <div id="quick-view-slider" class="quick-view-sider custom-slick-slider">
+              <!--
+                <img src="https://cdn.shopify.com/s/files/1/0927/2603/4727/files/ijl-home-popular-image-2.png?v=1743765259"  alt="">
+              -->
+            </div>
+          </div>
+          <div class="quick-view-right">
+            <div class="product-details">
+              <h2 id="quick-view-title"></h2>
+              {% comment %} <div class="product-ratings-review">
+                <div class="product-ratings">
+                  <img src="{{ "new-icon-star.svg" | asset_url }}">
+                  <img src="{{ "new-icon-star.svg" | asset_url }}">
+                  <img src="{{ "new-icon-star.svg" | asset_url }}">
+                  <img src="{{ "new-icon-star.svg" | asset_url }}">
+                  <img src="{{ "new-icon-star.svg" | asset_url }}">
+                </div>
+                <p><span id="quick-view-reviews"></span> Reviews</p>
+              </div> {% endcomment %}
+              <div class="product-price">
+                <h3 id="quick-view-price"></h3>
+                <p id="quick-view-description"></p>
+              </div>
+
+              <div class="ijl-product-variation-metal-wrapper">
+                <!-- Color swatches and description will be injected here -->
+              </div>
+
+              <div class="product-overview">
+                <div class="product-overview-item">
+                  <!-- <img src="https://cdn.shopify.com/s/files/1/0927/2603/4727/files/diamond.svg?v=1744025589">             -->
+                  <div class="main-single-product">
+                    <div id="quick-view-variants"></div>                                    
+                  </div>
+                </div>
+                <div class="product-overview-item">
+                  <!-- <img src="https://cdn.shopify.com/s/files/1/0927/2603/4727/files/metal.svg?v=1744025589"> -->
+                  <div class="main-single-product">
+                   {% render 'stl-metal-type', block: block %}
+                </div>
+                </div>
+              </div>
+
+              <div class="product-button">
+                <button
+                  type="button"
+                  class="btn btn-primary w-100 "
+                  onclick="window.location.href='{{ product.url }}'"
+                  {% unless product.available %}
+                    disabled
+                  {% endunless %}
+                >
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+{% schema %}
+{
+  "name": "Ineezy Category Showcase",
+  "settings": [
+    { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "SHOP BY THE CATEGORY" },
+    { "type": "text", "id": "title", "label": "Title", "default": "EVERYDAY DEMIFINE JEWELLERY" },
+
+    { "type": "text", "id": "women_title", "label": "Women Title", "default": "For Her" },
+    { "type": "textarea", "id": "women_desc", "label": "Women Description", "default": "Discover the latest designs crafted to redefine elegance." },
+    { "type": "url", "id": "women_link", "label": "Women Button Link" },
+
+    { "type": "text", "id": "men_title", "label": "Men Title", "default": "For Him" },
+    { "type": "textarea", "id": "men_desc", "label": "Men Description", "default": "Discover the latest designs crafted to redefine elegance." },
+    { "type": "url", "id": "men_link", "label": "Men Button Link" },
+
+    { "type": "collection_list", "id": "women_collections", "label": "Women Collections" },
+    { "type": "collection_list", "id": "men_collections", "label": "Men Collections" }
+  ],
+  "presets": [{ "name": "N_WEB Ineezy Category Showcase" }]
+}
+{% endschema %}
+
+<section class="ineezy-category-section">
+  <div class="container">
+
+    <!-- HEADING -->
+    <div class="new-main-title text-center">
+      <p>{{ section.settings.subtitle }}</p>
+      <h2>{{ section.settings.title }}</h2>
+    </div>
+
+    <!-- ROW -->
+    <div class="row align-items-center women category-row">
+
+      <!-- LEFT CONTENT (FOR HER) -->
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 category-col-text">
+        <div class="side-content">
+          <h3>{{ section.settings.women_title }}</h3>
+          <p>{{ section.settings.women_desc }}</p>
+
+          <a href="{{ section.settings.women_link }}" class="btn btn-primary">
+            SHOP FOR HER
+            <img src="{{ "n-web-arrow-right.svg" | asset_url }}" alt="">
+          </a>
+        </div>
+      </div>
+
+      <!-- WOMEN COLLECTIONS -->
+      <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 category-col-card">
+        <div class="collection-wrapper women {% if request.design_mode %}new-ineezy-category-slider{% endif %}">
+          {% for collection in section.settings.women_collections %}
+            <div class="category-card">
+              <a href="{{ collection.url }}">
+
+                <img src="{{ collection.image | image_url: width: 400 }}" alt="{{ collection.title }}">
+
+                <div class="content">
+                  <p>{{ collection.title }}</p>
+
+                  <img src="{{ "n-web-arrow-right.svg" | asset_url }}" alt="">
+                </div>
+
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SECOND ROW -->
+    <div class="row align-items-center men category-row">
+
+      <!-- MEN COLLECTIONS -->
+      <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 category-col-card">
+        <div class="collection-wrapper men {% if request.design_mode %}new-ineezy-category-slider{% endif %}">
+          {% for collection in section.settings.men_collections %}
+            <div class="category-card">
+              <a href="{{ collection.url }}">
+
+                <img src="{{ collection.image | image_url: width: 400 }}" alt="{{ collection.title }}">
+
+                <div class="content">
+                  <p>{{ collection.title }}</p>
+
+                  <img src="{{ "n-web-arrow-right.svg" | asset_url }}" alt="">
+                </div>
+
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- RIGHT CONTENT (FOR HIM) -->
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-end category-col-text">
+        <div class="side-content">
+          <h3>{{ section.settings.men_title }}</h3>
+          <p>{{ section.settings.men_desc }}</p>
+
+          <a href="{{ section.settings.men_link }}" class="btn btn-primary ms-auto">
+            SHOP FOR HIM
+            <img src="{{ "n-web-arrow-right.svg" | asset_url }}" alt="">
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

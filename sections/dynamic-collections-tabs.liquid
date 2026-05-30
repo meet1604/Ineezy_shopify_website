@@ -1,0 +1,107 @@
+<section class="ijl-home-feature-products">
+  <div class="container">
+    <div class="main-title">
+      <h2>Featured Products</h2>
+    </div>
+
+    <div class="nav-tabs-outer nav-tabs-style2">
+      {% if section.blocks.size > 0 %}
+        <!-- Tabs Navigation -->
+        <nav>
+          <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+            {% for block in section.blocks %}
+              {% assign coll = block.settings.collection %}
+              {% if coll %}
+                <button class="nav-link {% if forloop.first %}active{% endif %}"
+                        id="nav-{{ coll.handle }}-tab"
+                        data-bs-toggle="tab"
+                        data-bs-target="#nav-{{ coll.handle }}"
+                        type="button"
+                        role="tab"
+                        aria-controls="nav-{{ coll.handle }}"
+                        aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+                  {{ block.settings.tab_title | default: coll.title }}
+                </button>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </nav>
+
+        <!-- Tabs Content -->
+        <div class="tab-content mt-4" id="nav-tabContent">
+          {% for block in section.blocks %}
+            {% assign coll = block.settings.collection %}
+            {% if coll %}
+              <div class="tab-pane fade {% if forloop.first %}show active{% endif %}"
+                   id="nav-{{ coll.handle }}"
+                   role="tabpanel"
+                   aria-labelledby="nav-{{ coll.handle }}-tab">
+                   
+                {% if coll.products_count > 0 %}
+                  <div class="row g-4">
+                    {% for product in coll.products %}
+                      <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-6">
+                        {% render 'common-product-card', product: product %}
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% else %}
+                  <p class="text-center my-4">No products found in this collection.</p>
+                {% endif %}
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <!-- View All Button -->
+        <div class="button-group text-center mt-4 mb-0">
+          <a href="/collections/all" class="btn btn-outline-primary">
+            View All Products <span class="banner-slider__button-arrow">→</span>
+          </a>
+        </div>
+
+      {% else %}
+        <p class="text-center">No collections have been added. Add a collection block in the Theme Editor.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+
+
+{% schema %}
+{
+  "name": "Dynamic Collections Tabs",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Configure collection tabs below"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "Collection Tab",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select Collection"
+        },
+        {
+          "type": "text",
+          "id": "tab_title",
+          "label": "Tab Title (optional)"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Dynamic Collections Tabs",
+      "category": "Collections"
+    }
+  ]
+}
+{% endschema %}

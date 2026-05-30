@@ -1,0 +1,311 @@
+{% comment %}
+  Template: page.wishlist.liquid
+  Description: Displays all products in the user's wishlist with options to remove items or clear the wishlist.
+  Usage: Replace the content of your existing page.wishlist.liquid with this code.
+  Note: Ensure Wishlist.js is included in your theme to manage wishlist data.
+{% endcomment %}
+
+
+<div class="wishlist-container">
+  <h2>Your Wishlist</h2>
+  {% unless customer %}
+    <p>Please <a href="/account/login">login</a> to view your wishlist.</p>
+  {% else %}
+    <div class="wishlist-controls">
+      <button id="clear-wishlist" class="btn">Clear Wishlist</button>
+    </div>
+    <div id="wishlist-items" class="wishlist-grid">
+      <div class="wishlist-empty">
+        <p>Your wishlist is empty.</p>
+      </div>
+    </div>
+  {% endunless %}
+</div>
+
+
+
+<style>
+  .wishlist-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .wishlist-controls {
+    margin-bottom: 20px;
+    text-align: right;
+  }
+
+  .wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .wishlist-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .wishlist-item-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .wishlist-item-details {
+    margin-top: 10px;
+  }
+
+  .wishlist-btn {
+    background: #dc3545;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+
+  .wishlist-empty {
+    text-align: center;
+    padding: 20px;
+  }
+
+  .btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 8px 16px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    background: #f8f9fa;
+    color: #333;
+  }
+
+  .btn:hover {
+    background: #e9ecef;
+  }
+</style>
+
+<script>
+  (function () {
+    const WishlistPage = {
+      storageKey: 'shopify_wishlist', // Match with Wishlist.js
+      storefrontApiUrl: '/api/2025-01/graphql.json',
+      storefrontAccessToken: '98de43688c0e42838a69f3caacd1e0de', // Match with Wishlist.js
+
+      init() {
+        this.loadWishlist();
+        this.bindEvents();
+      },
+
+      async loadWishlist() {
+        let wishlist = JSON.parse(localStorage.getItem(this.storageKey)) || [];
+        if (this.isLoggedIn()) {
+          const serverWishlist = await this.fetchWishlistFromMetafield();
+          wishlist = [...new Set([...wishlist, ...serverWishlist])];
+          localStorage.setItem(this.storageKey, JSON.stringify(wishlist));
+          if (serverWishlist.length !== wishlist.length) {
+            await this.updateWishlistMetafield(wishlist);
+          }
+        }
+        this.renderWishlist(wishlist);
+      },
+
+      bindEvents() {
+        document.querySelectorAll('.wishlist-btn').forEach(btn => {
+          btn.addEventListener('click', () => this.removeFromWishlist(btn));
+        });
+        document.addEventListener('wishlist-updated', () => this.loadWishlist());
+        document.querySelector('#clear-wishlist')?.addEventListener('click', async () => {
+          localStorage.setItem(this.storageKey, JSON.stringify([]));
+          if (this.isLoggedIn()) {
+            await this.updateWishlistMetafield([]);
+          }
+          document.dispatchEvent(new Event('wishlist-updated'));
+        });
+      },
+
+      async removeFromWishlist(btn) {
+        const handle = btn.dataset.productHandle;
+        let wishlist = JSON.parse(localStorage.getItem(this.storageKey)) || [];
+        wishlist = wishlist.filter(item => item !== handle);
+        localStorage.setItem(this.storageKey, JSON.stringify(wishlist));
+        if (this.isLoggedIn()) {
+          await this.updateWishlistMetafield(wishlist);
+        }
+        document.dispatchEvent(new Event('wishlist-updated'));
+      },
+
+      async renderWishlist(wishlist) {
+        const container = document.querySelector('#wishlist-items');
+        if (!container) return;
+        const emptyMessage = container.querySelector('.wishlist-empty');
+        container.innerHTML = '';
+
+        if (wishlist.length === 0) {
+          container.appendChild(emptyMessage);
+          return;
+        }
+
+        // Fetch each product individually using productByHandle
+        const products = [];
+        for (const handle of wishlist) {
+          const query = `
+            query($handle: String!) {
+              productByHandle(handle: $handle) {
+                id
+                title
+                handle
+                availableForSale
+                onlineStoreUrl
+                featuredImage {
+                  url
+                }
+                priceRange {
+                  minVariantPrice {
+                    amount
+                    currencyCode
+                  }
+                }
+              }
+            }
+          `;
+          const variables = { handle };
+          try {
+            const response = await this.storefrontApiRequest(query, variables);
+            if (response.errors) {
+              console.error(`Storefront API errors for handle "${handle}":`, response.errors);
+              products.push({ handle, error: true });
+              continue;
+            }
+            const product = response.data?.productByHandle;
+            if (product) {
+              products.push(product);
+            } else {
+              products.push({ handle, notFound: true });
+            }
+          } catch (e) {
+            console.error(`Failed to fetch product "${handle}":`, e);
+            products.push({ handle, error: true });
+          }
+        }
+
+        // Render the products
+        products.forEach(product => {
+          const handle = product.handle;
+          const item = document.createElement('div');
+          item.className = 'wishlist-item';
+
+          if (product.error) {
+            item.innerHTML = `
+              <p>Unable to load product "${handle}". Please try again later.</p>
+              <button class="wishlist-btn btn" data-product-handle="${handle}">Remove from Wishlist</button>
+            `;
+          } else if (product.notFound) {
+            item.innerHTML = `
+              <p>Product "${handle}" is no longer available.</p>
+              <button class="wishlist-btn btn" data-product-handle="${handle}">Remove from Wishlist</button>
+            `;
+          } else {
+            const price = `${product.priceRange.minVariantPrice.amount} ${product.priceRange.minVariantPrice.currencyCode}`;
+            item.innerHTML = `
+              <img src="${product.featuredImage?.url || '//placehold.it/200x200'}" alt="${product.title}" class="wishlist-item-image" />
+              <div class="wishlist-item-details">
+                <h3>${product.title}</h3>
+                <p class="">${product.availableForSale ? price : 'Out of Stock'}</p>
+                <a href="${product.onlineStoreUrl}" class="btn">View Product</a>
+                <button class="wishlist-btn btn" data-product-handle="${product.handle}">Remove from Wishlist</button>
+              </div>
+            `;
+          }
+          container.appendChild(item);
+        });
+      },
+
+      isLoggedIn() {
+        return !!window.Shopify?.customer; // Match with Wishlist.js
+      },
+
+      async fetchWishlistFromMetafield() {
+        const query = `
+          query {
+            customer(customerAccessToken: "${this.getCustomerAccessToken()}") {
+              metafield(namespace: "custom", key: "wishlist_items") {
+                value
+              }
+            }
+          }
+        `;
+        const response = await this.storefrontApiRequest(query);
+        const value = response.data?.customer?.metafield?.value;
+        if (!value) return [];
+        try {
+          const values = JSON.parse(value);
+          return values
+            .filter(gid => gid.startsWith('gid://shopify/Product/'))
+            .map(gid => gid.split('/').pop());
+        } catch (e) {
+          console.error('Invalid metafield value:', value);
+          return [];
+        }
+      },
+
+      async updateWishlistMetafield(wishlist) {
+        const mutation = `
+          mutation($input: CustomerUpdateInput!) {
+            customerUpdate(input: $input) {
+              customer {
+                id
+              }
+              userErrors {
+                field
+                message
+              }
+            }
+          }
+        `;
+        const variables = {
+          input: {
+            metafields: [
+              {
+                namespace: "custom",
+                key: "wishlist_items",
+                value: JSON.stringify(wishlist.map(handle => `gid://shopify/Product/${handle}`)),
+                type: "list.product_reference"
+              }
+            ]
+          }
+        };
+        const response = await this.storefrontApiRequest(mutation, variables);
+        if (response.data?.customerUpdate?.userErrors?.length) {
+          console.error('Metafield update failed:', response.data.customerUpdate.userErrors);
+        }
+      },
+
+      async storefrontApiRequest(query, variables = {}) {
+        const response = await fetch(this.storefrontApiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Shopify-Storefront-Access-Token': this.storefrontAccessToken
+          },
+          body: JSON.stringify({ query, variables })
+        });
+        return await response.json();
+      },
+
+      getCustomerAccessToken() {
+        return localStorage.getItem('authToken') || '';
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => WishlistPage.init());
+  })();
+</script>
+
+
+
+
+{% comment %}
+  Customer login token handling (add to your login page or script)
+{% endcomment %}

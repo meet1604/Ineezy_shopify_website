@@ -1,0 +1,16 @@
+<nav aria-label="breadcrumb" class="breadcrumb-wrapper">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item">
+      <a href="{{ routes.root_url }}">Home</a>
+    </li>
+    <li class="breadcrumb-item">
+      <a href="{{ blog.url }}">{{ blog.title }}</a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">
+      {{ article.title }}
+    </li>
+  </ol>
+</nav>
+
+
+{% schema %} { "name": "Breadcrumb", "settings": [], "presets": [{"name": "Breadcrumb"}], } {% endschema %}

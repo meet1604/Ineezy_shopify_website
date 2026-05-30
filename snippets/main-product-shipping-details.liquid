@@ -1,0 +1,92 @@
+{% liquid
+  assign icon_blocks = section.blocks | where: 'type', 'icon_with_text'
+  assign trust_blocks = section.blocks | where: 'type', 'trust_card'
+%}
+
+<!-- SMALL ICONS -->
+{% if icon_blocks.size > 0 %}
+
+  <ul class="icon-with-text ineezy-icon-with-text">
+
+    {% for block in icon_blocks %}
+
+      <li
+        class="icon-with-text-item"
+        {{ block.shopify_attributes }}
+      >
+
+        {% if block.settings.icon != blank %}
+
+          <div class="icon-with-text-item__icon">
+
+            {% comment %} <img
+              src="{{ block.settings.icon | image_url: width: 64 }}"
+              alt="{{ block.settings.text | escape }}"
+              loading="lazy"
+              width="32"
+              height="32"
+            > {% endcomment %}
+
+          </div>
+
+        {% endif %}
+
+        <span class="icon-with-text-item__text">
+          {{ block.settings.text }}
+        </span>
+
+      </li>
+
+    {% endfor %}
+
+  </ul>
+
+{% endif %}
+
+<!-- TRUST CARDS -->
+{% if trust_blocks.size > 0 %}
+
+  <div class="ineezy-trust-section">
+
+    {% for block in trust_blocks %}
+
+      <div
+        class="ineezy-trust-card"
+        {{ block.shopify_attributes }}
+      >
+
+        {% if block.settings.icon != blank %}
+
+          <div class="ineezy-trust-card__icon">
+
+            <img
+              src="{{ block.settings.icon | image_url: width: 100 }}"
+              alt="{{ block.settings.heading | escape }}"
+              loading="lazy"
+              width="48"
+              height="48"
+            >
+
+          </div>
+
+        {% endif %}
+
+        <div class="ineezy-trust-card__content">
+
+          <h4>
+            {{ block.settings.heading }}
+          </h4>
+
+          <p>
+            {{ block.settings.description }}
+          </p>
+
+        </div>
+
+      </div>
+
+    {% endfor %}
+
+  </div>
+
+{% endif %}

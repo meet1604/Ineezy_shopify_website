@@ -1,0 +1,96 @@
+<div class="announcement-bar">
+  <div class="announcement-bar-wrapper">
+    <!-- Left: Phone Numbers -->
+    <div class="announcement-bar-left">
+      {% for block in section.blocks %}
+        {% if block.type == "phone_number" %}
+          <div class="announcement-bar-item">
+            <a href="tel:{{ block.settings.phone | escape }}" class="announcement-bar-link"> <img src="{{ block.settings.icon | img_url: 'master' }}" alt="" /> <span>{{ block.settings.phone }}</span> </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- Center: Discount Message -->
+    <div class="announcement-bar-center">
+      <div class="announcement-bar-item">
+        <p class="announcement-bar-center-text">
+          <span>{{ section.settings.discount_message }}</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Right: Dynamic Links -->
+    <div class="announcement-bar-right">
+      {% for block in section.blocks %}
+        {% if block.type == "link" %}
+          <div class="announcement-bar-item">
+            {% if block.settings.page_link %}
+            <a href="{{ block.settings.page_link.url }}" class="announcement-bar-link">
+              {{ block.settings.link_title | default: block.settings.page_link.title }}
+            </a>
+          {% endif %}
+
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "discount_message",
+      "label": "Discount Message",
+      "default": "---"
+    }
+  ],
+  "max_blocks": 5, /* Increased to allow for phone numbers and links */
+  "blocks": [
+    {
+      "type": "phone_number",
+      "name": "Phone Number",
+      "settings": [
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone Number",
+          "default": "+91 789 789 9863"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Phone Icon"
+        }
+      ]
+    },
+    {
+      "type": "link",
+      "name": "Link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "link_title",
+          "label": "Link Title",
+          "default": "FAQ"
+        },
+        {
+          "type": "page",
+          "id": "page_link",
+          "label": "Select Page"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

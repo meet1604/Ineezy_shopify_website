@@ -1,0 +1,140 @@
+{% schema %}
+{
+  "name": "Ineezy Offer Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "desk_banner_image",
+      "label": "Desktop Banner Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mon_banner_image",
+      "label": "Mobile Banner Image"
+    },
+    {
+      "type": "text",
+      "id": "small_title",
+      "label": "Small Title",
+      "default": "FLAT"
+    },
+    {
+      "type": "text",
+      "id": "main_title",
+      "label": "Main Title",
+      "default": "40% OFF"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "N_WEB Ineezy Offer Banner"
+    }
+  ]
+}
+{% endschema %}
+
+<section class="ineezy-offer-banner">
+
+  <div class="container-fluid p-0">
+
+    <div class="offer-banner-wrapper">
+
+      <!-- IMAGE -->
+      <div class="offer-banner-image">
+
+        {% if section.settings.desk_banner_image != blank %}
+
+          <img
+            class="desktop-banner-image"
+            src="{{ section.settings.desk_banner_image | image_url: width: 2200 }}"
+            alt="{{ section.settings.main_title }}"
+            loading="lazy"
+          >
+
+        {% endif %}
+
+        {% if section.settings.mon_banner_image != blank %}
+
+          <img
+            class="mobile-banner-image"
+            src="{{ section.settings.mon_banner_image | image_url: width: 1200 }}"
+            alt="{{ section.settings.main_title }}"
+            loading="lazy"
+          >
+
+        {% endif %}
+
+      </div>
+
+      <!-- CONTENT -->
+      <div class="offer-banner-content">
+
+        {% if section.settings.small_title != blank %}
+
+          <span class="small-title">
+            {{ section.settings.small_title }}
+          </span>
+
+        {% endif %}
+
+        {% if section.settings.main_title != blank %}
+
+          <h2 class="main-title">
+            {{ section.settings.main_title }}
+          </h2>
+
+        {% endif %}
+
+        <!-- DIVIDER -->
+        <div class="offer-divider">
+
+          <span class="line"></span>
+
+          <img
+            src="{{ 'main-title-divider.svg' | asset_url }}"
+            alt="Divider"
+            loading="lazy"
+          >
+
+          <span class="line"></span>
+
+        </div>
+
+        <!-- BUTTON -->
+        {% if section.settings.button_text != blank %}
+
+          <a
+            href="{{ section.settings.button_link }}"
+            class="btn btn-white btn-lg"
+          >
+
+            {{ section.settings.button_text }}
+
+          </a>
+
+        {% endif %}
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+
+
+
+</style>

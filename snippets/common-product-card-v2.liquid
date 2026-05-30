@@ -1,0 +1,78 @@
+<div class="ineezy-product-card">
+
+
+   <div class="ineezy-product-card-action-tag-wrapper">
+          {% if product.compare_at_price > product.price %}
+            <div class="ineezy-product-card-action-tag tag tag-primary">
+              Sale
+              {{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%
+            </div>
+          {% endif %}
+        </div>
+  <!-- IMAGE -->
+  <div class="ineezy-product-image">
+    <a href="{{ product.url }}">
+      {% if product.featured_image %}
+        <img
+          class="main-image"
+          src="{{ product.featured_image | image_url: width: 800 }}"
+          alt="{{ product.title }}"
+          loading="lazy"
+        >
+      {% endif %}
+
+      {% if product.images[1] %}
+        <img
+          class="hover-image"
+          src="{{ product.images[1] | image_url: width: 800 }}"
+          alt="{{ product.title }}"
+          loading="lazy"
+        >
+      {% endif %}
+    </a>
+
+    <!-- WISHLIST -->
+    <div class="wishlist-btn">
+      {% render 'wishlisthero-collection-product', product: product %}
+    </div>
+  </div>
+
+  <!-- CONTENT -->
+  <div class="ineezy-product-content">
+    <!-- TITLE -->
+    <h3 class="product-title">
+      <a href="{{ product.url }}">
+        {{ product.title }}
+      </a>
+    </h3>
+
+    <!-- PRICE -->
+    <div class="product-price">
+      <span class="sale-price">
+        {{ product.price | money }}
+      </span>
+
+      {% if product.compare_at_price > product.price %}
+        <span class="compare-price">
+          {{ product.compare_at_price | money }}
+        </span>
+      {% endif %}
+    </div>
+
+    <!-- BUTTON -->
+    <button
+      type="button"
+      class="btn btn-primary w-100 {% unless product.available %}disabled{% endunless %}"
+      onclick="{% if product.available %}addToCartWithDawn('{{ product.variants.first.id }}'){% endif %}"
+      {% unless product.available %}
+        disabled
+      {% endunless %}
+    >
+      {% if product.available %}
+        ADD TO CART
+      {% else %}
+        OUT OF STOCK
+      {% endif %}
+    </button>
+  </div>
+</div>

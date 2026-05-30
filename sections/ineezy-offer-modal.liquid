@@ -1,0 +1,176 @@
+{% if section.settings.enable_modal %}
+
+  <div
+    class="modal fade ineezy-offer-modal"
+    id="ineezyOfferModal"
+    tabindex="-1"
+    aria-hidden="true"
+  >
+
+    <div class="modal-dialog modal-dialog-centered">
+
+      <div class="modal-content">
+
+        <button
+          type="button"
+          class="ineezy-offer-modal__close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+
+          <span class="svg-wrapper">
+            {{- 'icon-close.svg' | inline_asset_content -}}
+          </span>
+
+        </button>
+
+        <div class="ineezy-offer-modal__image">
+
+          {% if section.settings.modal_image != blank %}
+
+            <img
+              src="{{ section.settings.modal_image | image_url: width: 1200 }}"
+              alt="{{ section.settings.modal_title }}"
+              loading="lazy"
+            >
+
+          {% endif %}
+
+        </div>
+
+        <div class="ineezy-offer-modal__content">
+
+          {% if section.settings.modal_subtitle != blank %}
+
+            <span class="ineezy-offer-modal__subtitle">
+
+              {{ section.settings.modal_subtitle }}
+
+            </span>
+
+          {% endif %}
+
+          {% if section.settings.modal_title != blank %}
+
+            <h2 class="ineezy-offer-modal__title">
+
+              {{ section.settings.modal_title }}
+
+            </h2>
+
+          {% endif %}
+
+          {% if section.settings.modal_description != blank %}
+
+            <p class="ineezy-offer-modal__text">
+
+              {{ section.settings.modal_description }}
+
+            </p>
+
+          {% endif %}
+
+          {% if section.settings.button_text != blank %}
+
+            <a
+              href="{{ section.settings.button_link }}"
+              class="ineezy-offer-modal__button"
+            >
+
+              {{ section.settings.button_text }}
+
+            </a>
+
+          {% endif %}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+      const modalElement = document.getElementById('ineezyOfferModal');
+
+      if (!modalElement) return;
+
+      setTimeout(() => {
+
+        const modal = new bootstrap.Modal(modalElement);
+
+        modal.show();
+
+      }, {{ section.settings.popup_delay | times: 1000 }});
+
+    });
+
+  </script>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "Ineezy Offer Modal",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_modal",
+      "label": "Enable Modal",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "popup_delay",
+      "label": "Popup Delay (Seconds)",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 3
+    },
+    {
+      "type": "image_picker",
+      "id": "modal_image",
+      "label": "Modal Image"
+    },
+    {
+      "type": "text",
+      "id": "modal_subtitle",
+      "label": "Subtitle",
+      "default": "Limited Time Offer"
+    },
+    {
+      "type": "text",
+      "id": "modal_title",
+      "label": "Title",
+      "default": "BUY 2 GET 1 FREE"
+    },
+    {
+      "type": "textarea",
+      "id": "modal_description",
+      "label": "Description",
+      "default": "Add any 3 jewelry pieces to your cart and get the lowest-priced item absolutely free."
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "N_WEB Ineezy Offer Modal"
+    }
+  ]
+}
+{% endschema %}

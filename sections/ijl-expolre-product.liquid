@@ -1,0 +1,60 @@
+<section class="explore-product" style="background-color: {{ section.settings.bg_color }};">
+  <div class="container">
+    <div class="main-title" style="color: {{ section.settings.text_color }};">
+      <h2>{{ section.settings.main_heading }}</h2>
+      <p>{{ section.settings.sub_heading }}</p>
+    </div>
+    <div class="explore-slider custom-slick-sliders">
+      {% assign collection = collections[section.settings.product_collection] %}
+      {% if collection and collection.products.size > 0 %}
+        {% for product in collection.products %}
+          {% render 'common-product-card', product: product %}
+        {% endfor %}
+      {% else %}
+        <p>No products found in the selected collection.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Explore Product Slider",
+  "settings": [
+    {
+      "type": "text",
+      "id": "main_heading",
+      "label": "Main Heading",
+      "default": "Bestsellers That Never Miss"
+    },
+    {
+      "type": "text",
+      "id": "sub_heading",
+      "label": "Sub Heading",
+      "default": "Tried, tested, and totally adored — your new favorites await."
+    },
+    {
+      "type": "collection",
+      "id": "product_collection",
+      "label": "Select Collection"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#f7ede9"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Explore Product Slider"
+    }
+  ]
+}
+{% endschema %}

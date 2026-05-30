@@ -1,0 +1,43 @@
+<ul class="icon-with-text">
+  {% for block in section.blocks %}
+    <li class="icon-with-text-item">
+      {% if block.settings.icon %}
+        <img class="wishlist-icon" src="{{ block.settings.icon | image_url }}" alt="{{ block.settings.text }}">
+      {% endif %}
+      {{ block.settings.text }}
+    </li>
+  {% endfor %}
+</ul>
+
+{% schema %}
+{
+  "name": "IJL Products Icon",
+  "tag": "section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Icon with Text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "icon",
+          "label": "Icon Image"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Icon Label"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 5,
+  "presets": [
+    {
+      "name": "IJL Products Icon",
+      "category": "Products"
+    }
+  ]
+}
+{% endschema %}

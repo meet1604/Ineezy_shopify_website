@@ -1,0 +1,115 @@
+<section class="ineezy-category home-category">
+  <div class="container-fluid">
+
+    <div class="main-title" style="color: #000000;">
+      <h2>Explore Categories</h2>
+      {% comment %} <p>Discover the latest designs crafted to redefine elegance.</p> {% endcomment %}
+    </div>
+
+    <div class="home-category-wrapper">
+      <div class="new-home-category-row ">
+        <div class="ineezy-home-category-slider">
+            {% if section.blocks.size > 0 %}
+              {% for block in section.blocks %}
+                {% if block.settings.collection %}
+                  {% assign collection = block.settings.collection %}
+                  <div class="home-category-col">
+                    <a href="{{ collection.url }}" class="home-category-link" aria-label="{{ collection.title }}">
+
+                        <div class="home-category-wrapper">
+
+                                <div class="home-category-icon">
+                                {% if block.settings.custom_image %}
+                                    <img class="category-image" src="{{ block.settings.custom_image | img_url: '' }}" alt="{{ block.settings.custom_image_alt | default: collection.title }}">
+                                {% elsif collection.image %}
+                                    <img src="{{ collection.image | img_url: '' }}" alt="{{ collection.title }}">
+                                {% elsif section.settings.default_custom_image %}
+                                    <img src="{{ section.settings.default_custom_image | img_url: '' }}" alt="{{ section.settings.default_custom_image_alt | default: collection.title }}">
+                                {% else %}
+                                    <img src="{{ 'new-icon-cart.svg' | asset_url }}" alt="{{ collection.title }}">
+                                {% endif %}
+                                </div>
+            
+                                <div class="home-category-text">
+                                <h6>{{ collection.title }}</h6>
+                                <p>View Collection <i class="svg-wrapper">{{"arrow-right-2.svg" | inline_asset_content }}</i></p>
+                                </div>
+                        </div>
+                    </a>
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {% else %}
+              <p class="home-category-empty">Add category blocks in the section settings to show collections here.</p>
+            {% endif %}
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+{% schema %}
+{
+  "name": "Ineezy Home Category",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "default_custom_image",
+      "label": "Default custom image (fallback for blocks without image)",
+      "info": "Shown if a block has no custom image and the collection has no image."
+    },
+    {
+      "type": "text",
+      "id": "default_custom_image_alt",
+      "label": "Alt text for default fallback image",
+      "default": "Category image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_block",
+      "name": "Category item",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Select collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "custom_image",
+          "label": "Custom image (optional)",
+          "info": "If set, this image will be used instead of the collection image."
+        },
+        {
+          "type": "text",
+          "id": "custom_image_alt",
+          "label": "Alt text for custom image",
+          "default": "Category image"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "Ineezy Home Category",
+      "category": "Home page",
+      "blocks": [
+        {
+          "type": "collection_block"
+        },
+        {
+          "type": "collection_block"
+        },
+        {
+          "type": "collection_block"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
