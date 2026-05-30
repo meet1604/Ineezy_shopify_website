@@ -252,12 +252,14 @@
   }
 
   function buildCard(r) {
-    var name   = esc(r.name || 'Customer');
-    var body   = esc(r.body || '');
-    var avatar = r.avatar ? '<img src="' + r.avatar + '" alt="' + name + '" loading="lazy">' : '';
+    var rawName = (r.name || '').trim();
+    var name    = esc(rawName || 'Customer');
+    var body    = esc(r.body || '');
+    var avatar  = r.avatar ? '<img src="' + r.avatar + '" alt="' + name + '" loading="lazy">' : '';
     return '<div class="testimonial-item"><div class="testimonial-card"><div class="testimonial-content">'
       + '<p class="review-text">' + body + '</p>'
-      + '<div class="testimonial-bottom"><div class="left"><h4>' + name + '</h4>'
+      + '<div class="testimonial-bottom"><div class="left">'
+      + '<h4 style="color:#2a2320;font-size:14px;font-weight:500;margin-bottom:4px;">' + name + '</h4>'
       + '<div class="stars">' + buildStars(r.rating) + '</div></div>'
       + '<div class="right">' + avatar + '</div></div>'
       + '</div></div></div>';
@@ -282,7 +284,7 @@
       .map(function (r) {
         return {
           rating : r.rating || r.score || 5,
-          name   : (r.reviewer && r.reviewer.name) || r.name || r.author || 'Customer',
+          name   : (r.reviewer && (r.reviewer.display_name || r.reviewer.name)) || r.name || r.author || 'Customer',
           body   : r.body || r.review_body || r.content || '',
           avatar : (r.reviewer && r.reviewer.profile_picture) || r.avatar || ''
         };
