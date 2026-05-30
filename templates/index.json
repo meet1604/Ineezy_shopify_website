@@ -295,8 +295,8 @@
         "judgeme_api_token": "DbGTmXdgNHIn8d2x_UrgKMOry44",
         "judgeme_reviews_count": 12,
         "judgeme_min_rating": 4,
-        "show_write_review": false,
-        "review_product": ""
+        "show_write_review": true,
+        "review_product": "lavender-heartlight-necklace"
       }
     }
   },
