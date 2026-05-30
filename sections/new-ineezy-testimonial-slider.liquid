@@ -264,7 +264,7 @@
 
 {{- '<!-- Judge.me hidden data source (server-side rendered, no CORS) -->' -}}
 <div id="jm-src-{{ section.id }}" aria-hidden="true" style="visibility:hidden;position:absolute;left:-9999px;top:0;height:0;overflow:hidden;pointer-events:none;">
-  {% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews_text_widget', concierge_install: true %}
+  {% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews_widget', concierge_install: true %}
 </div>
 
 <script>
