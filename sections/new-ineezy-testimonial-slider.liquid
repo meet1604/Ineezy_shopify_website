@@ -19,6 +19,30 @@
       "id": "bg_color",
       "label": "Background Color",
       "default": "#F8F5EA"
+    },
+    {
+      "type": "header",
+      "content": "Judge.me Settings"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_judgeme_all_reviews",
+      "label": "Show Judge.me All Reviews",
+      "default": false,
+      "info": "Displays all store reviews from Judge.me below the slider."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_write_review",
+      "label": "Show Write a Review Form",
+      "default": false,
+      "info": "Displays the Judge.me Write a Review form. Select a product below."
+    },
+    {
+      "type": "product",
+      "id": "review_product",
+      "label": "Product for Write a Review",
+      "info": "The review form will be linked to this product."
     }
   ],
   "blocks": [
@@ -208,5 +232,21 @@
         </div>
       {% endfor %}
     </div>
+    {% if section.settings.show_judgeme_all_reviews %}
+      <div class="judgeme-all-reviews-wrapper">
+        {% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews_text_widget', concierge_install: true %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_write_review %}
+      <div class="judgeme-write-review-wrapper">
+        {% if section.settings.review_product != blank %}
+          {% assign jm_product = all_products[section.settings.review_product] %}
+          {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: jm_product %}
+        {% else %}
+          <p style="text-align:center; color:#888;">Please select a product in the section settings to enable the Write a Review form.</p>
+        {% endif %}
+      </div>
+    {% endif %}
   </div>
 </section>
