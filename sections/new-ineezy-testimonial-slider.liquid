@@ -25,18 +25,35 @@
       "content": "Judge.me Settings"
     },
     {
-      "type": "checkbox",
-      "id": "show_judgeme_all_reviews",
-      "label": "Show Judge.me All Reviews",
-      "default": false,
-      "info": "Displays all store reviews from Judge.me below the slider."
+      "type": "text",
+      "id": "judgeme_api_token",
+      "label": "Judge.me Public API Token",
+      "info": "Go to Judge.me App → Settings → API → copy your Public Token here."
+    },
+    {
+      "type": "range",
+      "id": "judgeme_reviews_count",
+      "min": 4,
+      "max": 20,
+      "step": 1,
+      "label": "Number of Reviews to Load",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "judgeme_min_rating",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "label": "Minimum Star Rating",
+      "default": 4
     },
     {
       "type": "checkbox",
       "id": "show_write_review",
       "label": "Show Write a Review Form",
       "default": false,
-      "info": "Displays the Judge.me Write a Review form. Select a product below."
+      "info": "Displays the Judge.me Write a Review form below the slider."
     },
     {
       "type": "product",
@@ -232,12 +249,6 @@
         </div>
       {% endfor %}
     </div>
-    {% if section.settings.show_judgeme_all_reviews %}
-      <div class="judgeme-all-reviews-wrapper">
-        {% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews_text_widget', concierge_install: true %}
-      </div>
-    {% endif %}
-
     {% if section.settings.show_write_review %}
       <div class="judgeme-write-review-wrapper">
         {% if section.settings.review_product != blank %}
@@ -250,3 +261,90 @@
     {% endif %}
   </div>
 </section>
+
+{% if section.settings.judgeme_api_token != blank %}
+<script>
+(function () {
+  var STAR_FILLED = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#jmf{{ section.id }})"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#B69238"/></g><defs><clipPath id="jmf{{ section.id }}"><rect width="14" height="14" fill="white"/></clipPath></defs></svg>';
+  var STAR_EMPTY  = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#jme{{ section.id }})"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#E9E5E2"/></g><defs><clipPath id="jme{{ section.id }}"><rect width="14" height="14" fill="white"/></clipPath></defs></svg>';
+
+  function buildStars(rating) {
+    var html = '';
+    for (var i = 1; i <= 5; i++) { html += i <= rating ? STAR_FILLED : STAR_EMPTY; }
+    return html;
+  }
+
+  function esc(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function buildCard(r) {
+    var name   = esc((r.reviewer && r.reviewer.name) ? r.reviewer.name : 'Customer');
+    var body   = esc(r.body || '');
+    var avatar = (r.reviewer && r.reviewer.profile_picture)
+      ? '<img src="' + r.reviewer.profile_picture + '" alt="' + name + '" loading="lazy">' : '';
+    return '<div class="testimonial-item"><div class="testimonial-card"><div class="testimonial-content">'
+      + '<p class="review-text">' + body + '</p>'
+      + '<div class="testimonial-bottom"><div class="left"><h4>' + name + '</h4>'
+      + '<div class="stars">' + buildStars(r.rating) + '</div></div>'
+      + '<div class="right">' + avatar + '</div></div>'
+      + '</div></div></div>';
+  }
+
+  function reinitSliders(sectionEl) {
+    var $section = $(sectionEl);
+    var $top     = $section.find('.testimonial-slider-top');
+    var $bottom  = $section.find('.testimonial-slider-bottom');
+    if ($top.hasClass('slick-initialized'))    $top.slick('destroy');
+    if ($bottom.hasClass('slick-initialized')) $bottom.slick('destroy');
+    var base = { slidesToShow: 3.5, slidesToScroll: 1, arrows: false, dots: false,
+                 infinite: true, autoplay: true, autoplaySpeed: 0, cssEase: 'linear',
+                 pauseOnHover: false,
+                 responsive: [{ breakpoint: 991, settings: { slidesToShow: 2.2 } },
+                               { breakpoint: 768, settings: { slidesToShow: 1.2 } }] };
+    $top.slick(Object.assign({}, base, { speed: 6000 }));
+    $bottom.slick(Object.assign({}, base, { speed: 9000, rtl: true }));
+  }
+
+  function run() {
+    var sectionEl = document.getElementById('shopify-section-{{ section.id }}');
+    if (!sectionEl) return;
+
+    var url = 'https://judge.me/api/v1/reviews'
+            + '?api_token={{ section.settings.judgeme_api_token | escape }}'
+            + '&shop_domain={{ shop.permanent_domain }}'
+            + '&per_page={{ section.settings.judgeme_reviews_count | default: 12 }}'
+            + '&page=1';
+
+    fetch(url)
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        var minRating = {{ section.settings.judgeme_min_rating | default: 4 }};
+        var reviews   = (data.reviews || []).filter(function (r) {
+          return r.rating >= minRating && r.body && r.body.trim();
+        });
+        if (!reviews.length) return;
+
+        var topHTML = '', bottomHTML = '';
+        reviews.forEach(function (r) { topHTML    += buildCard(r); });
+        reviews.slice().reverse().forEach(function (r) { bottomHTML += buildCard(r); });
+
+        sectionEl.querySelector('.testimonial-slider-top').innerHTML    = topHTML;
+        sectionEl.querySelector('.testimonial-slider-bottom').innerHTML = bottomHTML;
+
+        if (typeof $ !== 'undefined' && $.fn && $.fn.slick) {
+          reinitSliders(sectionEl);
+        }
+      })
+      .catch(function (e) { console.warn('[Judge.me] review fetch failed:', e); });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', run);
+  } else {
+    run();
+  }
+})();
+</script>
+{% endif %}
