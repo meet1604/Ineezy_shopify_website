@@ -1,1 +1,510 @@
-{"sections":{"new_ineezy_banner_slider_D9mzKP":{"type":"new-ineezy-banner-slider","blocks":{"slide_Xh3NLN":{"type":"slide","settings":{"bg_image":"shopify:\/\/shop_images\/dummy-banner.png","subtitle":"More Shine, Less Spend","title":"CHARM YOUR WAY","button_text":"BUY 2, GET 1 FREE","button_link":""}},"slide_6e7MqW":{"type":"slide","settings":{"bg_image":"shopify:\/\/shop_images\/dummy-banner.png","subtitle":"More Shine, Less Spend","title":"CHARM YOUR WAY","button_text":"BUY 2, GET 1 FREE","button_link":""}},"slide_DaAcX6":{"type":"slide","settings":{"bg_image":"shopify:\/\/shop_images\/dummy-banner.png","subtitle":"More Shine, Less Spend","title":"CHARM YOUR WAY","button_text":"BUY 2, GET 1 FREE","button_link":""}}},"block_order":["slide_Xh3NLN","slide_6e7MqW","slide_DaAcX6"],"name":"N_WEB Ineezy Hero Slider","settings":{}},"new_ineezy_category_mNfE8d":{"type":"new-ineezy-category","name":"N_WEB Ineezy Category Showcase","settings":{"subtitle":"SHOP BY THE CATEGORY","title":"EVERYDAY DEMIFINE JEWELLERY","women_title":"For Her","women_desc":"Discover the latest designs crafted to redefine elegance.","women_link":"","men_title":"For Him","men_desc":"Discover the latest designs crafted to redefine elegance.","men_link":"","women_collections":["necklace","bracelet","earrings","rings"],"men_collections":["mens-chain","mens-kada","mens-rings","rings"]}},"new_ineezy_feature_boxes_iwj9WA":{"type":"new-ineezy-feature-boxes","blocks":{"feature_g3hRp6":{"type":"feature","settings":{"icon":"shopify:\/\/shop_images\/water.svg","title":"100% Waterproof","description":"Swim, sweat, shower shine stays. Built for daily wear, every day."}},"feature_YGQywM":{"type":"feature","settings":{"icon":"shopify:\/\/shop_images\/skin.svg","title":"Skin Safe","description":"Hypoallergenic & dermatologist-tested. Gentle on all skin types."}},"feature_wCrq33":{"type":"feature","settings":{"icon":"shopify:\/\/shop_images\/tranish.svg","title":"Anti-Tarnish Forever","description":"Advanced coating stays brilliant, never turns green, no matter what."}}},"block_order":["feature_g3hRp6","feature_YGQywM","feature_wCrq33"],"name":"N_WEB Ineezy Feature Boxes","settings":{}},"new_ineezy_best_seller_tabs_ganXRm":{"type":"new-ineezy-best-seller-tabs","blocks":{"tab_jqQfeC":{"type":"tab","settings":{"tab_title":"WOMEN'S","collection":"necklace"}},"tab_BA7Vm8":{"type":"tab","settings":{"tab_title":"MEN'S","collection":"mens-chain"}}},"block_order":["tab_jqQfeC","tab_BA7Vm8"],"name":"N_WEB Ineezy Best Seller Tabs","settings":{"title":"BEST SELLER COLLECTION","subtitle":"","bg_color":"#ffffff"}},"new_ineezy_offer_banner_LTwwMU":{"type":"new-ineezy-offer-banner","name":"N_WEB Ineezy Offer Banner","settings":{"desk_banner_image":"shopify:\/\/shop_images\/Firefly.png","mon_banner_image":"shopify:\/\/shop_images\/ChatGPT_Image_May_28_2026_02_21_45_PM_84e49dc6-92ef-4b79-843a-1b0bf05b4040.png","small_title":"Serving Summer Glow","main_title":"Buy 2 Get 1 Free","button_text":"Shop Now","button_link":""}},"new_ineezy_best_seller_tabs_h7xF88":{"type":"new-ineezy-best-seller-tabs","blocks":{"tab_FEp4V4":{"type":"tab","settings":{"tab_title":"NECKALCE","collection":"necklace"}},"tab_tCihq8":{"type":"tab","settings":{"tab_title":"BRACELTES","collection":"bracelet"}},"tab_G9dL6h":{"type":"tab","settings":{"tab_title":"RING'S","collection":"rings"}},"tab_efe9cL":{"type":"tab","settings":{"tab_title":"EARRING'S","collection":"earrings"}}},"block_order":["tab_FEp4V4","tab_tCihq8","tab_G9dL6h","tab_efe9cL"],"name":"N_WEB Ineezy Best Seller Tabs","settings":{"title":"NEW IN WOMEN’S","subtitle":"SHOP BY THE CATEGORY","bg_color":"#ffffff"}},"new_ineezy_best_seller_tabs_HKKCDJ":{"type":"new-ineezy-best-seller-tabs","blocks":{"tab_MaKW9P":{"type":"tab","settings":{"tab_title":"CHAIN","collection":"mens-chain"}},"tab_3a8BmE":{"type":"tab","settings":{"tab_title":"RING'S","collection":"mens-rings"}},"tab_QdKPge":{"type":"tab","settings":{"tab_title":"KADA","collection":"mens-kada"}}},"block_order":["tab_MaKW9P","tab_3a8BmE","tab_QdKPge"],"name":"N_WEB Ineezy Best Seller Tabs","settings":{"title":"NEW IN MEN'S","subtitle":"SHOP BY THE CATEGORY","bg_color":"#fbfbf8"}},"new_ineezy_testimonial_slider_yKjjRR":{"type":"new-ineezy-testimonial-slider","blocks":{"testimonial_hKqnhW":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":2}},"testimonial_W3AUJh":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":2,"customer_image":"shopify:\/\/shop_images\/aura-export-portrait-1774438559391.png"}},"testimonial_w6A78C":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_c3ePxq":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_m7QzrT":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_JQQzi8":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_8AdA73":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_NyjXCg":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_KxLmbm":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_VmG6fx":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_hctaDt":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_eEkMgd":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_hxrdNB":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_Qj6ixm":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_eiTYfz":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_XKXHWK":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_Ncydyd":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_n66jkC":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_iEMTiY":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_ThHrcD":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}},"testimonial_9VtV8D":{"type":"testimonial","settings":{"review":"Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!","name":"Anisha Chaudhry","rating":4}}},"block_order":["testimonial_hKqnhW","testimonial_W3AUJh","testimonial_w6A78C","testimonial_c3ePxq","testimonial_m7QzrT","testimonial_JQQzi8","testimonial_8AdA73","testimonial_NyjXCg","testimonial_KxLmbm","testimonial_VmG6fx","testimonial_hctaDt","testimonial_eEkMgd","testimonial_hxrdNB","testimonial_Qj6ixm","testimonial_eiTYfz","testimonial_XKXHWK","testimonial_Ncydyd","testimonial_n66jkC","testimonial_iEMTiY","testimonial_ThHrcD","testimonial_9VtV8D"],"name":"N_WEB Testimonial Slider","settings":{"subtitle":"SHOP BY THE CATEGORY","title":"What Our Customers Say","bg_color":"#f8f5ea"}},"instagram_feed_Hn84Q6":{"type":"instagram-feed","name":"N_WEB Instagram Feed","settings":{"heading":"Shop our Instagram moments","subheading":"Curated posts and reels selected from the InstaLayer dashboard.","api_base_url":"https:\/\/shopify-instagram.onrender.com\/","layout":"slider","columns_desktop":4,"columns_mobile":2,"grid_gap":18,"autoplay_reels":true,"enable_dark_mode":false}},"17538647447e81c08e":{"type":"apps","disabled":true,"settings":{"include_margins":true}},"1777529505a2b5bd4c":{"type":"apps","blocks":{"whatmore_shoppable_videos_app_block_dN8NQb":{"type":"shopify:\/\/apps\/whatmore-shoppable-videos\/blocks\/app-block\/20db8a72-315a-4364-8885-64219ee48303","settings":{"heading":"Watch and Buy","widget-identity":"wgt_default","template-type":"template-h","title-font-size":40,"title-font-size-portrait":24,"landscape-padding":40,"top-bottom-padding":20,"scroll-video-tile-size":80,"scroll-video-tile-size-portrait":80,"min-height":380}}},"block_order":["whatmore_shoppable_videos_app_block_dN8NQb"],"disabled":true,"settings":{"include_margins":true}}},"order":["new_ineezy_banner_slider_D9mzKP","new_ineezy_category_mNfE8d","new_ineezy_feature_boxes_iwj9WA","new_ineezy_best_seller_tabs_ganXRm","new_ineezy_offer_banner_LTwwMU","new_ineezy_best_seller_tabs_h7xF88","new_ineezy_best_seller_tabs_HKKCDJ","new_ineezy_testimonial_slider_yKjjRR","instagram_feed_Hn84Q6","17538647447e81c08e","1777529505a2b5bd4c"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "new_ineezy_banner_slider_D9mzKP": {
+      "type": "new-ineezy-banner-slider",
+      "blocks": {
+        "slide_Xh3NLN": {
+          "type": "slide",
+          "settings": {
+            "bg_image": "shopify://shop_images/dummy-banner.png",
+            "subtitle": "More Shine, Less Spend",
+            "title": "CHARM YOUR WAY",
+            "button_text": "BUY 2, GET 1 FREE",
+            "button_link": ""
+          }
+        },
+        "slide_6e7MqW": {
+          "type": "slide",
+          "settings": {
+            "bg_image": "shopify://shop_images/dummy-banner.png",
+            "subtitle": "More Shine, Less Spend",
+            "title": "CHARM YOUR WAY",
+            "button_text": "BUY 2, GET 1 FREE",
+            "button_link": ""
+          }
+        },
+        "slide_DaAcX6": {
+          "type": "slide",
+          "settings": {
+            "bg_image": "shopify://shop_images/dummy-banner.png",
+            "subtitle": "More Shine, Less Spend",
+            "title": "CHARM YOUR WAY",
+            "button_text": "BUY 2, GET 1 FREE",
+            "button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "slide_Xh3NLN",
+        "slide_6e7MqW",
+        "slide_DaAcX6"
+      ],
+      "name": "N_WEB Ineezy Hero Slider",
+      "settings": {}
+    },
+    "new_ineezy_category_mNfE8d": {
+      "type": "new-ineezy-category",
+      "name": "N_WEB Ineezy Category Showcase",
+      "settings": {
+        "subtitle": "SHOP BY THE CATEGORY",
+        "title": "EVERYDAY DEMIFINE JEWELLERY",
+        "women_title": "For Her",
+        "women_desc": "Discover the latest designs crafted to redefine elegance.",
+        "women_link": "",
+        "men_title": "For Him",
+        "men_desc": "Discover the latest designs crafted to redefine elegance.",
+        "men_link": "",
+        "women_collections": [
+          "necklace",
+          "bracelet",
+          "earrings",
+          "rings"
+        ],
+        "men_collections": [
+          "mens-chain",
+          "mens-kada",
+          "mens-rings",
+          "rings"
+        ]
+      }
+    },
+    "new_ineezy_feature_boxes_iwj9WA": {
+      "type": "new-ineezy-feature-boxes",
+      "blocks": {
+        "feature_g3hRp6": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/water.svg",
+            "title": "100% Waterproof",
+            "description": "Swim, sweat, shower shine stays. Built for daily wear, every day."
+          }
+        },
+        "feature_YGQywM": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/skin.svg",
+            "title": "Skin Safe",
+            "description": "Hypoallergenic & dermatologist-tested. Gentle on all skin types."
+          }
+        },
+        "feature_wCrq33": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/tranish.svg",
+            "title": "Anti-Tarnish Forever",
+            "description": "Advanced coating stays brilliant, never turns green, no matter what."
+          }
+        }
+      },
+      "block_order": [
+        "feature_g3hRp6",
+        "feature_YGQywM",
+        "feature_wCrq33"
+      ],
+      "name": "N_WEB Ineezy Feature Boxes",
+      "settings": {}
+    },
+    "new_ineezy_best_seller_tabs_ganXRm": {
+      "type": "new-ineezy-best-seller-tabs",
+      "blocks": {
+        "tab_jqQfeC": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "WOMEN'S",
+            "collection": "necklace"
+          }
+        },
+        "tab_BA7Vm8": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "MEN'S",
+            "collection": "mens-chain"
+          }
+        }
+      },
+      "block_order": [
+        "tab_jqQfeC",
+        "tab_BA7Vm8"
+      ],
+      "name": "N_WEB Ineezy Best Seller Tabs",
+      "settings": {
+        "title": "BEST SELLER COLLECTION",
+        "subtitle": "",
+        "bg_color": "#ffffff"
+      }
+    },
+    "new_ineezy_offer_banner_LTwwMU": {
+      "type": "new-ineezy-offer-banner",
+      "name": "N_WEB Ineezy Offer Banner",
+      "settings": {
+        "desk_banner_image": "shopify://shop_images/Firefly.png",
+        "mon_banner_image": "shopify://shop_images/ChatGPT_Image_May_28_2026_02_21_45_PM_84e49dc6-92ef-4b79-843a-1b0bf05b4040.png",
+        "small_title": "Serving Summer Glow",
+        "main_title": "Buy 2 Get 1 Free",
+        "button_text": "Shop Now",
+        "button_link": ""
+      }
+    },
+    "new_ineezy_best_seller_tabs_h7xF88": {
+      "type": "new-ineezy-best-seller-tabs",
+      "blocks": {
+        "tab_FEp4V4": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "NECKALCE",
+            "collection": "necklace"
+          }
+        },
+        "tab_tCihq8": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "BRACELTES",
+            "collection": "bracelet"
+          }
+        },
+        "tab_G9dL6h": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "RING'S",
+            "collection": "rings"
+          }
+        },
+        "tab_efe9cL": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "EARRING'S",
+            "collection": "earrings"
+          }
+        }
+      },
+      "block_order": [
+        "tab_FEp4V4",
+        "tab_tCihq8",
+        "tab_G9dL6h",
+        "tab_efe9cL"
+      ],
+      "name": "N_WEB Ineezy Best Seller Tabs",
+      "settings": {
+        "title": "NEW IN WOMEN’S",
+        "subtitle": "SHOP BY THE CATEGORY",
+        "bg_color": "#ffffff"
+      }
+    },
+    "new_ineezy_best_seller_tabs_HKKCDJ": {
+      "type": "new-ineezy-best-seller-tabs",
+      "blocks": {
+        "tab_MaKW9P": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "CHAIN",
+            "collection": "mens-chain"
+          }
+        },
+        "tab_3a8BmE": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "RING'S",
+            "collection": "mens-rings"
+          }
+        },
+        "tab_QdKPge": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "KADA",
+            "collection": "mens-kada"
+          }
+        }
+      },
+      "block_order": [
+        "tab_MaKW9P",
+        "tab_3a8BmE",
+        "tab_QdKPge"
+      ],
+      "name": "N_WEB Ineezy Best Seller Tabs",
+      "settings": {
+        "title": "NEW IN MEN'S",
+        "subtitle": "SHOP BY THE CATEGORY",
+        "bg_color": "#fbfbf8"
+      }
+    },
+    "new_ineezy_testimonial_slider_yKjjRR": {
+      "type": "new-ineezy-testimonial-slider",
+      "blocks": {
+        "testimonial_hKqnhW": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 2
+          }
+        },
+        "testimonial_W3AUJh": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 2,
+            "customer_image": "shopify://shop_images/aura-export-portrait-1774438559391.png"
+          }
+        },
+        "testimonial_w6A78C": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_c3ePxq": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_m7QzrT": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_JQQzi8": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_8AdA73": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_NyjXCg": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_KxLmbm": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_VmG6fx": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_hctaDt": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_eEkMgd": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_hxrdNB": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_Qj6ixm": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_eiTYfz": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_XKXHWK": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_Ncydyd": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_n66jkC": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_iEMTiY": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_ThHrcD": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        },
+        "testimonial_9VtV8D": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_hKqnhW",
+        "testimonial_W3AUJh",
+        "testimonial_w6A78C",
+        "testimonial_c3ePxq",
+        "testimonial_m7QzrT",
+        "testimonial_JQQzi8",
+        "testimonial_8AdA73",
+        "testimonial_NyjXCg",
+        "testimonial_KxLmbm",
+        "testimonial_VmG6fx",
+        "testimonial_hctaDt",
+        "testimonial_eEkMgd",
+        "testimonial_hxrdNB",
+        "testimonial_Qj6ixm",
+        "testimonial_eiTYfz",
+        "testimonial_XKXHWK",
+        "testimonial_Ncydyd",
+        "testimonial_n66jkC",
+        "testimonial_iEMTiY",
+        "testimonial_ThHrcD",
+        "testimonial_9VtV8D"
+      ],
+      "name": "N_WEB Testimonial Slider",
+      "settings": {
+        "subtitle": "SHOP BY THE CATEGORY",
+        "title": "What Our Customers Say",
+        "bg_color": "#f8f5ea",
+        "judgeme_api_token": "DbGTmXdgNHIn8d2x_UrgKMOry44",
+        "judgeme_reviews_count": 12,
+        "judgeme_min_rating": 4,
+        "show_write_review": true,
+        "review_product": ""
+      }
+    },
+    "instagram_feed_Hn84Q6": {
+      "type": "instagram-feed",
+      "name": "N_WEB Instagram Feed",
+      "settings": {
+        "heading": "Shop our Instagram moments",
+        "subheading": "Curated posts and reels selected from the InstaLayer dashboard.",
+        "api_base_url": "https://shopify-instagram.onrender.com/",
+        "layout": "slider",
+        "columns_desktop": 4,
+        "columns_mobile": 2,
+        "grid_gap": 18,
+        "autoplay_reels": true,
+        "enable_dark_mode": false
+      }
+    },
+    "17538647447e81c08e": {
+      "type": "apps",
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
+    },
+    "1777529505a2b5bd4c": {
+      "type": "apps",
+      "blocks": {
+        "whatmore_shoppable_videos_app_block_dN8NQb": {
+          "type": "shopify://apps/whatmore-shoppable-videos/blocks/app-block/20db8a72-315a-4364-8885-64219ee48303",
+          "settings": {
+            "heading": "Watch and Buy",
+            "widget-identity": "wgt_default",
+            "template-type": "template-h",
+            "title-font-size": 40,
+            "title-font-size-portrait": 24,
+            "landscape-padding": 40,
+            "top-bottom-padding": 20,
+            "scroll-video-tile-size": 80,
+            "scroll-video-tile-size-portrait": 80,
+            "min-height": 380
+          }
+        }
+      },
+      "block_order": [
+        "whatmore_shoppable_videos_app_block_dN8NQb"
+      ],
+      "disabled": true,
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "new_ineezy_banner_slider_D9mzKP",
+    "new_ineezy_category_mNfE8d",
+    "new_ineezy_feature_boxes_iwj9WA",
+    "new_ineezy_best_seller_tabs_ganXRm",
+    "new_ineezy_offer_banner_LTwwMU",
+    "new_ineezy_best_seller_tabs_h7xF88",
+    "new_ineezy_best_seller_tabs_HKKCDJ",
+    "new_ineezy_testimonial_slider_yKjjRR",
+    "instagram_feed_Hn84Q6",
+    "17538647447e81c08e",
+    "1777529505a2b5bd4c"
+  ]
+}
