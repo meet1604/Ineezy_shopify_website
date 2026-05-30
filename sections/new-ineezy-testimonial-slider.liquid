@@ -263,7 +263,7 @@
 </section>
 
 {{- '<!-- Judge.me hidden data source (server-side rendered, no CORS) -->' -}}
-<div id="jm-src-{{ section.id }}" aria-hidden="true" style="display:none;position:absolute;left:-9999px;">
+<div id="jm-src-{{ section.id }}" aria-hidden="true" style="visibility:hidden;position:absolute;left:-9999px;top:0;height:0;overflow:hidden;pointer-events:none;">
   {% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews_text_widget', concierge_install: true %}
 </div>
 
@@ -348,14 +348,20 @@
 
     var attempts = 0;
     (function tryParse() {
+      var src = document.getElementById('jm-src-' + SID);
+      if (attempts === 0) {
+        console.log('[Judge.me] Hidden div found:', !!src, '| innerHTML length:', src ? src.innerHTML.length : 0);
+        if (src) console.log('[Judge.me] Hidden div preview:', src.innerHTML.substring(0, 300));
+      }
       var r = parseWidget();
       if (r.length) {
         console.log('[Judge.me] Widget parsed ' + r.length + ' reviews (attempt ' + (attempts + 1) + ').');
         inject(r, sectionEl);
-      } else if (++attempts < 15) {
-        setTimeout(tryParse, 400);
+      } else if (++attempts < 20) {
+        setTimeout(tryParse, 500);
       } else {
-        console.warn('[Judge.me] No reviews found. Make sure Judge.me is installed and has approved reviews.');
+        var src2 = document.getElementById('jm-src-' + SID);
+        console.warn('[Judge.me] No reviews found after 20 attempts. Final div HTML:', src2 ? src2.innerHTML.substring(0, 500) : 'div not found');
       }
     })();
   }
