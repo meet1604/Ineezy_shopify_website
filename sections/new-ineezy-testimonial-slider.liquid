@@ -318,31 +318,39 @@
             + '&per_page={{ section.settings.judgeme_reviews_count | default: 12 }}'
             + '&page=1';
 
-    console.log('[Judge.me] Fetching reviews from:', url);
+    console.log('[Judge.me] Fetching reviews:', url);
 
-    fetch(url)
-      .then(function (res) { return res.json(); })
-      .then(function (data) {
-        console.log('[Judge.me] API response:', data);
-        var minRating = {{ section.settings.judgeme_min_rating | default: 1 }};
-        var reviews   = (data.reviews || []).filter(function (r) {
-          return r.rating >= minRating && r.body && r.body.trim();
-        });
-        console.log('[Judge.me] Reviews after filter (' + minRating + '+ stars):', reviews.length);
-        if (!reviews.length) { console.warn('[Judge.me] No reviews found. Check if Judge.me has approved reviews.'); return; }
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.onload = function () {
+      if (xhr.status >= 200 && xhr.status < 300) {
+        try {
+          var data = JSON.parse(xhr.responseText);
+          console.log('[Judge.me] API response:', data);
+          var minRating = {{ section.settings.judgeme_min_rating | default: 1 }};
+          var reviews   = (data.reviews || []).filter(function (r) {
+            return r.rating >= minRating && r.body && r.body.trim();
+          });
+          console.log('[Judge.me] Reviews after filter (' + minRating + '+ stars):', reviews.length);
+          if (!reviews.length) { console.warn('[Judge.me] No approved reviews found in Judge.me.'); return; }
 
-        var topHTML = '', bottomHTML = '';
-        reviews.forEach(function (r) { topHTML    += buildCard(r); });
-        reviews.slice().reverse().forEach(function (r) { bottomHTML += buildCard(r); });
+          var topHTML = '', bottomHTML = '';
+          reviews.forEach(function (r) { topHTML    += buildCard(r); });
+          reviews.slice().reverse().forEach(function (r) { bottomHTML += buildCard(r); });
 
-        sectionEl.querySelector('.testimonial-slider-top').innerHTML    = topHTML;
-        sectionEl.querySelector('.testimonial-slider-bottom').innerHTML = bottomHTML;
+          sectionEl.querySelector('.testimonial-slider-top').innerHTML    = topHTML;
+          sectionEl.querySelector('.testimonial-slider-bottom').innerHTML = bottomHTML;
 
-        if (typeof $ !== 'undefined' && $.fn && $.fn.slick) {
-          reinitSliders(sectionEl);
-        }
-      })
-      .catch(function (e) { console.warn('[Judge.me] review fetch failed:', e); });
+          if (typeof $ !== 'undefined' && $.fn && $.fn.slick) {
+            reinitSliders(sectionEl);
+          }
+        } catch (e) { console.warn('[Judge.me] JSON parse error:', e); }
+      } else {
+        console.warn('[Judge.me] API returned status:', xhr.status, xhr.responseText);
+      }
+    };
+    xhr.onerror = function () { console.warn('[Judge.me] Network/CORS error on XHR request.'); };
+    xhr.send();
   }
 
   if (document.readyState === 'loading') {
