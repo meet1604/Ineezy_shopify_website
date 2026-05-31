@@ -1402,12 +1402,13 @@ INEEZY AUTH REDESIGN
 ========================================= */
 
 .ineezy-new .auth-wrapper{
-min-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:60px 20px;
-background: var(--white);
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:60px 20px;
+  background: var(--white);
+  border: 1px solid var(--neutral-3);
 }
 
 .ineezy-new .auth-card{
