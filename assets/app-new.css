@@ -1534,8 +1534,8 @@ text-decoration:none;
 }
 
 .ineezy-new .auth-bottom-link .svg-wrapper{
-width:14px;
-height:14px;
+  width:14px;
+  height:14px;
 }
 
 .ineezy-new .form__message{
@@ -1544,7 +1544,7 @@ align-items:center;
 gap:8px;
 margin-top:10px;
 color:#D93025;
-font-size:14px;
+font-size: 16px;
 }
 
 .ineezy-new .customer ul{
