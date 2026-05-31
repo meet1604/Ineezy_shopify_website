@@ -1525,14 +1525,14 @@ margin-top:28px;
   text-align:center;
   font-size:14px;
   color: var(--neutral-6);
+  line-height: 140%;
 }
 
 .ineezy-new .auth-bottom-link a{
 color: var(--primary);
-font-weight:600;
 text-decoration:none;
 font-size:14px;
-line-height: 140%
+line-height: 140%;
 }
 
 .ineezy-new .auth-bottom-link .svg-wrapper{
