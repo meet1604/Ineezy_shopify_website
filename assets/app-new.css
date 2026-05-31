@@ -1448,11 +1448,11 @@ box-shadow:0 12px 40px rgba(0,0,0,.05);
 }
 
 .ineezy-new .form-group label{
-display:block;
-margin-bottom:8px;
-font-size:14px;
-font-weight:500;
-color:#333;
+  display:block;
+  margin-bottom:4px;
+  font-size:14px;
+  font-weight:500;
+  color:#333;
 }
 
 .ineezy-new .form-control{
