@@ -753,3 +753,194 @@ li[data-address] > h2 {
 .addresses form > div:nth-of-type(7) + div[id] {
   margin-top: 1.5rem;
 }
+
+
+
+
+
+/* =========================================
+INEEZY AUTH REDESIGN
+========================================= */
+
+.ineezy-new .auth-wrapper{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:60px 20px;
+background: var(--white);
+}
+
+.ineezy-new .auth-card{
+width:100%;
+max-width:560px;
+background:#fff;
+border-radius:24px;
+padding:48px;
+box-shadow:0 12px 40px rgba(0,0,0,.05);
+}
+
+.ineezy-new .auth-title{
+text-align:center;
+margin-bottom:40px;
+}
+
+.ineezy-new .auth-title h1{
+margin:0 0 12px;
+font-size:48px;
+font-weight:400;
+line-height:1;
+letter-spacing:-1px;
+color:#111;
+}
+
+.ineezy-new .auth-title p{
+margin:0;
+font-size:16px;
+line-height:1.6;
+color:#7A7A7A;
+}
+
+.ineezy-new .form-group{
+margin-bottom:20px;
+}
+
+.ineezy-new .form-group label{
+display:block;
+margin-bottom:8px;
+font-size:14px;
+font-weight:500;
+color:#333;
+}
+
+.ineezy-new .form-control{
+width:100%;
+height:56px;
+border:1px solid #E5E5E5;
+border-radius:14px;
+background:#fff;
+padding:0 18px;
+font-size:15px;
+transition:all .25s ease;
+}
+
+.ineezy-new textarea.form-control{
+height:auto;
+min-height:120px;
+padding:18px;
+}
+
+.ineezy-new .form-control:focus{
+outline:none;
+border-color:#B69238;
+box-shadow:none;
+}
+
+.ineezy-new .form-group-icon-start{
+position:relative;
+}
+
+.ineezy-new .form-group-icon-start .svg-wrapper{
+position:absolute;
+left:18px;
+top:50%;
+transform:translateY(-50%);
+width:18px;
+height:18px;
+color:#8A8A8A;
+z-index:2;
+}
+
+.ineezy-new .form-group-icon-start .form-control{
+padding-left:50px;
+}
+
+.ineezy-new .auth-forgot-password{
+display:flex;
+justify-content:flex-end;
+margin-top:12px;
+}
+
+.ineezy-new .forgot-password-link{
+font-size:14px;
+color:#777;
+text-decoration:none;
+}
+
+.ineezy-new .forgot-password-link:hover
+
+.ineezy-new .auth-button-group{
+margin-top:28px;
+}
+
+.ineezy-new .auth-button-group .btn{
+width:100%;
+height:58px;
+border:none;
+border-radius:14px;
+background:#111;
+color:#fff;
+font-size:15px;
+font-weight:600;
+transition:all .25s ease;
+}
+
+.ineezy-new .auth-button-group .btn:hover{
+transform:translateY(-2px);
+}
+
+.ineezy-new .auth-bottom-link{
+margin-top:24px;
+text-align:center;
+font-size:14px;
+color:#777;
+}
+
+.ineezy-new .auth-bottom-link a{
+color:#111;
+font-weight:600;
+text-decoration:none;
+}
+
+.ineezy-new .auth-bottom-link .svg-wrapper{
+width:14px;
+height:14px;
+}
+
+.ineezy-new .form__message{
+display:flex;
+align-items:center;
+gap:8px;
+margin-top:10px;
+color:#D93025;
+font-size:14px;
+}
+
+.ineezy-new .customer ul{
+padding-left:20px;
+}
+
+.ineezy-new .customer ul li{
+margin-bottom:8px;
+}
+
+@media(max-width:768px){
+
+.ineezy-new .auth-wrapper{
+padding:40px 16px;
+}
+
+.ineezy-new .auth-card{
+padding:28px 20px;
+border-radius:20px;
+}
+
+.ineezy-new .auth-title{
+margin-bottom:28px;
+}
+
+.ineezy-new .auth-title h1{
+font-size:36px;
+}
+
+}
