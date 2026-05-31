@@ -1437,14 +1437,14 @@ box-shadow:0 12px 40px rgba(0,0,0,.05);
 }
 
 .ineezy-new .auth-wrapper .auth-card .auth-title p{
-margin:0;
-font-size:16px;
-line-height: 140%;
-color: var(--neutral-6);
+  margin:0;
+  font-size:16px;
+  line-height: 140%;
+  color: var(--neutral-6);
 }
 
 .ineezy-new .form-group{
-margin-bottom:20px;
+  margin-bottom: 16px;;
 }
 
 .ineezy-new .form-group label{
