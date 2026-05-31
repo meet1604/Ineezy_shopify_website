@@ -1509,7 +1509,9 @@ position:relative;
   text-decoration:none;
 }
 
-.ineezy-new .forgot-password-link:hover
+.ineezy-new .forgot-password-link:hover{
+  text-decoration: underline;
+}
 
 .ineezy-new .auth-button-group{
 margin-top:28px;
