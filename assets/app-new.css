@@ -1524,11 +1524,11 @@ margin-top:28px;
   margin-top:24px;
   text-align:center;
   font-size:14px;
-  color:#777;
+  color: var(--neutral-6);
 }
 
 .ineezy-new .auth-bottom-link a{
-color:#111;
+color: var(--primary);
 font-weight:600;
 text-decoration:none;
 }
