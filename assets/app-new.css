@@ -1467,15 +1467,15 @@ transition:all .25s ease;
 }
 
 .ineezy-new textarea.form-control{
-height:auto;
-min-height:120px;
-padding:18px;
+  height:auto;
+  min-height:120px;
+  padding:18px;
 }
 
 .ineezy-new .form-control:focus{
-outline:none;
-border-color:#B69238;
-box-shadow:none;
+  outline:none;
+  border-color: var(--primary);
+  box-shadow:none;
 }
 
 .ineezy-new .form-group-icon-start{
