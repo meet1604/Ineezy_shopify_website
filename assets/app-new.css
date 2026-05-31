@@ -1427,8 +1427,9 @@ box-shadow:0 12px 40px rgba(0,0,0,.05);
 }
 
 .ineezy-new .auth-wrapper .auth-card .auth-title h1{
-  margin:0 0 12px;
-  font-size: 32px;
+  margin: 0px;
+  margin-bottom: 8px;
+  font-size: 24px;
   font-weight:400;
   line-height:140%;
   letter-spacing: 0;
