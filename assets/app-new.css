@@ -1422,17 +1422,17 @@ box-shadow:0 12px 40px rgba(0,0,0,.05);
 }
 
 .ineezy-new .auth-title{
-text-align:center;
-margin-bottom:40px;
+  text-align:center;
+  margin-bottom:40px;
 }
 
 .ineezy-new .auth-title h1{
-margin:0 0 12px;
-font-size:48px;
-font-weight:400;
-line-height:1;
-letter-spacing:-1px;
-color:#111;
+  margin:0 0 12px;
+  font-size: 32px;
+  font-weight:400;
+  line-height:1;
+  letter-spacing:-1px;
+  color:#111;
 }
 
 .ineezy-new .auth-title p{
