@@ -1483,18 +1483,18 @@ position:relative;
 }
 
 .ineezy-new .form-group-icon-start .svg-wrapper{
-position:absolute;
-left:18px;
-top:50%;
-transform:translateY(-50%);
-width:18px;
-height:18px;
-color:#8A8A8A;
-z-index:2;
+  position:absolute;
+  left:18px;
+  top:50%;
+  transform:translateY(-50%);
+  width:18px;
+  height:18px;
+  color:#8A8A8A;
+  z-index:2;
 }
 
 .ineezy-new .form-group-icon-start .form-control{
-padding-left:50px;
+  padding-left:50px;
 }
 
 .ineezy-new .auth-forgot-password{
