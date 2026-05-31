@@ -1532,6 +1532,7 @@ color: var(--primary);
 font-weight:600;
 text-decoration:none;
 font-size:14px;
+line-height: 140%
 }
 
 .ineezy-new .auth-bottom-link .svg-wrapper{
