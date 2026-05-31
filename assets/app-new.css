@@ -1498,15 +1498,15 @@ position:relative;
 }
 
 .ineezy-new .auth-forgot-password{
-display:flex;
-justify-content:flex-end;
-margin-top:12px;
+  display:flex;
+  justify-content:flex-end;
+  margin-top:12px;
 }
 
 .ineezy-new .forgot-password-link{
-font-size:14px;
-color:#777;
-text-decoration:none;
+  font-size:14px;
+  color: var(--primary);
+  text-decoration:none;
 }
 
 .ineezy-new .forgot-password-link:hover
