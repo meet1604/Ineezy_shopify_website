@@ -140,7 +140,7 @@
                 {% endcomment %}
                 <div class="profile-card-text">
                   <div class="profile-card-name">
-                    <h4>{{ customer.default_address.first_name }} {{ customer.default_address.last_name }}</h4>
+                    <h4>{{ customer.first_name }} {{ customer.last_name }}</h4>
                     <a id="btn-edit-profile" class="edit-profile btn btn-primary  d-none">
                       <i class="svg-wrapper">{{ 'new-icon-edit.svg' | inline_asset_content }}</i> Edit Profile</a
                     >
@@ -912,28 +912,112 @@
 
 {% if customer %}
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+  document.addEventListener('DOMContentLoaded', function () {
+    var dataEl = document.getElementById('customer-orders-data');
+    if (!dataEl) return;
 
-      viewDetailsButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          const orderId = button.dataset.orderId;
-          const detailsRow = document.getElementById(`order-details-${orderId}`);
-          const isExpanded = button.getAttribute('aria-expanded') === 'true';
+    var ordersData;
+    try { ordersData = JSON.parse(dataEl.textContent); } catch (e) { return; }
 
-          // Toggle visibility
-          if (isExpanded) {
-            detailsRow.style.display = 'none';
-            button.setAttribute('aria-expanded', 'false');
-            button.textContent = 'View Details'; // Adjust based on translation
-          } else {
-            detailsRow.style.display = 'table-row';
-            button.setAttribute('aria-expanded', 'true');
-            button.textContent = 'Hide Details'; // Adjust based on translation
-          }
-        });
+    var orders = (ordersData && ordersData.orders) || [];
+    var ordersMap = {};
+    orders.forEach(function (o) { ordersMap[String(o.id)] = o; });
+
+    var container  = document.querySelector('.order-content-container');
+    var listingEl  = container && container.querySelector('.order-listing');
+    var detailsEl  = container && container.querySelector('.order-details');
+    if (!listingEl || !detailsEl) return;
+
+    function statusClass(label) {
+      var s = (label || '').toLowerCase();
+      if (s === 'paid')              return 'status-paid';
+      if (s === 'pending')           return 'status-pending';
+      if (s === 'refunded')          return 'status-refunded';
+      if (s.indexOf('partial') > -1) return 'status-partial';
+      if (s === 'voided')            return 'status-voided';
+      return 'status-unknown';
+    }
+
+    function renderDetails(order) {
+      var itemRows = (order.line_items || []).map(function (item) {
+        var variant = (item.variant_title && item.variant_title !== 'Default Title')
+          ? '<br><small style="color:#888">' + item.variant_title + '</small>' : '';
+        return '<tr>'
+          + '<td><strong>' + item.title + '</strong>' + variant + '</td>'
+          + '<td class="text-center">' + item.quantity + '</td>'
+          + '<td class="text-center">' + item.final_price + '</td>'
+          + '<td class="text-center">' + item.final_line_price + '</td>'
+          + '</tr>';
+      }).join('');
+
+      var shipRows = (order.shipping_methods || []).map(function (m) {
+        return '<tr><td colspan="3">Shipping — ' + m.title + '</td><td class="text-center">' + m.price + '</td></tr>';
+      }).join('');
+
+      var addr = order.shipping_address || {};
+      var addrParts = [addr.name, addr.address1, addr.city, addr.province_code, addr.zip, addr.country].filter(Boolean);
+      var addrHtml = addrParts.length
+        ? '<div class="order-detail-address"><h5>Shipping Address</h5><p>' + addrParts.join(', ') + '</p></div>'
+        : '';
+
+      var cancelHtml = order.cancelled
+        ? '<div class="order-cancelled-notice"><strong>Order Cancelled</strong>'
+          + (order.cancelled_at ? ' on ' + order.cancelled_at.substring(0, 10) : '')
+          + (order.cancel_reason_label ? ' &mdash; ' + order.cancel_reason_label : '')
+          + '</div>'
+        : '';
+
+      return '<div class="order-details-content">'
+        + cancelHtml
+        + '<div class="order-detail-meta">'
+        + '<div><span>Order</span><strong>' + order.name + '</strong></div>'
+        + '<div><span>Date</span><strong>' + (order.created_at || '').substring(0, 10) + '</strong></div>'
+        + '<div><span>Payment</span><em class="status ' + statusClass(order.financial_status_label) + '">' + order.financial_status_label + '</em></div>'
+        + '<div><span>Fulfillment</span><strong>' + order.fulfillment_status_label + '</strong></div>'
+        + '</div>'
+        + '<div class="table-responsive mt-3">'
+        + '<table class="table-theme order-detail-table w-100">'
+        + '<thead><tr><th>Product</th><th class="text-center">Qty</th><th class="text-center">Unit Price</th><th class="text-center">Total</th></tr></thead>'
+        + '<tbody>' + itemRows + '</tbody>'
+        + '<tfoot>'
+        + '<tr><td colspan="3">Subtotal</td><td class="text-center">' + order.line_items_subtotal_price + '</td></tr>'
+        + shipRows
+        + '<tr class="order-total-row"><td colspan="3"><strong>Order Total</strong></td><td class="text-center"><strong>' + order.total_net_amount + '</strong></td></tr>'
+        + '</tfoot>'
+        + '</table>'
+        + '</div>'
+        + addrHtml
+        + '</div>';
+    }
+
+    function showDetails(orderId) {
+      var order = ordersMap[orderId];
+      if (!order) return;
+      var existing = detailsEl.querySelector('.order-details-content');
+      if (existing) existing.remove();
+      var content = document.createElement('div');
+      content.innerHTML = renderDetails(order);
+      detailsEl.appendChild(content.firstChild);
+      listingEl.style.display = 'none';
+      detailsEl.style.display = 'block';
+    }
+
+    function showListing() {
+      detailsEl.style.display = 'none';
+      listingEl.style.display = 'block';
+    }
+
+    document.querySelectorAll('.view-details-link').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        showDetails(this.dataset.orderId);
       });
     });
+
+    detailsEl.querySelectorAll('.back-button, .btn-outline-primary').forEach(function (btn) {
+      btn.addEventListener('click', showListing);
+    });
+  });
   </script>
 {% else %}
   <p>Please <a href="/account/login">log in</a> to update your profile.</p>

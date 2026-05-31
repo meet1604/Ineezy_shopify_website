@@ -3326,8 +3326,77 @@ text-align: center;
     color: var(--primary-color);
     margin-bottom: 0px;
 }
-/* my-account End */{
-  
+/* my-account End */
+
+/* Order Detail Panel */
+.order-details { padding: 0; }
+.order-details-content { padding: 20px 0; }
+
+.order-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  background: #F2F4F7;
+  padding: 16px 20px;
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+.order-detail-meta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 100px;
+}
+.order-detail-meta > div span:first-child {
+  font-size: 11px;
+  text-transform: uppercase;
+  color: #888;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.order-detail-meta > div strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2a2320;
+}
+.order-detail-address {
+  margin-top: 24px;
+  padding: 16px 20px;
+  background: #F2F4F7;
+  border-radius: 8px;
+}
+.order-detail-address h5 {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #888;
+  margin-bottom: 8px;
+}
+.order-detail-address p {
+  font-size: 14px;
+  margin: 0;
+  color: #2a2320;
+}
+.order-cancelled-notice {
+  background: #fff3cd;
+  color: #856404;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.order-detail-table tfoot td {
+  padding: 10px;
+  font-size: 13px;
+  color: #555;
+}
+.order-detail-table tfoot .order-total-row td {
+  font-size: 15px;
+  font-weight: 700;
+  color: #2a2320;
+  border-top: 2px solid #e6eaee;
+  padding-top: 14px;
 }
 
 
