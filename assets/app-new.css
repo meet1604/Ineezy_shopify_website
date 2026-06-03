@@ -1620,8 +1620,8 @@ width: 100%;
 }
 .ineezy-new .small-banner .small-banner-wrapper .small-banner-text h2{
      font-weight: 400;
-    font-size: 48px;
-    line-height: 60px;
+    font-size: 42px;
+    line-height: 140%;
     color: var(--neutral-black);
     margin-bottom: 0px;
 }
