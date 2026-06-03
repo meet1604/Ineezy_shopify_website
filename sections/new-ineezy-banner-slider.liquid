@@ -93,11 +93,9 @@
 
       <div class="slide-item">
         <div class="hero-bg"
-          style="background-image: url('{{ block.settings.bg_image | image_url: width: 1800 }}'); justify-content: {{ justify }}; position: relative;">
+          style="background-image: {{ overlay_bg }}, url('{{ block.settings.bg_image | image_url: width: 1800 }}'); justify-content: {{ justify }};">
 
-          <div class="hero-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 24px; pointer-events: none; z-index: 0; background: {{ overlay_bg }};"></div>
-
-          <div class="hero-content" style="text-align: {{ text_align }}; position: relative; z-index: 1;">
+          <div class="hero-content" style="text-align: {{ text_align }};">
             <p class="subtitle" style="color: {{ block.settings.subtitle_color }};">{{ block.settings.subtitle }}</p>
             <h1 class="title" style="color: {{ block.settings.title_color }};">{{ block.settings.title }}</h1>
 
