@@ -34,7 +34,19 @@
           ]
         },
         { "type": "color", "id": "subtitle_color", "label": "Subtitle Color", "default": "#C5896F" },
-        { "type": "color", "id": "title_color", "label": "Title Color", "default": "#21263C" }
+        { "type": "color", "id": "title_color", "label": "Title Color", "default": "#21263C" },
+        { "type": "header", "content": "Overlay" },
+        { "type": "color", "id": "overlay_color", "label": "Overlay Color", "default": "#000000" },
+        {
+          "type": "range",
+          "id": "overlay_opacity",
+          "label": "Overlay Opacity",
+          "min": 0,
+          "max": 100,
+          "step": 5,
+          "default": 40,
+          "unit": "%"
+        }
       ]
     }
   ],
@@ -50,28 +62,44 @@
     {% for block in section.blocks %}
       {%- assign pos = block.settings.content_position | default: 'left' -%}
       {%- assign text_align = block.settings.text_align | default: 'left' -%}
+
       {%- if pos == 'left' -%}
         {%- assign justify = 'flex-start' -%}
-        {%- assign btn_margin = '0' -%}
       {%- elsif pos == 'right' -%}
         {%- assign justify = 'flex-end' -%}
-        {%- assign btn_margin = '0 0 0 auto' -%}
       {%- else -%}
         {%- assign justify = 'center' -%}
-        {%- assign btn_margin = '0 auto' -%}
       {%- endif -%}
+
       {%- if text_align == 'center' -%}
         {%- assign btn_margin = '0 auto' -%}
       {%- elsif text_align == 'right' -%}
         {%- assign btn_margin = '0 0 0 auto' -%}
-      {%- elsif text_align == 'left' -%}
+      {%- else -%}
         {%- assign btn_margin = '0' -%}
       {%- endif -%}
+
+      {%- assign r = block.settings.overlay_color | color_extract: 'red' -%}
+      {%- assign g = block.settings.overlay_color | color_extract: 'green' -%}
+      {%- assign b = block.settings.overlay_color | color_extract: 'blue' -%}
+      {%- assign alpha = block.settings.overlay_opacity | times: 1.0 | divided_by: 100 -%}
+      {%- assign overlay_rgba = 'rgba(' | append: r | append: ',' | append: g | append: ',' | append: b | append: ',' | append: alpha | append: ')' -%}
+
+      {%- if pos == 'left' -%}
+        {%- assign overlay_bg = 'linear-gradient(to right, ' | append: overlay_rgba | append: ' 0%, ' | append: overlay_rgba | append: ' 45%, transparent 85%)' -%}
+      {%- elsif pos == 'right' -%}
+        {%- assign overlay_bg = 'linear-gradient(to left, ' | append: overlay_rgba | append: ' 0%, ' | append: overlay_rgba | append: ' 45%, transparent 85%)' -%}
+      {%- else -%}
+        {%- assign overlay_bg = overlay_rgba -%}
+      {%- endif -%}
+
       <div class="slide-item">
         <div class="hero-bg"
-          style="background-image: url('{{ block.settings.bg_image | image_url: width: 1800 }}'); justify-content: {{ justify }};">
+          style="background-image: url('{{ block.settings.bg_image | image_url: width: 1800 }}'); justify-content: {{ justify }}; position: relative;">
 
-          <div class="hero-content" style="text-align: {{ text_align }};">
+          <div class="hero-overlay" style="position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 0; background: {{ overlay_bg }};"></div>
+
+          <div class="hero-content" style="text-align: {{ text_align }}; position: relative; z-index: 1;">
             <p class="subtitle" style="color: {{ block.settings.subtitle_color }};">{{ block.settings.subtitle }}</p>
             <h1 class="title" style="color: {{ block.settings.title_color }};">{{ block.settings.title }}</h1>
 
