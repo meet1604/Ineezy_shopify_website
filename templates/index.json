@@ -31,17 +31,17 @@
         "slide_6e7MqW": {
           "type": "slide",
           "settings": {
-            "bg_image": "shopify://shop_images/dummy-banner.png",
+            "bg_image": "shopify://shop_images/banner-slider-2.png",
             "subtitle": "More Shine, Less Spend",
             "title": "CHARM YOUR WAY",
             "button_text": "BUY 2, GET 1 FREE",
             "button_link": "",
-            "content_position": "left",
-            "text_align": "left",
-            "subtitle_color": "#c5896f",
-            "title_color": "#21263c",
-            "overlay_color": "#000000",
-            "overlay_opacity": 40
+            "content_position": "right",
+            "text_align": "right",
+            "subtitle_color": "#121212",
+            "title_color": "#121212",
+            "overlay_color": "#ffffff",
+            "overlay_opacity": 50
           }
         },
         "slide_DaAcX6": {
