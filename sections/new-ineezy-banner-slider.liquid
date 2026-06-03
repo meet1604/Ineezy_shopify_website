@@ -32,7 +32,9 @@
             { "value": "center", "label": "Center" },
             { "value": "right", "label": "Right" }
           ]
-        }
+        },
+        { "type": "color", "id": "subtitle_color", "label": "Subtitle Color", "default": "#C5896F" },
+        { "type": "color", "id": "title_color", "label": "Title Color", "default": "#21263C" }
       ]
     }
   ],
@@ -70,8 +72,8 @@
           style="background-image: url('{{ block.settings.bg_image | image_url: width: 1800 }}'); justify-content: {{ justify }};">
 
           <div class="hero-content" style="text-align: {{ text_align }};">
-            <p class="subtitle">{{ block.settings.subtitle }}</p>
-            <h1 class="title">{{ block.settings.title }}</h1>
+            <p class="subtitle" style="color: {{ block.settings.subtitle_color }};">{{ block.settings.subtitle }}</p>
+            <h1 class="title" style="color: {{ block.settings.title_color }};">{{ block.settings.title }}</h1>
 
             {% if block.settings.button_text != blank %}
               <a href="{{ block.settings.button_link }}" class="btn btn-primary" style="margin: {{ btn_margin }};">
