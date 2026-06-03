@@ -2486,7 +2486,7 @@ line-height: 24px;
     height: 100%;
     position: absolute;
     z-index: 2;
-    background: linear-gradient(90deg, #F9FFFF -0.73%, rgba(255, 255, 255, 0.6) 54.29%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(90deg,#f3eed8,#d2bf63);
 }
 .small-banner .small-banner-wrapper {
  height: 100%;
