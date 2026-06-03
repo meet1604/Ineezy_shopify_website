@@ -49,6 +49,8 @@
 }
 @media(max-width: 992px){
     
+
+    
      .ineezy-new .ineezy-category-section{
         padding: 40px 0px;
     }
@@ -200,6 +202,11 @@
     .ineezy-new .main-single-product .product__media-wrapper{
         padding: 0px;
     }
+
+
+    .ineezy-new .small-banner-section {
+    margin-top: 16px;
+}
 }
 
 @media(max-width: 767px){
