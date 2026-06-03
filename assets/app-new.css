@@ -1619,14 +1619,14 @@ width: 100%;
      font-weight: 400;
     font-size: 48px;
     line-height: 60px;
-    color: var(--primary-color);
+    color: var(--neutral-black);
     margin-bottom: 0px;
 }
 .new-ineezy .small-banner .small-banner-wrapper .small-banner-text p{
  font-weight: 400;
     font-size: 20px;
     line-height: 30px;
-    color: var(--primary-color);
+    color: var(--neutral-6);
     max-width: 37ch;
   margin-bottom: 0px;
 }
