@@ -1622,11 +1622,11 @@ width: 100%;
     color: var(--neutral-black);
     margin-bottom: 0px;
 }
-.new-ineezy .small-banner .small-banner-wrapper .small-banner-text p{
+.ineezy-new .small-banner .small-banner-wrapper .small-banner-text p{
  font-weight: 400;
     font-size: 20px;
     line-height: 30px;
-    color: var(--neutral-8);
+    color: var(--neutral-6);
     max-width: 37ch;
   margin-bottom: 0px;
 }
