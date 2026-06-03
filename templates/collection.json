@@ -9,6 +9,15 @@
  */
 {
   "sections": {
+    "new_ineezy_small_banner_exWTDP": {
+      "type": "new-ineezy-small-banner",
+      "name": "N_WEB samll Banner Image",
+      "settings": {
+        "banner_image_alt": "Small Banner Image",
+        "heading": "{{ collection.title }}",
+        "subtext": "From jewellery to stores, shop all of our pieces in the one place."
+      }
+    },
     "ijl_shop_grid_Nz33Ct": {
       "type": "new-ineezy-shop-grid",
       "settings": {}
@@ -41,15 +50,6 @@
         "enable_sorting": true,
         "padding_top": 36,
         "padding_bottom": 36
-      }
-    },
-    "new_ineezy_small_banner_exWTDP": {
-      "type": "new-ineezy-small-banner",
-      "name": "N_WEB samll Banner Image",
-      "settings": {
-        "banner_image_alt": "Small Banner Image",
-        "heading": "Small Hoop Earrings",
-        "subtext": "From jewellery to stores, shop all of our pieces in the one place."
       }
     }
   },
