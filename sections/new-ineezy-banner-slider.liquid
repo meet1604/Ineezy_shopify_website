@@ -79,25 +79,23 @@
         {%- assign btn_margin = '0' -%}
       {%- endif -%}
 
-      {%- assign r = block.settings.overlay_color | color_extract: 'red' -%}
-      {%- assign g = block.settings.overlay_color | color_extract: 'green' -%}
-      {%- assign b = block.settings.overlay_color | color_extract: 'blue' -%}
       {%- assign alpha = block.settings.overlay_opacity | times: 1.0 | divided_by: 100 -%}
-      {%- assign overlay_rgba = 'rgba(' | append: r | append: ',' | append: g | append: ',' | append: b | append: ',' | append: alpha | append: ')' -%}
+      {%- assign overlay_solid = block.settings.overlay_color | color_modify: 'alpha', alpha -%}
+      {%- assign overlay_clear = block.settings.overlay_color | color_modify: 'alpha', 0 -%}
 
       {%- if pos == 'left' -%}
-        {%- assign overlay_bg = 'linear-gradient(to right, ' | append: overlay_rgba | append: ' 0%, ' | append: overlay_rgba | append: ' 45%, transparent 85%)' -%}
+        {%- assign overlay_bg = 'linear-gradient(to right, ' | append: overlay_solid | append: ' 0%, ' | append: overlay_solid | append: ' 45%, ' | append: overlay_clear | append: ' 85%)' -%}
       {%- elsif pos == 'right' -%}
-        {%- assign overlay_bg = 'linear-gradient(to left, ' | append: overlay_rgba | append: ' 0%, ' | append: overlay_rgba | append: ' 45%, transparent 85%)' -%}
+        {%- assign overlay_bg = 'linear-gradient(to left, ' | append: overlay_solid | append: ' 0%, ' | append: overlay_solid | append: ' 45%, ' | append: overlay_clear | append: ' 85%)' -%}
       {%- else -%}
-        {%- assign overlay_bg = overlay_rgba -%}
+        {%- assign overlay_bg = overlay_solid -%}
       {%- endif -%}
 
       <div class="slide-item">
         <div class="hero-bg"
           style="background-image: url('{{ block.settings.bg_image | image_url: width: 1800 }}'); justify-content: {{ justify }}; position: relative;">
 
-          <div class="hero-overlay" style="position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 0; background: {{ overlay_bg }};"></div>
+          <div class="hero-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 24px; pointer-events: none; z-index: 0; background: {{ overlay_bg }};"></div>
 
           <div class="hero-content" style="text-align: {{ text_align }}; position: relative; z-index: 1;">
             <p class="subtitle" style="color: {{ block.settings.subtitle_color }};">{{ block.settings.subtitle }}</p>
