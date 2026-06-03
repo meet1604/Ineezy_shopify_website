@@ -1583,6 +1583,7 @@ margin-bottom:8px;
 .ineezy-new .small-banner{ 
   padding: 40px 24px;
   position: relative;
+  min-height: 200px;
 
   background: var(--primary-bg-color);
 }
