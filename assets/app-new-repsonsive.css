@@ -207,6 +207,9 @@
     .ineezy-new .small-banner-section {
         margin-top: 16px;
     }
+    .ineezy-new .small-banner{
+        min-height: auto;
+    }
 }
 
 @media(max-width: 767px){
