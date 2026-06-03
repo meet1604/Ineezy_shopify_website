@@ -59,10 +59,16 @@
           <span class="instagram-feed-badge">${mediaLabel(item.media_type)}</span>
           ${
             isVideo
-              ? `<video ${autoplay ? 'autoplay loop muted playsinline' : 'controls'} preload="metadata" poster="${thumb}">
-                  <source src="${item.media_url}">
-                 </video>`
-              : `<img src="${thumb}" alt="${esc(item.caption || 'Instagram media')}" loading="lazy">`
+              ? `<video ${autoplay ? 'autoplay loop muted playsinline' : 'controls'} preload="metadata" poster="${esc(thumb)}" class="instagram-feed-video">
+                  <source src="${esc(item.media_url)}">
+                 </video>
+                 <div class="instagram-feed-video-fallback" style="display:none">
+                   <img src="${esc(thumb)}" alt="${esc(item.caption || 'Instagram reel')}" loading="lazy">
+                   <span class="instagram-feed-play-icon" aria-hidden="true">
+                     <svg viewBox="0 0 24 24" fill="white" width="48" height="48"><circle cx="12" cy="12" r="12" fill="rgba(0,0,0,0.45)"/><polygon points="10,8 18,12 10,16" fill="white"/></svg>
+                   </span>
+                 </div>`
+              : `<img src="${esc(thumb)}" alt="${esc(item.caption || 'Instagram media')}" loading="lazy">`
           }
         </div>
         <div class="instagram-feed-content">
@@ -135,6 +141,23 @@
       }
 
       track.innerHTML = items.map((item) => createMediaMarkup(item, autoplay)).join('');
+
+      // Fallback: if video URL is expired, swap to thumbnail overlay
+      track.querySelectorAll('.instagram-feed-video').forEach(function (video) {
+        var fallback = video.parentElement.querySelector('.instagram-feed-video-fallback');
+        function showFallback() {
+          video.style.display = 'none';
+          if (fallback) fallback.style.display = 'block';
+        }
+        video.addEventListener('error', showFallback);
+        var source = video.querySelector('source');
+        if (source) source.addEventListener('error', showFallback);
+        // If video stalls with no data after 4s, treat as broken URL
+        video.addEventListener('loadeddata', function () { this._loaded = true; });
+        setTimeout(function () {
+          if (!video._loaded && video.readyState === 0) showFallback();
+        }, 4000);
+      });
 
       if (layout === 'slider') {
         initSlick(track, desktopColumns, mobileColumns, autoplay);
