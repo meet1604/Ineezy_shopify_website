@@ -212,6 +212,10 @@
         padding: 16px 24px;
         border-radius: 16px;
     }
+
+    .ineezy-new .small-banner .small-banner-wrapper .small-banner-text h2{
+        font-size: 24px;
+    }
 }
 
 @media(max-width: 767px){
