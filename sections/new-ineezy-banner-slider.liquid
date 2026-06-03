@@ -21,6 +21,17 @@
             { "value": "center", "label": "Center" },
             { "value": "right", "label": "Right" }
           ]
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "label": "Text Alignment",
+          "default": "left",
+          "options": [
+            { "value": "left", "label": "Left" },
+            { "value": "center", "label": "Center" },
+            { "value": "right", "label": "Right" }
+          ]
         }
       ]
     }
@@ -36,18 +47,23 @@
 
     {% for block in section.blocks %}
       {%- assign pos = block.settings.content_position | default: 'left' -%}
+      {%- assign text_align = block.settings.text_align | default: 'left' -%}
       {%- if pos == 'left' -%}
         {%- assign justify = 'flex-start' -%}
-        {%- assign text_align = 'left' -%}
         {%- assign btn_margin = '0' -%}
       {%- elsif pos == 'right' -%}
         {%- assign justify = 'flex-end' -%}
-        {%- assign text_align = 'right' -%}
         {%- assign btn_margin = '0 0 0 auto' -%}
       {%- else -%}
         {%- assign justify = 'center' -%}
-        {%- assign text_align = 'center' -%}
         {%- assign btn_margin = '0 auto' -%}
+      {%- endif -%}
+      {%- if text_align == 'center' -%}
+        {%- assign btn_margin = '0 auto' -%}
+      {%- elsif text_align == 'right' -%}
+        {%- assign btn_margin = '0 0 0 auto' -%}
+      {%- elsif text_align == 'left' -%}
+        {%- assign btn_margin = '0' -%}
       {%- endif -%}
       <div class="slide-item">
         <div class="hero-bg"
