@@ -1587,6 +1587,7 @@ margin-bottom:8px;
   display: flex;
   align-items: center;
   border-radius: 24px;
+  overflow: hidden;
   background: var(--primary-bg-color);
 }
 .ineezy-new .small-banner.wt-image::before{
