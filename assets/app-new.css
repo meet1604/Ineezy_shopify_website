@@ -1574,3 +1574,59 @@ margin-bottom:8px;
 
 
 
+
+/* Shop - new-ineezy-small-banner Start */
+.small-banner{
+  padding: 77px 0px;
+  position: relative;
+
+  background: var(--primary-bg-color);
+}
+.small-banner.wt-image::before{
+  background: transparent;
+}
+.small-banner::before{
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    background: linear-gradient(90deg,#f3eed8,#d2bf63);
+}
+.small-banner .small-banner-wrapper {
+ height: 100%;
+}
+.small-banner .small-banner-wrapper .small-banner-image{
+ width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.small-banner .small-banner-wrapper .small-banner-image img{
+width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.small-banner .small-banner-wrapper .small-banner-text{
+ position: relative;
+  z-index: 2;
+}
+.small-banner .small-banner-wrapper .small-banner-text h2{
+     font-weight: 400;
+    font-size: 48px;
+    line-height: 60px;
+    color: var(--primary-color);
+    margin-bottom: 0px;
+}
+.small-banner .small-banner-wrapper .small-banner-text p{
+ font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: var(--primary-color);
+    max-width: 37ch;
+  margin-bottom: 0px;
+}
+/* Shop - new-ineezy-small-banner End */
