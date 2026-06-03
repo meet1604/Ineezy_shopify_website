@@ -1586,6 +1586,7 @@ margin-bottom:8px;
   min-height: 200px;
   display: flex;
   align-items: center;
+  border-radius: 24px;
   background: var(--primary-bg-color);
 }
 .ineezy-new .small-banner.wt-image::before{
