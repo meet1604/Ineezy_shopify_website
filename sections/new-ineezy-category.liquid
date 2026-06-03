@@ -38,10 +38,12 @@
           <h3>{{ section.settings.women_title }}</h3>
           <p>{{ section.settings.women_desc }}</p>
 
-          <a href="{{ section.settings.women_link }}" class="btn btn-primary">
-            SHOP FOR HER
-            <img src="{{ "n-web-arrow-right.svg" | asset_url }}" alt="">
-          </a>
+          {% if section.settings.women_link != blank %}
+            <a href="{{ section.settings.women_link }}" class="btn btn-primary">
+              SHOP FOR HER
+              <img src="{{ "n-web-arrow-right.svg" | asset_url }}" alt="">
+            </a>
+          {% endif %}
         </div>
       </div>
 
@@ -98,10 +100,12 @@
           <h3>{{ section.settings.men_title }}</h3>
           <p>{{ section.settings.men_desc }}</p>
 
-          <a href="{{ section.settings.men_link }}" class="btn btn-primary ms-auto">
-            SHOP FOR HIM
-            <img src="{{ "n-web-arrow-right.svg" | asset_url }}" alt="">
-          </a>
+          {% if section.settings.men_link != blank %}
+            <a href="{{ section.settings.men_link }}" class="btn btn-primary ms-auto">
+              SHOP FOR HIM
+              <img src="{{ "n-web-arrow-right.svg" | asset_url }}" alt="">
+            </a>
+          {% endif %}
         </div>
       </div>
 
