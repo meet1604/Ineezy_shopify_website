@@ -851,13 +851,7 @@ body.ineezy-new span{
 
 /* TAB CONTENT */
 
-.ineezy-new .tab-content {
-  display: none;
-}
 
-.ineezy-new .tab-content.active {
-  display: block;
-}
 
 /* PRODUCT SPACING */
 
