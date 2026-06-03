@@ -22,10 +22,10 @@
             "button_link": "",
             "content_position": "right",
             "text_align": "right",
-            "subtitle_color": "#ffffff",
-            "title_color": "#ffffff",
+            "subtitle_color": "#121212",
+            "title_color": "#121212",
             "overlay_color": "#ffffff",
-            "overlay_opacity": 80
+            "overlay_opacity": 40
           }
         },
         "slide_6e7MqW": {
