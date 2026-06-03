@@ -21,7 +21,9 @@
             "button_text": "BUY 2, GET 1 FREE",
             "button_link": "",
             "content_position": "right",
-            "text_align": "right"
+            "text_align": "right",
+            "subtitle_color": "#ffffff",
+            "title_color": "#ffffff"
           }
         },
         "slide_6e7MqW": {
@@ -33,7 +35,9 @@
             "button_text": "BUY 2, GET 1 FREE",
             "button_link": "",
             "content_position": "left",
-            "text_align": "left"
+            "text_align": "left",
+            "subtitle_color": "#c5896f",
+            "title_color": "#21263c"
           }
         },
         "slide_DaAcX6": {
@@ -45,7 +49,9 @@
             "button_text": "BUY 2, GET 1 FREE",
             "button_link": "",
             "content_position": "left",
-            "text_align": "left"
+            "text_align": "left",
+            "subtitle_color": "#c5896f",
+            "title_color": "#21263c"
           }
         }
       },
