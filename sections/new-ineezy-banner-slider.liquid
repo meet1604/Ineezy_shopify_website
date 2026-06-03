@@ -84,9 +84,9 @@
       {%- assign overlay_clear = block.settings.overlay_color | color_modify: 'alpha', 0 -%}
 
       {%- if pos == 'left' -%}
-        {%- assign overlay_bg = 'linear-gradient(to right, ' | append: overlay_solid | append: ' 0%, ' | append: overlay_solid | append: ' 45%, ' | append: overlay_clear | append: ' 85%)' -%}
+        {%- assign overlay_bg = 'linear-gradient(to right, ' | append: overlay_solid | append: ' 0%, ' | append: overlay_solid | append: ' 25%, ' | append: overlay_clear | append: ' 85%)' -%}
       {%- elsif pos == 'right' -%}
-        {%- assign overlay_bg = 'linear-gradient(to left, ' | append: overlay_solid | append: ' 0%, ' | append: overlay_solid | append: ' 45%, ' | append: overlay_clear | append: ' 85%)' -%}
+        {%- assign overlay_bg = 'linear-gradient(to left, ' | append: overlay_solid | append: ' 0%, ' | append: overlay_solid | append: ' 25%, ' | append: overlay_clear | append: ' 85%)' -%}
       {%- else -%}
         {%- assign overlay_bg = overlay_solid -%}
       {%- endif -%}
