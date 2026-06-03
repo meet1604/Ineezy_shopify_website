@@ -187,6 +187,7 @@
 .address-modal .modal-body {
   padding: 24px;
   background: #fff;
+  max-height: calc(100vh - 200px);
 }
 .address-modal .modal-footer {
   padding: 16px 24px;
