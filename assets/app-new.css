@@ -296,7 +296,6 @@ body.ineezy-new span{
   font-size: 24px;
   line-height: 140%;
   margin-bottom: 12px;
-  text-align: center;
 }
 
 .ineezy-new .hero-content .title {
@@ -306,7 +305,6 @@ body.ineezy-new span{
     font-weight: 500;
     color: var(--neutral-black);
     margin-bottom: 16px;
-    text-align: center;
 }
 
 /* BUTTON */
