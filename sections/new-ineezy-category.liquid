@@ -8,32 +8,10 @@
     { "type": "text", "id": "women_title", "label": "Women Title", "default": "For Her" },
     { "type": "textarea", "id": "women_desc", "label": "Women Description", "default": "Discover the latest designs crafted to redefine elegance." },
     { "type": "url", "id": "women_link", "label": "Women Button Link" },
-    {
-      "type": "select",
-      "id": "women_text_align",
-      "label": "Women Text Align",
-      "default": "left",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ]
-    },
 
     { "type": "text", "id": "men_title", "label": "Men Title", "default": "For Him" },
     { "type": "textarea", "id": "men_desc", "label": "Men Description", "default": "Discover the latest designs crafted to redefine elegance." },
     { "type": "url", "id": "men_link", "label": "Men Button Link" },
-    {
-      "type": "select",
-      "id": "men_text_align",
-      "label": "Men Text Align",
-      "default": "right",
-      "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
-      ]
-    },
 
     { "type": "collection_list", "id": "women_collections", "label": "Women Collections" },
     { "type": "collection_list", "id": "men_collections", "label": "Men Collections" }
@@ -56,7 +34,7 @@
 
       <!-- LEFT CONTENT (FOR HER) -->
       <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 category-col-text">
-        <div class="side-content" style="text-align: {{ section.settings.women_text_align }};">
+        <div class="side-content">
           <h3>{{ section.settings.women_title }}</h3>
           <p>{{ section.settings.women_desc }}</p>
 
@@ -117,13 +95,13 @@
       </div>
 
       <!-- RIGHT CONTENT (FOR HIM) -->
-      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 category-col-text">
-        <div class="side-content" style="text-align: {{ section.settings.men_text_align }};">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 text-end category-col-text">
+        <div class="side-content">
           <h3>{{ section.settings.men_title }}</h3>
           <p>{{ section.settings.men_desc }}</p>
 
           {% if section.settings.men_link != blank %}
-            <a href="{{ section.settings.men_link }}" class="btn btn-primary">
+            <a href="{{ section.settings.men_link }}" class="btn btn-primary ms-auto">
               SHOP FOR HIM
               <img src="{{ "n-web-arrow-right.svg" | asset_url }}" alt="">
             </a>
