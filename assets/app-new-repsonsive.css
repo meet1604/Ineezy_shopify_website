@@ -209,6 +209,8 @@
     }
     .ineezy-new .small-banner{
         min-height: auto;
+        padding: 16px 24px;
+        border-radius: 16px;
     }
 }
 
