@@ -193,6 +193,7 @@ body.ineezy-new h6,
 body.ineezy-new p,
 body.ineezy-new span{
     margin-top: 0px;
+    font-family: "Elms Sans", sans-serif !important;
 }
 
 .new-main-title.w-icon{
