@@ -12,16 +12,6 @@
     "new_ineezy_banner_slider_D9mzKP": {
       "type": "new-ineezy-banner-slider",
       "blocks": {
-        "slide_8ktpJ3": {
-          "type": "slide",
-          "settings": {
-            "subtitle": "More Shine, Less Spend",
-            "title": "CHARM YOUR WAY",
-            "button_text": "BUY 2, GET 1 FREE",
-            "button_link": "",
-            "content_position": "left"
-          }
-        },
         "slide_Xh3NLN": {
           "type": "slide",
           "settings": {
@@ -57,7 +47,6 @@
         }
       },
       "block_order": [
-        "slide_8ktpJ3",
         "slide_Xh3NLN",
         "slide_6e7MqW",
         "slide_DaAcX6"
