@@ -1,20 +1,24 @@
-<div class="small-banner">
-  <div class="small-banner-wrapper">
-    <div class="small-banner-image">
-      {% if section.settings.banner_image != blank %}
-        <img
-          src="{{ section.settings.banner_image | img_url: 'master' }}"
-          alt="{{ section.settings.banner_image_alt | escape }}"
-        >
-      {% endif %}
-    </div>
-    <div class="container">
-      <div class="small-banner-text">
-        <h2>{{ section.settings.heading }}</h2>
-        <p>{{ section.settings.subtext }}</p>
+
+<div class="container">
+    <div class="small-banner">
+      <div class="small-banner-wrapper">
+        <div class="small-banner-image">
+          {% if section.settings.banner_image != blank %}
+            <img
+              src="{{ section.settings.banner_image | img_url: 'master' }}"
+              alt="{{ section.settings.banner_image_alt | escape }}"
+            >
+          {% endif %}
+        </div>
+        <div class="container">
+          <div class="small-banner-text">
+            <h2>{{ section.settings.heading }}</h2>
+            <p>{{ section.settings.subtext }}</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+
 </div>
 
 {% schema %}
