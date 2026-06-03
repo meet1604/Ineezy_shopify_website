@@ -1576,16 +1576,16 @@ margin-bottom:8px;
 
 
 /* Shop - new-ineezy-small-banner Start */
-.new-ineezy .small-banner{ 
+.ineezy-new .small-banner{ 
   padding: 77px 0px;
   position: relative;
 
   background: var(--primary-bg-color);
 }
-.new-ineezy .small-banner.wt-image::before{
+.ineezy-new .small-banner.wt-image::before{
   background: transparent;
 }
-.new-ineezy .small-banner::before{
+.ineezy-new .small-banner::before{
     content: "";
     top: 0;
     left: 0;
@@ -1595,26 +1595,26 @@ margin-bottom:8px;
     z-index: 2;
     background: linear-gradient(90deg,#f3eed8,#d2bf63);
 }
-.new-ineezy .small-banner .small-banner-wrapper {
+.ineezy-new .small-banner .small-banner-wrapper {
  height: 100%;
 }
-.new-ineezy .small-banner .small-banner-wrapper .small-banner-image{
+.ineezy-new .small-banner .small-banner-wrapper .small-banner-image{
  width: 100%;
     height: 100%;
     position: absolute;
     left: 0;
     top: 0;
 }
-.new-ineezy .small-banner .small-banner-wrapper .small-banner-image img{
+.ineezy-new .small-banner .small-banner-wrapper .small-banner-image img{
 width: 100%;
     height: 100%;
     object-fit: cover;
 }
-.new-ineezy .small-banner .small-banner-wrapper .small-banner-text{
+.ineezy-new .small-banner .small-banner-wrapper .small-banner-text{
  position: relative;
   z-index: 2;
 }
-.new-ineezy .small-banner .small-banner-wrapper .small-banner-text h2{
+.ineezy-new .small-banner .small-banner-wrapper .small-banner-text h2{
      font-weight: 400;
     font-size: 48px;
     line-height: 60px;
