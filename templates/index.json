@@ -20,7 +20,8 @@
             "title": "CHARM YOUR WAY",
             "button_text": "BUY 2, GET 1 FREE",
             "button_link": "",
-            "content_position": "right"
+            "content_position": "right",
+            "text_align": "right"
           }
         },
         "slide_6e7MqW": {
@@ -31,7 +32,8 @@
             "title": "CHARM YOUR WAY",
             "button_text": "BUY 2, GET 1 FREE",
             "button_link": "",
-            "content_position": "left"
+            "content_position": "left",
+            "text_align": "left"
           }
         },
         "slide_DaAcX6": {
@@ -42,7 +44,8 @@
             "title": "CHARM YOUR WAY",
             "button_text": "BUY 2, GET 1 FREE",
             "button_link": "",
-            "content_position": "left"
+            "content_position": "left",
+            "text_align": "left"
           }
         }
       },
