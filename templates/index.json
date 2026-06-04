@@ -16,31 +16,31 @@
           "type": "slide",
           "settings": {
             "bg_image": "shopify://shop_images/Firefly.png",
-            "subtitle": "More Shine, Less Spend",
-            "title": "CHARM YOUR WAY",
-            "button_text": "BUY 2, GET 1 FREE",
-            "button_link": "",
+            "subtitle": "New Summer Collection",
+            "title": "Jewelry That Blooms With You",
+            "button_text": "Discover Now",
+            "button_link": "shopify://collections/bracelet",
             "content_position": "right",
             "text_align": "right",
-            "subtitle_color": "#121212",
-            "title_color": "#121212",
-            "overlay_color": "#ffffff",
-            "overlay_opacity": 40
+            "subtitle_color": "#ffffff",
+            "title_color": "#ffffff",
+            "overlay_color": "#6f5625",
+            "overlay_opacity": 75
           }
         },
         "slide_6e7MqW": {
           "type": "slide",
           "settings": {
             "bg_image": "shopify://shop_images/banner-slider-2.png",
-            "subtitle": "More Shine, Less Spend",
-            "title": "CHARM YOUR WAY",
-            "button_text": "BUY 2, GET 1 FREE",
-            "button_link": "",
+            "subtitle": "Timeless Necklaces",
+            "title": "A Necklace as Unique as You",
+            "button_text": "Shop Now",
+            "button_link": "shopify://collections/necklace",
             "content_position": "right",
             "text_align": "right",
-            "subtitle_color": "#121212",
-            "title_color": "#121212",
-            "overlay_color": "#ffffff",
+            "subtitle_color": "#ffffff",
+            "title_color": "#ffffff",
+            "overlay_color": "#5e6175",
             "overlay_opacity": 50
           }
         }
@@ -72,42 +72,6 @@
         ],
         "men_collections": []
       }
-    },
-    "new_ineezy_feature_boxes_iwj9WA": {
-      "type": "new-ineezy-feature-boxes",
-      "blocks": {
-        "feature_g3hRp6": {
-          "type": "feature",
-          "settings": {
-            "icon": "shopify://shop_images/water.svg",
-            "title": "100% Waterproof",
-            "description": "Swim, sweat, shower shine stays. Built for daily wear, every day."
-          }
-        },
-        "feature_YGQywM": {
-          "type": "feature",
-          "settings": {
-            "icon": "shopify://shop_images/skin.svg",
-            "title": "Skin Safe",
-            "description": "Hypoallergenic & dermatologist-tested. Gentle on all skin types."
-          }
-        },
-        "feature_wCrq33": {
-          "type": "feature",
-          "settings": {
-            "icon": "shopify://shop_images/tranish.svg",
-            "title": "Anti-Tarnish Forever",
-            "description": "Advanced coating stays brilliant, never turns green, no matter what."
-          }
-        }
-      },
-      "block_order": [
-        "feature_g3hRp6",
-        "feature_YGQywM",
-        "feature_wCrq33"
-      ],
-      "name": "N_WEB Ineezy Feature Boxes",
-      "settings": {}
     },
     "new_ineezy_best_seller_tabs_ganXRm": {
       "type": "new-ineezy-best-seller-tabs",
@@ -194,6 +158,42 @@
         "subtitle": "SHOP BY THE CATEGORY",
         "bg_color": "#ffffff"
       }
+    },
+    "new_ineezy_feature_boxes_iwj9WA": {
+      "type": "new-ineezy-feature-boxes",
+      "blocks": {
+        "feature_g3hRp6": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/water.svg",
+            "title": "100% Waterproof",
+            "description": "Swim, sweat, shower shine stays. Built for daily wear, every day."
+          }
+        },
+        "feature_YGQywM": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/skin.svg",
+            "title": "Skin Safe",
+            "description": "Hypoallergenic & dermatologist-tested. Gentle on all skin types."
+          }
+        },
+        "feature_wCrq33": {
+          "type": "feature",
+          "settings": {
+            "icon": "shopify://shop_images/tranish.svg",
+            "title": "Anti-Tarnish Forever",
+            "description": "Advanced coating stays brilliant, never turns green, no matter what."
+          }
+        }
+      },
+      "block_order": [
+        "feature_g3hRp6",
+        "feature_YGQywM",
+        "feature_wCrq33"
+      ],
+      "name": "N_WEB Ineezy Feature Boxes",
+      "settings": {}
     },
     "instagram_feed_Hn84Q6": {
       "type": "instagram-feed",
