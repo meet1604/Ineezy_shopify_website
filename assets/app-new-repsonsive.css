@@ -77,7 +77,7 @@
     }
     .ineezy-new .main-header.header .list-menu.list-menu--inline{
         display: flex;
-        flex-wrap: nowrap;
+        /* flex-wrap: nowrap; */
         flex-direction: row;
     }
     .ineezy-new  .header__icons {

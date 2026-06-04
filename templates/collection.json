@@ -11,6 +11,7 @@
   "sections": {
     "new_ineezy_small_banner_exWTDP": {
       "type": "new-ineezy-small-banner",
+      "disabled": true,
       "name": "N_WEB samll Banner Image",
       "settings": {
         "banner_image_alt": "Small Banner Image",
