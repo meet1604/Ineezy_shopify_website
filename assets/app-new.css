@@ -1641,6 +1641,10 @@ width: 100%;
 
 
 /* COllection page filter */
+
+.shop-grid {
+    padding: 16px 0px;
+}
 .ineezy-new .shop-filter{
   border-bottom: 1px solid var(--neutral-3);
 }
