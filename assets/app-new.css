@@ -287,7 +287,7 @@ body.ineezy-new span{
 
 /* TEXT */
 .ineezy-new .hero-content {
-  max-width: 50%;
+  max-width: 60%;
 }
 
 .ineezy-new .hero-content .subtitle {
@@ -299,7 +299,7 @@ body.ineezy-new span{
 }
 
 .ineezy-new .hero-content .title {
-    font-size: 60px;
+    font-size: 52px;
     line-height: 140%;
     margin-bottom: 10px;
     font-weight: 500;
