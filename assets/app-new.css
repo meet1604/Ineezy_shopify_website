@@ -1636,3 +1636,12 @@ width: 100%;
   margin-bottom: 0px;
 }
 /* Shop - new-ineezy-small-banner End */
+
+
+
+
+/* COllection page filter */
+.ineezy-new .shop-filter{
+  border-bottom: 1px solid var(--neutral-3);
+}
+/* COllection page filter */
