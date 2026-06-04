@@ -1651,5 +1651,6 @@ width: 100%;
 
 .shop-filter .select select{
   color: var(--neutral-black);
+  border-bottom: 1px solid var(--neutral-3);
 }
 /* COllection page filter */
