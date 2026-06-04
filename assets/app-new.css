@@ -517,7 +517,7 @@ body.ineezy-new span{
 /* Category Card  */
 .ineezy-new .ineezy-category-section {
   padding: 80px 0;
-  background: var(--white);
+  background: var(--neutral-3);
  
 }
 
@@ -1650,7 +1650,7 @@ width: 100%;
 }
 
 .ineezy-new .shop-filter h3{
-  font-size: 18px;
+  font-size: 24px;
   line-height: 140%;
   font-weight: 600;
   color: var(--neutral-black);
