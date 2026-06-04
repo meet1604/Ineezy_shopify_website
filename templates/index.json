@@ -12,6 +12,22 @@
     "new_ineezy_banner_slider_D9mzKP": {
       "type": "new-ineezy-banner-slider",
       "blocks": {
+        "slide_NxEcd7": {
+          "type": "slide",
+          "settings": {
+            "bg_image": "shopify://shop_images/ineezy-banner-3.png",
+            "subtitle": "Everyday Luxury",
+            "title": "Delicate Necklaces, Endless Elegance",
+            "button_text": "Explore Collection",
+            "button_link": "shopify://collections/necklace",
+            "content_position": "right",
+            "text_align": "right",
+            "subtitle_color": "#ffffff",
+            "title_color": "#ffffff",
+            "overlay_color": "#c5896f",
+            "overlay_opacity": 80
+          }
+        },
         "slide_Xh3NLN": {
           "type": "slide",
           "settings": {
@@ -46,6 +62,7 @@
         }
       },
       "block_order": [
+        "slide_NxEcd7",
         "slide_Xh3NLN",
         "slide_6e7MqW"
       ],
