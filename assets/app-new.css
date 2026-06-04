@@ -1648,4 +1648,8 @@ width: 100%;
 .ineezy-new .shop-filter{
   border-bottom: 1px solid var(--neutral-3);
 }
+
+.shop-filter .select select{
+  color: var(--neutral-black);
+}
 /* COllection page filter */
