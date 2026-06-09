@@ -290,6 +290,9 @@ body.ineezy-new span{
   padding: 0px;
   background-color: var(--neutral-4);
 }
+.ineezy-new .ineezy-slider .slick-dots li.slick-active button{
+  background-color: var(--primary);
+}
 .ineezy-new .ineezy-slider .slick-dots li button::before{
   content: none;
 }
