@@ -109,6 +109,9 @@
     .ineezy-new .ineezy-slider .slide-item {
         padding: 0 16px;
     }
+    .ineezy-new .ineezy-slider .slick-dots{
+        bottom: -10px;
+    }
     .ineezy-new .hero-bg {
         height: 350px;
         padding: 24px;
