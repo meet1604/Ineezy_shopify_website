@@ -275,6 +275,7 @@ body.ineezy-new span{
   gap: 2px;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .ineezy-new .ineezy-slider .slick-dots li {
   width: auto;
@@ -284,7 +285,7 @@ body.ineezy-new span{
 
 .ineezy-new .ineezy-slider .slick-dots li button{
   width: 30px;
-  height: 4px;
+  height: 2px;
   border-radius: 10px;
   background-color: var(--neutral-4);
 }
