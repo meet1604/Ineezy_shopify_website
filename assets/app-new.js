@@ -25,7 +25,8 @@ function initHeroSlider() {
                 centerMode: true,
                 centerPadding: '0px',
                 slidesToShow: 1,
-                arrows: true,
+                arrows: false,
+                dots: true,
 
                 responsive: [
                     {
