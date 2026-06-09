@@ -271,6 +271,9 @@ body.ineezy-new span{
   padding: 0 24px;
 }
 
+.ineezy-new .ineezy-slider .slick-dots{
+  gap: 2px;
+}
 .ineezy-new .ineezy-slider .slick-dots li {
   width: auto;
   height: auto;
