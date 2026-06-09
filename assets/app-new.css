@@ -994,6 +994,10 @@ body.ineezy-new span{
   display: flex;
 }
 
+.ineezy-new .testimonial-slider .slick-slide > div{
+  height: 100%;
+} 
+
 .ineezy-new .testimonial-item {
   padding: 0 12px;
   height: inherit;
