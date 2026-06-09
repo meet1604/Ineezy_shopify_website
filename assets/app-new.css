@@ -281,6 +281,7 @@ body.ineezy-new span{
   width: 30px;
   height: 4px;
   border-radius: 10px;
+  background-color: var(--neutral-4);
 }
 .ineezy-new .ineezy-slider .slick-dots li button::before{
   content: none;
