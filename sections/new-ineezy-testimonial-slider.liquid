@@ -78,6 +78,21 @@
 }
 {% endschema %}
 
+{%- liquid
+  assign jm_reviews     = nil
+  assign jm_min         = section.settings.min_rating | default: 4
+  if section.settings.review_product != blank
+    assign jm_product   = all_products[section.settings.review_product]
+    assign jm_meta_val  = jm_product.metafields.judgeme.review_widget_data.value
+    if jm_meta_val.reviews
+      assign jm_reviews = jm_meta_val.reviews
+    else
+      assign jm_parsed  = jm_product.metafields.judgeme.review_widget_data.value | parse_json
+      assign jm_reviews = jm_parsed.reviews
+    endif
+  endif
+-%}
+
 <section
   class="ineezy-testimonial-section"
   style="background-color: {{ section.settings.bg_color }};"
@@ -86,287 +101,196 @@
     <!-- HEADING -->
     <div class="new-main-title text-center">
       <p>{{ section.settings.subtitle }}</p>
-
       <h2>{{ section.settings.title }}</h2>
     </div>
 
     <!-- TOP SLIDER -->
     <div class="testimonial-slider testimonial-slider-top">
-      {% for block in section.blocks %}
-        <div class="testimonial-item">
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              <p class="review-text">
-                {{ block.settings.review }}
-              </p>
-
-              <div class="testimonial-bottom">
-                <div class="left">
-                  <h4>{{ block.settings.name }}</h4>
-
-                  <div class="stars">
-                    {% for i in (1..5) %}
-                      {% if i <= block.settings.rating %}
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g clip-path="url(#clip0_162_1232)">
-                          <path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#B69238"/>
-                          </g>
-                          <defs>
-                          <clipPath id="clip0_162_1232">
-                          <rect width="14" height="14" fill="white"/>
-                          </clipPath>
-                          </defs>
-                        </svg>
-
-                      {% else %}
-                        <span>
-                          <svg
-                            width="14"
-                            height="14"
-                            viewBox="0 0 14 14"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g clip-path="url(#clip0_162_1235)">
-                            <path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#E9E5E2"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_162_1235">
-                            <rect width="14" height="14" fill="white"/>
-                            </clipPath>
-                            </defs>
-                          </svg>
-                        </span>
-                      {% endif %}
-                    {% endfor %}
+      {%- if jm_reviews -%}
+        {%- for review in jm_reviews -%}
+          {%- assign r_rating = review.rating | plus: 0 -%}
+          {%- if r_rating >= jm_min and review.body.size > 5 -%}
+            {%- assign r_name = review.reviewer.name
+              | default: review.reviewer.display_name
+              | default: review.name
+              | default: review.author
+              | default: review.customer_name
+              | default: review.reviewer_name
+              | default: 'Customer' -%}
+            <div class="testimonial-item">
+              <div class="testimonial-card">
+                <div class="testimonial-content">
+                  <p class="review-text">{{ review.body }}</p>
+                  <div class="testimonial-bottom">
+                    <div class="left">
+                      <h4>{{ r_name }}</h4>
+                      <div class="stars">
+                        {%- for i in (1..5) -%}
+                          {%- if i <= r_rating -%}
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#B69238"/></svg>
+                          {%- else -%}
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#E9E5E2"/></svg>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                    <div class="right">
+                      {%- if review.reviewer.profile_picture != blank -%}
+                        <img src="{{ review.reviewer.profile_picture }}" alt="{{ r_name }}" loading="lazy">
+                      {%- endif -%}
+                    </div>
                   </div>
                 </div>
-
-                <div class="right">
-                  {% if block.settings.customer_image != blank %}
-                    <img
-                      src="{{ block.settings.customer_image | image_url: width: 100 }}"
-                      alt="{{ block.settings.name }}"
-                    >
-                  {% endif %}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {% for block in section.blocks %}
+          <div class="testimonial-item">
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <p class="review-text">{{ block.settings.review }}</p>
+                <div class="testimonial-bottom">
+                  <div class="left">
+                    <h4>{{ block.settings.name }}</h4>
+                    <div class="stars">
+                      {% for i in (1..5) %}
+                        {% if i <= block.settings.rating %}
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#B69238"/></svg>
+                        {% else %}
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#E9E5E2"/></svg>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="right">
+                    {% if block.settings.customer_image != blank %}
+                      <img src="{{ block.settings.customer_image | image_url: width: 100 }}" alt="{{ block.settings.name }}">
+                    {% endif %}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      {%- endif -%}
     </div>
 
     <!-- BOTTOM SLIDER -->
     <div class="testimonial-slider testimonial-slider-bottom">
-      {% for block in section.blocks reversed %}
-        <div class="testimonial-item">
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              <p class="review-text">
-                {{ block.settings.review }}
-              </p>
-
-              <div class="testimonial-bottom">
-                <div class="left">
-                  <h4>{{ block.settings.name }}</h4>
-
-                  <div class="stars">
-                    {% for i in (1..5) %}
-                      {% if i <= block.settings.rating %}
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <g clip-path="url(#clip0_162_1232)">
-                          <path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#B69238"/>
-                          </g>
-                          <defs>
-                          <clipPath id="clip0_162_1232">
-                          <rect width="14" height="14" fill="white"/>
-                          </clipPath>
-                          </defs>
-                        </svg>
-
-                      {% else %}
-                        <span>
-                          <svg
-                            width="14"
-                            height="14"
-                            viewBox="0 0 14 14"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g clip-path="url(#clip0_162_1235)">
-                            <path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#E9E5E2"/>
-                            </g>
-                            <defs>
-                            <clipPath id="clip0_162_1235">
-                            <rect width="14" height="14" fill="white"/>
-                            </clipPath>
-                            </defs>
-                          </svg>
-                        </span>
-                      {% endif %}
-                    {% endfor %}
+      {%- if jm_reviews -%}
+        {%- for review in jm_reviews reversed -%}
+          {%- assign r_rating = review.rating | plus: 0 -%}
+          {%- if r_rating >= jm_min and review.body.size > 5 -%}
+            {%- assign r_name = review.reviewer.name
+              | default: review.reviewer.display_name
+              | default: review.name
+              | default: review.author
+              | default: review.customer_name
+              | default: review.reviewer_name
+              | default: 'Customer' -%}
+            <div class="testimonial-item">
+              <div class="testimonial-card">
+                <div class="testimonial-content">
+                  <p class="review-text">{{ review.body }}</p>
+                  <div class="testimonial-bottom">
+                    <div class="left">
+                      <h4>{{ r_name }}</h4>
+                      <div class="stars">
+                        {%- for i in (1..5) -%}
+                          {%- if i <= r_rating -%}
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#B69238"/></svg>
+                          {%- else -%}
+                            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#E9E5E2"/></svg>
+                          {%- endif -%}
+                        {%- endfor -%}
+                      </div>
+                    </div>
+                    <div class="right">
+                      {%- if review.reviewer.profile_picture != blank -%}
+                        <img src="{{ review.reviewer.profile_picture }}" alt="{{ r_name }}" loading="lazy">
+                      {%- endif -%}
+                    </div>
                   </div>
                 </div>
-
-                <div class="right">
-                  {% if block.settings.customer_image != blank %}
-                    <img
-                      src="{{ block.settings.customer_image | image_url: width: 100 }}"
-                      alt="{{ block.settings.name }}"
-                    >
-                  {% endif %}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        {% for block in section.blocks reversed %}
+          <div class="testimonial-item">
+            <div class="testimonial-card">
+              <div class="testimonial-content">
+                <p class="review-text">{{ block.settings.review }}</p>
+                <div class="testimonial-bottom">
+                  <div class="left">
+                    <h4>{{ block.settings.name }}</h4>
+                    <div class="stars">
+                      {% for i in (1..5) %}
+                        {% if i <= block.settings.rating %}
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#B69238"/></svg>
+                        {% else %}
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#E9E5E2"/></svg>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="right">
+                    {% if block.settings.customer_image != blank %}
+                      <img src="{{ block.settings.customer_image | image_url: width: 100 }}" alt="{{ block.settings.name }}">
+                    {% endif %}
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      {% endfor %}
+        {% endfor %}
+      {%- endif -%}
     </div>
+
   </div>
 </section>
 
-{% if section.settings.review_product != blank %}
-  {% assign jm_product = all_products[section.settings.review_product] %}
-  {% if jm_product.metafields.judgeme.review_widget_data %}
-    <script id="jm-data-{{ section.id }}" type="application/json">{{ jm_product.metafields.judgeme.review_widget_data }}</script>
-  {% endif %}
-{% endif %}
+{%- if jm_reviews and jm_reviews.first -%}
+  {%- assign dbg = jm_reviews.first -%}
+  <!-- JM_DEBUG: reviewer={{ dbg.reviewer | json }} name={{ dbg.name }} author={{ dbg.author }} -->
+{%- endif -%}
 
 <script>
 (function () {
-  var SID        = '{{ section.id }}';
-  var MIN_RATING = {{ section.settings.min_rating | default: 4 }};
-  {% if section.settings.review_product != blank %}
-    {% assign jm_product = all_products[section.settings.review_product] %}
-    var PRODUCT_ID  = {{ jm_product.id }};
-    var SHOP_DOMAIN = {{ shop.permanent_domain | json }};
-  {% else %}
-    var PRODUCT_ID  = 0;
-    var SHOP_DOMAIN = '';
-  {% endif %}
+  var SID = '{{ section.id }}';
 
-  var STAR_FILLED = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#jmf' + SID + ')"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#B69238"/></g><defs><clipPath id="jmf' + SID + '"><rect width="14" height="14" fill="white"/></clipPath></defs></svg>';
-  var STAR_EMPTY  = '<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#jme' + SID + ')"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#E9E5E2"/></g><defs><clipPath id="jme' + SID + '"><rect width="14" height="14" fill="white"/></clipPath></defs></svg>';
-
-  function buildStars(rating) {
-    var h = '';
-    for (var i = 1; i <= 5; i++) h += i <= rating ? STAR_FILLED : STAR_EMPTY;
-    return h;
-  }
-
-  function esc(s) {
-    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
-
-  function buildCard(r) {
-    var name   = esc((r.name || '').trim() || 'Customer');
-    var body   = esc(r.body || '');
-    var avatar = r.avatar ? '<img src="' + esc(r.avatar) + '" alt="' + name + '" loading="lazy">' : '';
-    return '<div class="testimonial-item"><div class="testimonial-card"><div class="testimonial-content">'
-      + '<p class="review-text">' + body + '</p>'
-      + '<div class="testimonial-bottom"><div class="left">'
-      + '<h4 style="color:#2a2320;font-size:14px;font-weight:500;margin-bottom:4px;">' + name + '</h4>'
-      + '<div class="stars">' + buildStars(r.rating) + '</div></div>'
-      + '<div class="right">' + avatar + '</div></div>'
-      + '</div></div></div>';
-  }
-
-  function normalizeReview(r) {
-    return {
-      rating: r.rating || r.score || 5,
-      name:   (r.reviewer && (r.reviewer.name || r.reviewer.display_name))
-              || r.name || r.author || r.customer_name || '',
-      body:   r.body || r.review_body || r.content || '',
-      avatar: (r.reviewer && r.reviewer.profile_picture) || r.avatar || ''
-    };
-  }
-
-  function applyFilter(list) {
-    return list
-      .map(normalizeReview)
-      .filter(function(r) { return r.rating >= MIN_RATING && r.body.length > 5; });
-  }
-
-  function injectReviews(reviews) {
-    if (!reviews.length) return;
+  function initSlick() {
     var sectionEl = document.getElementById('shopify-section-' + SID);
-    if (!sectionEl) return;
+    if (!sectionEl || typeof $ === 'undefined' || !$.fn || !$.fn.slick) return;
 
-    var useJQ = typeof $ !== 'undefined' && $.fn && $.fn.slick;
-    var $t = useJQ ? $(sectionEl).find('.testimonial-slider-top')    : null;
-    var $b = useJQ ? $(sectionEl).find('.testimonial-slider-bottom') : null;
+    var $t = $(sectionEl).find('.testimonial-slider-top');
+    var $b = $(sectionEl).find('.testimonial-slider-bottom');
 
-    if (useJQ) {
-      try { if ($t.hasClass('slick-initialized')) $t.slick('destroy'); } catch(e) {}
-      try { if ($b.hasClass('slick-initialized')) $b.slick('destroy'); } catch(e) {}
-    }
+    var base = {
+      slidesToShow: 3.5, slidesToScroll: 1, arrows: false, dots: false,
+      infinite: true, autoplay: true, autoplaySpeed: 0, cssEase: 'linear',
+      pauseOnHover: false,
+      responsive: [
+        { breakpoint: 991, settings: { slidesToShow: 2.2 } },
+        { breakpoint: 768, settings: { slidesToShow: 1.2 } }
+      ]
+    };
 
-    var tH = '', bH = '';
-    reviews.forEach(function(r) { tH += buildCard(r); });
-    reviews.slice().reverse().forEach(function(r) { bH += buildCard(r); });
-    sectionEl.querySelector('.testimonial-slider-top').innerHTML    = tH;
-    sectionEl.querySelector('.testimonial-slider-bottom').innerHTML = bH;
-
-    if (useJQ) {
-      var base = { slidesToShow: 3.5, slidesToScroll: 1, arrows: false, dots: false,
-                   infinite: true, autoplay: true, autoplaySpeed: 0, cssEase: 'linear',
-                   pauseOnHover: false,
-                   responsive: [{ breakpoint: 991, settings: { slidesToShow: 2.2 } },
-                                 { breakpoint: 768, settings: { slidesToShow: 1.2 } }] };
+    if ($t.children('.testimonial-item').length > 0 && !$t.hasClass('slick-initialized')) {
       $t.slick(Object.assign({}, base, { speed: 6000 }));
+    }
+    if ($b.children('.testimonial-item').length > 0 && !$b.hasClass('slick-initialized')) {
       $b.slick(Object.assign({}, base, { speed: 9000, rtl: true }));
     }
   }
 
-  function fallbackToMetafield() {
-    var dataEl = document.getElementById('jm-data-' + SID);
-    if (!dataEl) return;
-    var raw;
-    try { raw = JSON.parse(dataEl.textContent); } catch(e) { return; }
-    var list = raw.reviews || raw.data || (Array.isArray(raw) ? raw : []);
-    var filtered = applyFilter(list);
-    if (filtered.length) injectReviews(filtered);
-  }
-
-  function fetchPage(page, accumulated) {
-    var url = 'https://judge.me/api/v1/reviews'
-            + '?api_token=DbGTmXdgNHIn8d2x_UrgKMOry44'
-            + '&shop_domain=' + encodeURIComponent(SHOP_DOMAIN)
-            + '&product_id=' + PRODUCT_ID
-            + '&page=' + page
-            + '&per_page=100';
-
-    fetch(url)
-      .then(function(res) { return res.json(); })
-      .then(function(data) {
-        var all = accumulated.concat(data.reviews || []);
-        if (page < (data.total_pages || 1)) {
-          fetchPage(page + 1, all);
-        } else {
-          var filtered = applyFilter(all);
-          if (filtered.length) {
-            injectReviews(filtered);
-          } else {
-            fallbackToMetafield();
-          }
-        }
-      })
-      .catch(function() { fallbackToMetafield(); });
-  }
-
-  function start() {
-    if (PRODUCT_ID && SHOP_DOMAIN) {
-      fetchPage(1, []);
-    } else {
-      fallbackToMetafield();
-    }
-  }
-
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', start);
+    document.addEventListener('DOMContentLoaded', initSlick);
   } else {
-    start();
+    initSlick();
   }
 })();
 </script>
