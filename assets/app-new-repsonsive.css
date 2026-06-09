@@ -112,6 +112,10 @@
     .ineezy-new .ineezy-slider .slick-dots{
         bottom: -10px;
     }
+    .ineezy-new .ineezy-slider .slick-dots li button{
+        width: 20px;
+        
+    }
     .ineezy-new .hero-bg {
         height: 350px;
         padding: 24px;
