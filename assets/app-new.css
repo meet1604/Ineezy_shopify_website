@@ -283,6 +283,9 @@ body.ineezy-new span{
   margin: 0px;
 }
 
+.ineezy-new .ineezy-slider .slick-slider{
+  margin-bottom: 0px;
+}
 .ineezy-new .ineezy-slider .slick-dots li button{
   width: 30px;
   height: 4px;
