@@ -277,6 +277,12 @@ body.ineezy-new span{
   margin: 0px;
 }
 
+.ineezy-new .ineezy-slider .slick-dots li button{
+  width: 30px;
+  height: 4px;
+  border-radius: 10px;
+}
+
 /* CARD STYLE */
 .ineezy-new .hero-bg {
   height: 100%;
