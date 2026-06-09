@@ -274,6 +274,7 @@ body.ineezy-new span{
 .ineezy-new .ineezy-slider .slick-dots{
   gap: 2px;
   display: flex;
+  align-items: center;
 }
 .ineezy-new .ineezy-slider .slick-dots li {
   width: auto;
