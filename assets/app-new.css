@@ -283,7 +283,7 @@ body.ineezy-new span{
   margin: 0px;
 }
 
-.ineezy-new .ineezy-slider .slick-slider{
+.ineezy-new .ineezy-slider.slick-dotted.slick-slider{
   margin-bottom: 0px;
 }
 .ineezy-new .ineezy-slider .slick-dots li button{
