@@ -112,11 +112,11 @@ width: 24px;
 
 .ineezy-new .ineezy-cart-card {
   display: flex;
-  gap: 16px;
+  gap: 8px;
   background:var(--neutral-1);
   border: 1px solid var(--neutral-3);
   border-radius: 8px; 
-  padding: 16px;
+  padding: 12px;
   margin-bottom: 16px;
   align-items: center;
 }
