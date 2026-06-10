@@ -19,6 +19,47 @@
       "id": "bg_color",
       "label": "Background Color",
       "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "layout_type",
+      "label": "Layout Type",
+      "options": [
+        { "value": "slider", "label": "Slider" },
+        { "value": "grid", "label": "Grid" }
+      ],
+      "default": "slider"
+    },
+    {
+      "type": "range",
+      "id": "products_limit",
+      "label": "Products to Show (per tab)",
+      "min": 4,
+      "max": 24,
+      "step": 1,
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "grid_columns",
+      "label": "Grid Columns (Desktop)",
+      "min": 2,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "info": "Only applies in Grid layout"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_more",
+      "label": "Show View More Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_more_text",
+      "label": "View More Button Text",
+      "default": "View More"
     }
   ],
   "blocks": [
@@ -36,6 +77,12 @@
           "type": "collection",
           "id": "collection",
           "label": "Select Collection"
+        },
+        {
+          "type": "url",
+          "id": "view_more_url",
+          "label": "View More Link",
+          "info": "Optional — leave blank to use the selected collection page."
         }
       ]
     }
@@ -48,7 +95,12 @@
 }
 {% endschema %}
 
-<section  class="ineezy-best-seller"  id="ineezy-best-seller-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};" >
+{%- assign is_slider = false -%}
+{%- if section.settings.layout_type == 'slider' -%}
+  {%- assign is_slider = true -%}
+{%- endif -%}
+
+<section class="ineezy-best-seller" id="ineezy-best-seller-{{ section.id }}" style="background-color: {{ section.settings.bg_color }};">
   <div class="container">
 
     <!-- TOP -->
@@ -56,72 +108,76 @@
 
       <div class="new-main-title w-icon mb-0">
         <p>{{ section.settings.subtitle }}</p>
-
-        <h2>
-          {{ section.settings.title }}
-        </h2>
+        <h2>{{ section.settings.title }}</h2>
       </div>
 
-      <!-- ARROWS -->
-      <div class="slider-arrows">
-
-        <button class="bestSellerPrev-{{ section.id }}">
-          <img src="{{ 'n-web-arrow-left.svg' | asset_url }}" alt="">
-        </button>
-
-        <button class="bestSellerNext-{{ section.id }}">
-          <img src="{{ 'n-web-arrow-right.svg' | asset_url }}" alt="">
-        </button>
-
-      </div>
+      <!-- ARROWS (slider mode only) -->
+      {%- if is_slider -%}
+        <div class="slider-arrows">
+          <button class="bestSellerPrev-{{ section.id }}">
+            <img src="{{ 'n-web-arrow-left.svg' | asset_url }}" alt="">
+          </button>
+          <button class="bestSellerNext-{{ section.id }}">
+            <img src="{{ 'n-web-arrow-right.svg' | asset_url }}" alt="">
+          </button>
+        </div>
+      {%- endif -%}
 
     </div>
 
     <!-- TABS -->
     <div class="best-seller-tabs">
-
       {% for block in section.blocks %}
-
-        <button 
+        <button
           class="tab-btn {% if forloop.first %}active{% endif %}"
           data-tab="tab-{{ section.id }}-{{ forloop.index }}">
-
           {{ block.settings.tab_title }}
-
         </button>
-
       {% endfor %}
-
     </div>
 
     <!-- TAB CONTENT -->
     {% for block in section.blocks %}
 
-      <div 
+      {%- assign collection = collections[block.settings.collection.handle] -%}
+      {%- assign view_more_href = collection.url -%}
+      {%- if block.settings.view_more_url != blank -%}
+        {%- assign view_more_href = block.settings.view_more_url -%}
+      {%- endif -%}
+
+      <div
         class="tab-content {% if forloop.first %}active{% endif %}"
         id="tab-{{ section.id }}-{{ forloop.index }}"
-        {% unless forloop.first %}
-          style="display:none;"
-        {% endunless %}
+        {% unless forloop.first %}style="display:none;"{% endunless %}
       >
 
-        <div class="best-seller-slider">
+        {%- if is_slider -%}
 
-          {% assign collection = collections[block.settings.collection.handle] %}
+          <div class="best-seller-slider">
+            {% for product in collection.products limit: section.settings.products_limit %}
+              <div class="product-slide">
+                {% render 'common-product-card-v2', product: product %}
+              </div>
+            {% endfor %}
+          </div>
 
-          {% for product in collection.products %}
+        {%- else -%}
 
-            <div class="product-slide">
+          <div class="best-seller-grid" style="--grid-cols: {{ section.settings.grid_columns }};">
+            {% for product in collection.products limit: section.settings.products_limit %}
+              <div class="product-grid-item">
+                {% render 'common-product-card-v2', product: product %}
+              </div>
+            {% endfor %}
+          </div>
 
-              {% render 'common-product-card-v2',
-                product: product
-              %}
+        {%- endif -%}
 
-            </div>
-
-          {% endfor %}
-
-        </div>
+        {%- if section.settings.show_view_more and view_more_href != blank -%}
+          <div class="best-seller-view-more">
+            <a href="{{ view_more_href }}">{{ section.settings.view_more_text }}</a>
+          </div>
+        {%- endif -%}
 
       </div>
 

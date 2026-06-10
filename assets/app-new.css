@@ -862,6 +862,50 @@ body.ineezy-new span{
   padding: 0 10px;
 }
 
+/* GRID LAYOUT */
+
+.ineezy-new .best-seller-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols, 4), 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1024px) {
+  .ineezy-new .best-seller-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ineezy-new .best-seller-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* VIEW MORE BUTTON */
+
+.ineezy-new .best-seller-view-more {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.ineezy-new .best-seller-view-more a {
+  display: inline-block;
+  padding: 14px 48px;
+  border: 1px solid var(--secondary);
+  color: var(--secondary);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  border-radius: 4px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.ineezy-new .best-seller-view-more a:hover {
+  background: var(--secondary);
+  color: #fff;
+}
+
 
 /* ================= OFFER BANNER ================= */
 
