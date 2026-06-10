@@ -97,14 +97,16 @@
           "type": "tab",
           "settings": {
             "tab_title": "WOMEN'S",
-            "collection": "newest-arrivals"
+            "collection": "newest-arrivals",
+            "view_more_url": ""
           }
         },
         "tab_BA7Vm8": {
           "type": "tab",
           "settings": {
             "tab_title": "MEN'S",
-            "collection": "mens-chain"
+            "collection": "mens-chain",
+            "view_more_url": ""
           }
         }
       },
@@ -116,7 +118,12 @@
       "settings": {
         "title": "BEST SELLER COLLECTION",
         "subtitle": "",
-        "bg_color": "#ffffff"
+        "bg_color": "#ffffff",
+        "layout_type": "slider",
+        "products_limit": 8,
+        "grid_columns": 4,
+        "show_view_more": true,
+        "view_more_text": "View More"
       }
     },
     "new_ineezy_offer_banner_LTwwMU": {
@@ -138,28 +145,32 @@
           "type": "tab",
           "settings": {
             "tab_title": "NECKALCE",
-            "collection": "necklace"
+            "collection": "necklace",
+            "view_more_url": ""
           }
         },
         "tab_tCihq8": {
           "type": "tab",
           "settings": {
             "tab_title": "BRACELTES",
-            "collection": "bracelet"
+            "collection": "bracelet",
+            "view_more_url": ""
           }
         },
         "tab_G9dL6h": {
           "type": "tab",
           "settings": {
             "tab_title": "RING'S",
-            "collection": "rings"
+            "collection": "rings",
+            "view_more_url": ""
           }
         },
         "tab_efe9cL": {
           "type": "tab",
           "settings": {
             "tab_title": "EARRING'S",
-            "collection": "earrings"
+            "collection": "earrings",
+            "view_more_url": ""
           }
         }
       },
@@ -173,7 +184,12 @@
       "settings": {
         "title": "NEW IN WOMEN’S",
         "subtitle": "SHOP BY THE CATEGORY",
-        "bg_color": "#ffffff"
+        "bg_color": "#ffffff",
+        "layout_type": "grid",
+        "products_limit": 8,
+        "grid_columns": 4,
+        "show_view_more": true,
+        "view_more_text": "View More"
       }
     },
     "new_ineezy_feature_boxes_iwj9WA": {
