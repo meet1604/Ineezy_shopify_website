@@ -218,7 +218,7 @@ width: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 8px;
+  margin-top: 0px;
 }
 
 .ineezy-new .ineezy-cart-card__bottom .cart-item__quantity .ineezy-quantity {
