@@ -74,7 +74,7 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="container">
-    <div class="ineezy-anniversary-banner">
+    {% comment %} <div class="ineezy-anniversary-banner">
       <div class="ineezy-anniversary-banner__content">
         <div class="ineezy-anniversary-banner__left">
           <span class="ineezy-anniversary-banner__subtitle"> BIGGEST SALE IS LIVE </span>
@@ -86,7 +86,7 @@
           <span>BUY 2 GET 1 FREE TODAY</span>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
 
     <nav class="ineezy-breadcrumb">
       <a href="/" class="ineezy-breadcrumb__home">
@@ -801,11 +801,10 @@
                 <h2 class="accordion-header">
 
                   <button
-                    class="accordion-button"
+                    class="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#descriptionAccordion-{{ section.id }}"
-                    aria-expanded="true"
                   >
 
                     Description
@@ -816,7 +815,7 @@
 
                 <div
                   id="descriptionAccordion-{{ section.id }}"
-                  class="accordion-collapse collapse show"
+                  class="accordion-collapse collapse"
                   data-bs-parent="#ineezyAccordion"
                 >
 

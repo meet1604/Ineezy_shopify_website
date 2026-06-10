@@ -104,10 +104,17 @@
         padding-right: 50px !important;
     }
     .ineezy-new .ineezy-hero-slider {
-        padding: 16px 0;
+        padding: 16px 0 24px 0;
     }
     .ineezy-new .ineezy-slider .slide-item {
         padding: 0 16px;
+    }
+    .ineezy-new .ineezy-slider .slick-dots{
+        bottom: -16px;
+    }
+    .ineezy-new .ineezy-slider .slick-dots li button{
+        width: 20px;
+        
     }
     .ineezy-new .hero-bg {
         height: 350px;
@@ -327,7 +334,7 @@
     }
 
     .ineezy-new .category-card img{
-        height: 180px;
+        height: 260px;
     }
 
     .new-main-title h2{

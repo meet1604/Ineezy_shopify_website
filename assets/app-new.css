@@ -195,7 +195,10 @@ body.ineezy-new span{
     margin-top: 0px;
     font-family: "Elms Sans", sans-serif !important;
 }
-
+body.ineezy-new  span.jm-star-rating__font-icon,
+body.ineezy-new span.jdgm-star{
+  font-family: 'JudgemeStar' !important;
+}
 .new-main-title.w-icon{
   padding-bottom: 0px;
 }
@@ -271,6 +274,34 @@ body.ineezy-new span{
   padding: 0 24px;
 }
 
+.ineezy-new .ineezy-slider .slick-dots{
+  gap: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ineezy-new .ineezy-slider .slick-dots li {
+  width: auto;
+  height: auto;
+  margin: 0px;
+}
+
+.ineezy-new .ineezy-slider.slick-dotted.slick-slider{
+  margin-bottom: 0px;
+}
+.ineezy-new .ineezy-slider .slick-dots li button{
+  width: 30px;
+  height: 4px;
+  border-radius: 10px;
+  padding: 0px;
+  background-color: var(--neutral-4);
+}
+.ineezy-new .ineezy-slider .slick-dots li.slick-active button{
+  background-color: var(--primary);
+}
+.ineezy-new .ineezy-slider .slick-dots li button::before{
+  content: none;
+}
 /* CARD STYLE */
 .ineezy-new .hero-bg {
   height: 100%;
@@ -1038,6 +1069,13 @@ body.ineezy-new span{
   display: flex;
 }
 
+.ineezy-new .testimonial-slider .slick-slide {
+  height: stretch;
+}
+.ineezy-new .testimonial-slider .slick-slide > div{
+  height: 100%;
+} 
+
 .ineezy-new .testimonial-item {
   padding: 0 12px;
   height: inherit;
@@ -1052,6 +1090,7 @@ body.ineezy-new span{
 
 .ineezy-new .testimonial-content {
   display: flex;
+  justify-content: space-between;
   flex-direction: column;
   height: 100%;
 }
