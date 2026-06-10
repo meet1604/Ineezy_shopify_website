@@ -131,8 +131,9 @@ width: 24px;
 }
 
 .ineezy-new .ineezy-cart-card__image .cart-item__image{
- width: 110px;
- height: 110px;
+ width: 80px;
+ min-width: 80px;
+ height: 80px;
 }
 
 .ineezy-new .ineezy-cart-card__content {
