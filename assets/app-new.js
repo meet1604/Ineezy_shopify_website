@@ -29,8 +29,7 @@ function initHeroSlider() {
                 dots: true,
 
                 autoplay: true,
-                autoplaySpeed: 0,
-                speed: 1000,
+                 autoplaySpeed: 5000,
 
                 responsive: [
                     {
