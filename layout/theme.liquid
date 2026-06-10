@@ -548,6 +548,16 @@ src="https://www.facebook.com/tr?id=720131227719693&ev=PageView&noscript=1"/>
     </a>
 
     <style>
+      @keyframes wa-bounce {
+        0%, 55%, 100% { transform: translateY(0); }
+        10%            { transform: translateY(-14px); }
+        25%            { transform: translateY(-7px); }
+        40%            { transform: translateY(-11px); }
+      }
+      @keyframes wa-pulse {
+        0%   { transform: scale(1);   opacity: 0.55; }
+        100% { transform: scale(2);   opacity: 0; }
+      }
       .whatsapp-sticky-btn {
         position: fixed;
         right: 24px;
@@ -562,10 +572,24 @@ src="https://www.facebook.com/tr?id=720131227719693&ev=PageView&noscript=1"/>
         justify-content: center;
         box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
+        animation: wa-bounce 3s ease-in-out infinite;
+      }
+      .whatsapp-sticky-btn::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: #25D366;
+        animation: wa-pulse 2s ease-out infinite;
+        z-index: -1;
       }
       .whatsapp-sticky-btn:hover {
+        animation-play-state: paused;
         transform: scale(1.1);
         box-shadow: 0 6px 24px rgba(37, 211, 102, 0.6);
+      }
+      .whatsapp-sticky-btn:hover::before {
+        animation-play-state: paused;
       }
     </style>
 
