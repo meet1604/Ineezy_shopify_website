@@ -18,7 +18,7 @@
             "bg_image": "shopify://shop_images/ineezy-banner-3.3.png",
             "subtitle": "Everyday Luxury",
             "title": "Delicate Necklaces, Endless Elegance",
-            "button_text": "Explore Collection",
+            "button_text": "Explore Our Collection",
             "button_link": "shopify://collections/necklace",
             "content_position": "right",
             "text_align": "right",
@@ -34,7 +34,7 @@
             "bg_image": "shopify://shop_images/Firefly.png",
             "subtitle": "New Summer Collection",
             "title": "Jewelry That Blooms With You",
-            "button_text": "Discover Now",
+            "button_text": "Explore Our Collection",
             "button_link": "shopify://collections/bracelet",
             "content_position": "right",
             "text_align": "right",
@@ -47,16 +47,16 @@
         "slide_6e7MqW": {
           "type": "slide",
           "settings": {
-            "bg_image": "shopify://shop_images/banner-slider-2.png",
+            "bg_image": "shopify://shop_images/image_73.png",
             "subtitle": "Timeless Necklaces",
             "title": "A Necklace as Unique as You",
-            "button_text": "Shop Now",
+            "button_text": "Explore Our Collection",
             "button_link": "shopify://collections/necklace",
             "content_position": "right",
             "text_align": "right",
             "subtitle_color": "#ffffff",
             "title_color": "#ffffff",
-            "overlay_color": "#5e6175",
+            "overlay_color": "#6f5625",
             "overlay_opacity": 50
           }
         }
