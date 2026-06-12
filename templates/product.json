@@ -235,7 +235,7 @@
       "type": "ineezy-product-reviews",
       "name": "INEEZY Product Reviews",
       "settings": {
-        "app_url": "https://shopify-instagram.onrender.com/",
+        "app_url": "https://shopify-instagram.onrender.com",
         "show_summary": true,
         "show_gallery": true,
         "gallery_heading": "Customer Photos",
