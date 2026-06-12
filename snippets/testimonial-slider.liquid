@@ -1,0 +1,17 @@
+{%- comment -%}
+  Auto-scrolling testimonial slider — uses featured/active testimonials from the API.
+  Usage: {% render 'testimonial-slider', app_url: settings.ineezy_app_url %}
+{%- endcomment -%}
+{{ 'ineezy-reviews.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="ineezy-reviews"
+  data-ineezy-testimonials
+  data-app-url="{{ app_url | escape }}"
+>
+  <div class="ineezy-skeleton">
+    <div class="ineezy-skel" style="height:160px;border-radius:12px"></div>
+  </div>
+</div>
+
+{{ 'ineezy-reviews.js' | asset_url | script_tag }}

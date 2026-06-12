@@ -1,0 +1,15 @@
+{%- comment -%}
+  Renders a static star row.
+  Usage: {% render 'review-stars', rating: 4, max: 5 %}
+{%- endcomment -%}
+{%- assign ir_rating = rating | default: 0 | round -%}
+{%- assign ir_max    = max    | default: 5 -%}
+<span class="ineezy-stars" aria-label="{{ ir_rating }} out of {{ ir_max }} stars">
+  {%- for i in (1..ir_max) -%}
+    {%- if i <= ir_rating -%}
+      <span class="ineezy-star">★</span>
+    {%- else -%}
+      <span class="ineezy-star empty">★</span>
+    {%- endif -%}
+  {%- endfor -%}
+</span>

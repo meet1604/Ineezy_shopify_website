@@ -1,0 +1,18 @@
+{%- comment -%}
+  Rating summary bar — loaded dynamically by ineezy-reviews.js.
+  Usage: {% render 'review-summary', product: product, app_url: settings.ineezy_app_url %}
+{%- endcomment -%}
+{{ 'ineezy-reviews.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="ineezy-reviews"
+  data-ineezy-summary
+  data-product-id="{{ product.id }}"
+  data-app-url="{{ app_url | escape }}"
+>
+  <div class="ineezy-skeleton">
+    <div class="ineezy-skel" style="height:16px;width:40%"></div>
+    <div class="ineezy-skel" style="height:8px;width:80%"></div>
+    <div class="ineezy-skel" style="height:8px;width:65%"></div>
+  </div>
+</div>

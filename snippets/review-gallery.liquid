@@ -1,0 +1,22 @@
+{%- comment -%}
+  Photo-review gallery grid with lightbox.
+  Usage: {% render 'review-gallery', product: product, app_url: settings.ineezy_app_url %}
+{%- endcomment -%}
+{{ 'ineezy-reviews.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="ineezy-reviews"
+  data-ineezy-gallery
+  data-product-id="{{ product.id }}"
+  data-app-url="{{ app_url | escape }}"
+>
+  <div class="ineezy-skeleton">
+    <div style="display:flex;gap:8px">
+      <div class="ineezy-skel" style="height:120px;width:120px;border-radius:8px"></div>
+      <div class="ineezy-skel" style="height:120px;width:120px;border-radius:8px"></div>
+      <div class="ineezy-skel" style="height:120px;width:120px;border-radius:8px"></div>
+    </div>
+  </div>
+</div>
+
+{{ 'ineezy-reviews.js' | asset_url | script_tag }}

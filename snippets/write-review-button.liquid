@@ -1,0 +1,16 @@
+{%- comment -%}
+  "Write a Review" button — links to the public review form.
+  Usage: {% render 'write-review-button', app_url: settings.ineezy_app_url %}
+  The token is not known at page-render time; link goes to the base form URL.
+  Customers who arrive via a review-request link already have the token in their URL.
+{%- endcomment -%}
+{{ 'ineezy-reviews.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="ineezy-reviews"
+  data-ineezy-write-btn
+  data-review-url="{{ app_url | escape }}/review/open"
+  data-app-url="{{ app_url | escape }}"
+></div>
+
+{{ 'ineezy-reviews.js' | asset_url | script_tag }}

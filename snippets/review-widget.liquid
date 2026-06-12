@@ -1,0 +1,28 @@
+{%- comment -%}
+  Full review list widget — filters, sort, pagination, photo lightbox.
+  Usage: {% render 'review-widget', product: product, app_url: settings.ineezy_app_url, limit: 10 %}
+{%- endcomment -%}
+{{ 'ineezy-reviews.css' | asset_url | stylesheet_tag }}
+
+{%- assign ir_limit = limit | default: 10 -%}
+{%- assign ir_review_url = app_url | append: '/review/' -%}
+
+<div
+  class="ineezy-reviews"
+  data-ineezy-widget
+  data-product-id="{{ product.id }}"
+  data-product-name="{{ product.title | escape }}"
+  data-product-url="{{ shop.url }}{{ product.url }}"
+  data-review-url="{{ ir_review_url | escape }}"
+  data-limit="{{ ir_limit }}"
+  data-app-url="{{ app_url | escape }}"
+>
+  <div class="ineezy-skeleton">
+    <div class="ineezy-skel" style="height:20px;width:30%"></div>
+    <div class="ineezy-skel" style="height:14px;width:100%"></div>
+    <div class="ineezy-skel" style="height:14px;width:90%"></div>
+    <div class="ineezy-skel" style="height:14px;width:75%"></div>
+  </div>
+</div>
+
+{{ 'ineezy-reviews.js' | asset_url | script_tag }}
