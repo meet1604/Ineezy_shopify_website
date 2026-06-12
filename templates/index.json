@@ -253,6 +253,18 @@
         "review_product": "lavender-heartlight-necklace",
         "min_rating": 4
       }
+    },
+    "ineezy_testimonials_7ireER": {
+      "type": "ineezy-testimonials",
+      "name": "INEEZY Testimonials",
+      "settings": {
+        "app_url": "https://shopify-instagram.onrender.com",
+        "heading": "What Our Customers Say",
+        "subheading": "Real reviews from real customers",
+        "background_color": "#FAFAF8",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
@@ -263,6 +275,7 @@
     "new_ineezy_best_seller_tabs_h7xF88",
     "new_ineezy_feature_boxes_iwj9WA",
     "instagram_feed_Hn84Q6",
-    "new_ineezy_testimonial_slider_LmRFb8"
+    "new_ineezy_testimonial_slider_LmRFb8",
+    "ineezy_testimonials_7ireER"
   ]
 }
