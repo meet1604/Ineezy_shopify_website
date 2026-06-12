@@ -7,7 +7,7 @@
     "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes",
     "theme_support_url": "https://support.shopify.com/"
   },
- 
+
   {
     "name": "t:settings_schema.logo.name",
     "settings": [
@@ -1450,6 +1450,18 @@
         "id": "cart_color_scheme",
         "label": "t:sections.all.colors.label",
         "default": "scheme-1"
+      }
+    ]
+  },
+  {
+    "name": "INEEZY Reviews",
+    "settings": [
+      {
+        "type": "text",
+        "id": "ineezy_app_url",
+        "label": "INEEZY App URL",
+        "placeholder": "https://shopify-instagram.onrender.com",
+        "info": "Your INEEZY Express app URL. No trailing slash."
       }
     ]
   }
