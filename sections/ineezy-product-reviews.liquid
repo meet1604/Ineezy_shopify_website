@@ -1,0 +1,118 @@
+{{ 'ineezy-reviews.css' | asset_url | stylesheet_tag }}
+
+{%- assign ir_app_url = section.settings.app_url | default: settings.ineezy_app_url -%}
+{%- assign ir_limit   = section.settings.reviews_per_page | default: 10 -%}
+
+<section
+  class="ineezy-section"
+  style="padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;"
+>
+  <div class="page-width">
+
+    {%- if section.settings.show_summary -%}
+      <div
+        class="ineezy-reviews"
+        data-ineezy-summary
+        data-product-id="{{ product.id }}"
+        data-app-url="{{ ir_app_url | escape }}"
+        style="margin-bottom: 32px;"
+      ></div>
+    {%- endif -%}
+
+    {%- if section.settings.show_gallery and product -%}
+      <div style="margin-bottom: 32px;">
+        <div class="ineezy-section-header">
+          <div class="ineezy-section-title">{{ section.settings.gallery_heading | escape }}</div>
+        </div>
+        <div
+          class="ineezy-reviews"
+          data-ineezy-gallery
+          data-product-id="{{ product.id }}"
+          data-app-url="{{ ir_app_url | escape }}"
+        ></div>
+      </div>
+    {%- endif -%}
+
+    <div
+      class="ineezy-reviews"
+      data-ineezy-widget
+      data-product-id="{{ product.id }}"
+      data-product-name="{{ product.title | escape }}"
+      data-product-url="{{ shop.url }}{{ product.url }}"
+      data-review-url="{{ ir_app_url | escape }}/review/open"
+      data-limit="{{ ir_limit }}"
+      data-app-url="{{ ir_app_url | escape }}"
+    ></div>
+
+  </div>
+</section>
+
+{{ 'ineezy-reviews.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "INEEZY Product Reviews",
+  "tag": "section",
+  "class": "ineezy-product-reviews-section",
+  "templates": ["product"],
+  "settings": [
+    {
+      "type": "text",
+      "id": "app_url",
+      "label": "App URL",
+      "info": "Your INEEZY Express app URL (e.g. https://yourapp.onrender.com). Overrides the global theme setting."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_summary",
+      "label": "Show rating summary",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_gallery",
+      "label": "Show photo gallery",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "gallery_heading",
+      "label": "Gallery heading",
+      "default": "Customer Photos"
+    },
+    {
+      "type": "range",
+      "id": "reviews_per_page",
+      "label": "Reviews per page",
+      "min": 5,
+      "max": 50,
+      "step": 5,
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top (px)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom (px)",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "default": 40
+    }
+  ],
+  "presets": [
+    {
+      "name": "INEEZY Product Reviews",
+      "category": "Reviews"
+    }
+  ]
+}
+{% endschema %}
