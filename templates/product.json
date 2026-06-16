@@ -167,69 +167,10 @@
         "padding_bottom": 28
       }
     },
-    "17465209243b2b76a3": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_preview_badge_th4xkD": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_preview_badge_th4xkD"
-      ],
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "17701417078bb7f24f": {
-      "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "17701417335a114dd5": {
-      "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "17701417783c5bc048": {
-      "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_Ntahe4": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "no_reviews",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "other_products_reviews"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_Ntahe4"
-      ],
-      "settings": {
-        "include_margins": true
-      }
-    },
     "ijl_related_product_8Q8WCr": {
       "type": "ijl-related-product",
       "name": "IJL Related Products",
       "settings": {}
-    },
-    "17479909669210660d": {
-      "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
-    },
-    "17600736686cad59fc": {
-      "type": "apps",
-      "settings": {
-        "include_margins": true
-      }
     },
     "ineezy_product_reviews_86Abet": {
       "type": "ineezy-product-reviews",
@@ -248,13 +189,7 @@
   "order": [
     "main",
     "related-products",
-    "17465209243b2b76a3",
-    "17701417078bb7f24f",
-    "17701417335a114dd5",
-    "17701417783c5bc048",
     "ijl_related_product_8Q8WCr",
-    "17479909669210660d",
-    "17600736686cad59fc",
     "ineezy_product_reviews_86Abet"
   ]
 }
