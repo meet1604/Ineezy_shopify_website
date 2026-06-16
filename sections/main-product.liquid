@@ -134,7 +134,7 @@
                     <h1>{{ product.title | escape }}</h1>
 
                     {% comment %} Rating  {% endcomment %}
-                    {% if product.metafields.judgeme.badge != blank %}
+                    {% comment %} {% if product.metafields.judgeme.badge != blank %}
                       <div class="ineezy-product-rating">
                         <div class="ineezy-product-rating__stars">
                           {{ product.metafields.judgeme.badge }}
@@ -147,7 +147,15 @@
                           </span>
                         {% endif %}
                       </div>
-                    {% endif %}
+                    {% endif %} {% endcomment %}
+
+                    {% comment %} Rating  {% endcomment %}
+<div class="ineezy-product-rating" data-ineezy-rating-badge data-product-id="{{ product.id }}" data-app-url="{{ settings.ineezy_app_url | escape }}" style="display:none;">
+  <div class="ineezy-product-rating__stars"></div>
+  <span class="ineezy-product-rating__count"></span>
+</div>
+{% comment %} Rating  {% endcomment %}
+
                     {% comment %} Rating  {% endcomment %}
 
                     <a href="{{ product.url }}" class="product__title">
