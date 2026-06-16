@@ -168,7 +168,7 @@ position: relative;
   align-items: center;
 }
 
-.ineezy-new  .ineezy-product-rating__stars .jdgm-prev-badge {
+.ineezy-new  .ineezy-product-rating__stars{
   display: flex !important;
   align-items: center;
   gap: 6px;
