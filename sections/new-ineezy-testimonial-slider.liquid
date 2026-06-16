@@ -21,40 +21,6 @@
       "default": "#F8F5EA"
     }
   ],
-  "blocks": [
-    {
-      "type": "testimonial",
-      "name": "Testimonial",
-      "settings": [
-        {
-          "type": "textarea",
-          "id": "review",
-          "label": "Review Text",
-          "default": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!"
-        },
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Customer Name",
-          "default": "Anisha Chaudhry"
-        },
-        {
-          "type": "range",
-          "id": "rating",
-          "min": 1,
-          "max": 5,
-          "step": 1,
-          "label": "Rating",
-          "default": 4
-        },
-        {
-          "type": "image_picker",
-          "id": "customer_image",
-          "label": "Customer Image"
-        }
-      ]
-    }
-  ],
   "presets": [
     {
       "name": "N_WEB Testimonial Slider"
@@ -91,69 +57,11 @@
       <h2>{{ section.settings.title }}</h2>
     </div>
 
-    <!-- TOP SLIDER -->
-    <div class="testimonial-slider testimonial-slider-top" id="ineezy-slider-top-{{ section.id }}">
-      {% for block in section.blocks %}
-        <div class="testimonial-item">
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              <p class="review-text">{{ block.settings.review }}</p>
-              <div class="testimonial-bottom">
-                <div class="left">
-                  <h4>{{ block.settings.name }}</h4>
-                  <div class="stars">
-                    {% for i in (1..5) %}
-                      {% if i <= block.settings.rating %}
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#B69238"/></svg>
-                      {% else %}
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#E9E5E2"/></svg>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                </div>
-                <div class="right">
-                  {% if block.settings.customer_image != blank %}
-                    <img src="{{ block.settings.customer_image | image_url: width: 100 }}" alt="{{ block.settings.name }}">
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
+    <!-- TOP SLIDER -- populated entirely by JS from the INEEZY Reviews API -->
+    <div class="testimonial-slider testimonial-slider-top" id="ineezy-slider-top-{{ section.id }}"></div>
 
-    <!-- BOTTOM SLIDER -->
-    <div class="testimonial-slider testimonial-slider-bottom" id="ineezy-slider-bottom-{{ section.id }}">
-      {% for block in section.blocks reversed %}
-        <div class="testimonial-item">
-          <div class="testimonial-card">
-            <div class="testimonial-content">
-              <p class="review-text">{{ block.settings.review }}</p>
-              <div class="testimonial-bottom">
-                <div class="left">
-                  <h4>{{ block.settings.name }}</h4>
-                  <div class="stars">
-                    {% for i in (1..5) %}
-                      {% if i <= block.settings.rating %}
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#B69238"/></svg>
-                      {% else %}
-                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.9634 5.09658C13.9185 4.95809 13.8339 4.83583 13.7202 4.74498C13.6064 4.65413 13.4685 4.5987 13.3235 4.58557L9.28207 4.21867L7.6849 0.479344C7.56696 0.204616 7.29866 0.0273438 7.00001 0.0273438C6.70135 0.0273438 6.43294 0.204616 6.31577 0.479344L4.7186 4.21867L0.676571 4.58557C0.380242 4.61292 0.129331 4.81362 0.0366345 5.09658C-0.00853441 5.2352 -0.0120479 5.38402 0.0265292 5.52461C0.0651063 5.6652 0.144079 5.79139 0.253666 5.88754L3.30865 8.56629L2.4079 12.5336C2.342 12.8253 2.4552 13.127 2.69726 13.3019C2.82403 13.3941 2.97681 13.4438 3.13359 13.4437C3.26798 13.4437 3.39985 13.4072 3.51512 13.3381L7.00001 11.2544L10.4843 13.3381C10.6093 13.4129 10.7534 13.4493 10.899 13.4429C11.0445 13.4365 11.1849 13.3874 11.3028 13.3019C11.5448 13.127 11.658 12.8253 11.5921 12.5336L10.6914 8.56632L13.7463 5.88757C13.8559 5.79142 13.9349 5.66524 13.9735 5.52464C14.0121 5.38405 14.0086 5.23522 13.9634 5.09661V5.09658Z" fill="#E9E5E2"/></svg>
-                      {% endif %}
-                    {% endfor %}
-                  </div>
-                </div>
-                <div class="right">
-                  {% if block.settings.customer_image != blank %}
-                    <img src="{{ block.settings.customer_image | image_url: width: 100 }}" alt="{{ block.settings.name }}">
-                  {% endif %}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
+    <!-- BOTTOM SLIDER -- populated entirely by JS from the INEEZY Reviews API -->
+    <div class="testimonial-slider testimonial-slider-bottom" id="ineezy-slider-bottom-{{ section.id }}"></div>
 
   </div>
 </section>
@@ -197,16 +105,25 @@
       '</div>';
   }
 
-  function initSlick() {
-    var sectionEl = document.getElementById('shopify-section-' + SID);
-    if (!sectionEl || typeof $ === 'undefined' || !$.fn || !$.fn.slick) return;
+  function hasSlick() {
+    return typeof $ !== 'undefined' && $.fn && $.fn.slick;
+  }
 
+  // IMPORTANT: Slick caches a snapshot of the original HTML when it first
+  // initializes, and restores that snapshot on unslick(). So we must tear
+  // down slick BEFORE we touch innerHTML, never after -- otherwise unslick()
+  // overwrites our freshly-injected reviews with the old placeholder content.
+  function teardownSlick(sectionEl) {
+    if (!hasSlick()) return null;
     var $t = $(sectionEl).find('.testimonial-slider-top');
     var $b = $(sectionEl).find('.testimonial-slider-bottom');
-
     if ($t.hasClass('slick-initialized')) $t.slick('unslick');
     if ($b.hasClass('slick-initialized')) $b.slick('unslick');
+    return { $t: $t, $b: $b };
+  }
 
+  function applySlick(refs) {
+    if (!refs) return;
     var base = {
       slidesToShow: 3.5, slidesToScroll: 1, arrows: false, dots: false,
       infinite: true, autoplay: true, autoplaySpeed: 0, cssEase: 'linear',
@@ -217,11 +134,11 @@
       ]
     };
 
-    if ($t.children('.testimonial-item').length > 0) {
-      $t.slick(Object.assign({}, base, { speed: 6000 }));
+    if (refs.$t.children('.testimonial-item').length > 0) {
+      refs.$t.slick(Object.assign({}, base, { speed: 6000 }));
     }
-    if ($b.children('.testimonial-item').length > 0) {
-      $b.slick(Object.assign({}, base, { speed: 9000, rtl: true }));
+    if (refs.$b.children('.testimonial-item').length > 0) {
+      refs.$b.slick(Object.assign({}, base, { speed: 9000, rtl: true }));
     }
   }
 
@@ -230,7 +147,7 @@
     if (!sectionEl) return;
     var root = sectionEl.querySelector('.ineezy-testimonial-section');
     var appUrl = root ? root.getAttribute('data-app-url') : '';
-    if (!appUrl) { initSlick(); return; }
+    if (!appUrl) { applySlick(teardownSlick(sectionEl)); return; }
 
     var base = appUrl.replace(/\/$/, '') + '/api/public';
 
@@ -240,19 +157,23 @@
         if (!json.success) throw new Error(json.message || 'API error');
         var items = json.data || [];
 
-        if (!items.length) { initSlick(); return; }
+        if (!items.length) { applySlick(teardownSlick(sectionEl)); return; }
 
         var topHtml = items.map(function (t) { return reviewCardHtml(t.customer_name, t.rating, t.review); }).join('');
         var bottomHtml = items.slice().reverse().map(function (t) { return reviewCardHtml(t.customer_name, t.rating, t.review); }).join('');
+
+        // Tear down slick FIRST (while it still owns the placeholder DOM),
+        // then replace the content, then build a fresh slick instance.
+        var refs = teardownSlick(sectionEl);
 
         var topEl = document.getElementById('ineezy-slider-top-' + SID);
         var bottomEl = document.getElementById('ineezy-slider-bottom-' + SID);
         if (topEl) topEl.innerHTML = topHtml;
         if (bottomEl) bottomEl.innerHTML = bottomHtml;
 
-        initSlick();
+        applySlick(refs || teardownSlick(sectionEl));
       })
-      .catch(function () { initSlick(); });
+      .catch(function () { applySlick(teardownSlick(sectionEl)); });
   }
 
   if (document.readyState === 'loading') {
