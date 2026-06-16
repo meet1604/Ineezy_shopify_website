@@ -246,7 +246,7 @@
     "new_ineezy_testimonial_slider_LmRFb8": {
       "type": "new-ineezy-testimonial-slider",
       "blocks": {
-        "testimonial_VHyW7r": {
+        "testimonial_6C9Bfn": {
           "type": "testimonial",
           "settings": {
             "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
@@ -256,7 +256,7 @@
         }
       },
       "block_order": [
-        "testimonial_VHyW7r"
+        "testimonial_6C9Bfn"
       ],
       "name": "N_WEB Testimonial Slider",
       "settings": {
