@@ -247,3 +247,499 @@
               '<button class="ineezy-page-btn" id="irPrev" ' + (state.page <= 1 ? 'disabled' : '') + '>← Prev</button>' +
               '<span class="ineezy-page-info">Page ' + state.page + ' of ' + totalPages + '</span>' +
               '<button class="ineezy-page-btn" id="irNext" ' + (state.page >= totalPages ? 'disabled' : '') + '>Next →</button>';
+
+            var prevBtn = q('#irPrev', el);
+            var nextBtn = q('#irNext', el);
+            if (prevBtn) prevBtn.addEventListener('click', function () { state.page--; render(); });
+            if (nextBtn) nextBtn.addEventListener('click', function () { state.page++; render(); });
+          }
+        })
+        .catch(function () {
+          var listEl3 = q('.ineezy-review-list', el);
+          if (listEl3) listEl3.innerHTML = '<div class="ineezy-empty">Unable to load reviews.</div>';
+        });
+    }
+
+    // Build scaffold
+    var writeBtn = '<button type="button" class="ineezy-write-btn" id="ineezy-widget-write-btn">✎ Write a Review</button>';
+
+    el.innerHTML =
+      '<div class="ineezy-section-header">' +
+        '<div class="ineezy-section-title">Customer Reviews</div>' +
+        writeBtn +
+      '</div>' +
+      '<div class="ineezy-filters">' +
+        '<button class="ineezy-filter-chip active" data-rating="0">All</button>' +
+        '<button class="ineezy-filter-chip" data-rating="5">5 ★</button>' +
+        '<button class="ineezy-filter-chip" data-rating="4">4 ★</button>' +
+        '<button class="ineezy-filter-chip" data-rating="3">3 ★</button>' +
+        '<button class="ineezy-filter-chip" data-rating="2">2 ★</button>' +
+        '<button class="ineezy-filter-chip" data-rating="1">1 ★</button>' +
+        '<select class="ineezy-sort-select">' +
+          '<option value="latest">Latest</option>' +
+          '<option value="highest">Highest Rated</option>' +
+          '<option value="lowest">Lowest Rated</option>' +
+        '</select>' +
+      '</div>' +
+      '<div class="ineezy-review-list"></div>' +
+      '<div class="ineezy-pagination"></div>';
+
+    // Write review button — opens inline modal
+    var writeBtnEl = document.getElementById('ineezy-widget-write-btn');
+    if (writeBtnEl) {
+      writeBtnEl.addEventListener('click', function () { showReviewModal(appUrl, productId); });
+    }
+
+    // Filter chips
+    [].forEach.call(el.querySelectorAll('.ineezy-filter-chip'), function (chip) {
+      chip.addEventListener('click', function () {
+        [].forEach.call(el.querySelectorAll('.ineezy-filter-chip'), function (c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+        state.rating = parseInt(chip.getAttribute('data-rating'), 10);
+        state.page = 1;
+        render();
+      });
+    });
+
+    // Sort select
+    var sortSel = q('.ineezy-sort-select', el);
+    if (sortSel) {
+      sortSel.addEventListener('change', function () {
+        state.sort = sortSel.value;
+        state.page = 1;
+        render();
+      });
+    }
+
+    render();
+  }
+
+  /* ================================================================
+     LIGHTBOX
+     ================================================================ */
+  var lbEl = null;
+  var lbImages = [];
+  var lbIndex = 0;
+
+  function buildLightbox() {
+    if (lbEl) return;
+    lbEl = document.createElement('div');
+    lbEl.className = 'ineezy-lightbox';
+    lbEl.innerHTML =
+      '<button class="ineezy-lb-close" aria-label="Close">✕</button>' +
+      '<button class="ineezy-lb-nav prev" aria-label="Previous">‹</button>' +
+      '<img src="" alt="Review photo">' +
+      '<button class="ineezy-lb-nav next" aria-label="Next">›</button>';
+    document.body.appendChild(lbEl);
+
+    q('.ineezy-lb-close', lbEl).addEventListener('click', closeLightbox);
+    q('.ineezy-lb-nav.prev', lbEl).addEventListener('click', function () { showLbImage(lbIndex - 1); });
+    q('.ineezy-lb-nav.next', lbEl).addEventListener('click', function () { showLbImage(lbIndex + 1); });
+    lbEl.addEventListener('click', function (e) { if (e.target === lbEl) closeLightbox(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (!lbEl || !lbEl.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') showLbImage(lbIndex - 1);
+      if (e.key === 'ArrowRight') showLbImage(lbIndex + 1);
+    });
+  }
+
+  function showLbImage(idx) {
+    if (!lbImages.length) return;
+    lbIndex = (idx + lbImages.length) % lbImages.length;
+    q('img', lbEl).src = lbImages[lbIndex];
+    var prevBtn = q('.ineezy-lb-nav.prev', lbEl);
+    var nextBtn = q('.ineezy-lb-nav.next', lbEl);
+    if (prevBtn) prevBtn.style.display = lbImages.length > 1 ? '' : 'none';
+    if (nextBtn) nextBtn.style.display = lbImages.length > 1 ? '' : 'none';
+  }
+
+  function openLightbox(images, index) {
+    buildLightbox();
+    lbImages = images;
+    showLbImage(index || 0);
+    lbEl.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    if (lbEl) lbEl.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ================================================================
+     GALLERY WIDGET
+     ================================================================ */
+  function initGallery(el, api) {
+    var productId = el.getAttribute('data-product-id');
+    if (!productId) return;
+
+    el.innerHTML = skeletonRows(3);
+
+    api.reviews(productId, { sort: 'latest', page: 1, limit: 50 }).then(function (json) {
+      var photos = [];
+      (json.data || []).forEach(function (r) {
+        if (r.review_images) r.review_images.forEach(function (p) { if (p.image_url) photos.push(p.image_url); });
+      });
+
+      if (!photos.length) { el.innerHTML = ''; return; }
+
+      el.innerHTML = '<div class="ineezy-gallery">' +
+        photos.map(function (url, i) {
+          return '<div class="ineezy-gallery-item" data-idx="' + i + '">' +
+            '<img src="' + sanitize(url) + '" alt="Customer photo" loading="lazy">' +
+          '</div>';
+        }).join('') +
+      '</div>';
+
+      [].forEach.call(el.querySelectorAll('.ineezy-gallery-item'), function (item) {
+        item.addEventListener('click', function () {
+          openLightbox(photos, parseInt(item.getAttribute('data-idx'), 10));
+        });
+      });
+    }).catch(function () { el.innerHTML = ''; });
+  }
+
+  /* ================================================================
+     TESTIMONIALS SLIDER
+     ================================================================ */
+  function initTestimonials(el, api) {
+    el.innerHTML = skeletonRows(3);
+
+    api.testimonials().then(function (json) {
+      var items = json.data || [];
+      if (!items.length) { el.innerHTML = ''; return; }
+
+      var perPage = window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3;
+      var current = 0;
+      var totalPages = Math.ceil(items.length / perPage);
+
+      function avatarHTML(name) {
+        return '<div class="ineezy-t-avatar">' + (name || '?').charAt(0).toUpperCase() + '</div>';
+      }
+
+      var cardsHTML = items.map(function (t) {
+        return '<div class="ineezy-testimonial-card">' +
+          '<div class="ineezy-t-stars">' + starsHTML(t.rating || 5) + '</div>' +
+          '<div class="ineezy-t-text">' + sanitize(t.review || '') + '</div>' +
+          '<div class="ineezy-t-author">' +
+            avatarHTML(t.customer_name) +
+            '<div>' +
+              '<div class="ineezy-t-name">' + sanitize(t.customer_name || 'Customer') + '</div>' +
+              (t.verified_buyer ? '<div class="ineezy-t-badge">✓ Verified Buyer</div>' : '') +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+
+      el.innerHTML =
+        '<div class="ineezy-testimonials">' +
+          '<div class="ineezy-testimonials-track">' + cardsHTML + '</div>' +
+        '</div>' +
+        '<div class="ineezy-slider-nav">' +
+          '<button class="ineezy-slider-btn" id="irSliderPrev">‹</button>' +
+          '<div class="ineezy-slider-dots">' +
+            Array.from({ length: totalPages }, function (_, i) {
+              return '<div class="ineezy-slider-dot' + (i === 0 ? ' active' : '') + '" data-page="' + i + '"></div>';
+            }).join('') +
+          '</div>' +
+          '<button class="ineezy-slider-btn" id="irSliderNext">›</button>' +
+        '</div>';
+
+      var track = q('.ineezy-testimonials-track', el);
+
+      function goTo(page) {
+        if (page < 0) page = totalPages - 1;
+        if (page >= totalPages) page = 0;
+        current = page;
+        var cards = track.querySelectorAll('.ineezy-testimonial-card');
+        var cardWidth = cards[0] ? (cards[0].offsetWidth + 20) : 0;
+        track.style.transform = 'translateX(-' + (current * perPage * cardWidth) + 'px)';
+        [].forEach.call(el.querySelectorAll('.ineezy-slider-dot'), function (d, i) {
+          d.classList.toggle('active', i === current);
+        });
+      }
+
+      var prevBtn = q('#irSliderPrev', el);
+      var nextBtn = q('#irSliderNext', el);
+      if (prevBtn) prevBtn.addEventListener('click', function () { goTo(current - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', function () { goTo(current + 1); });
+
+      [].forEach.call(el.querySelectorAll('.ineezy-slider-dot'), function (dot) {
+        dot.addEventListener('click', function () { goTo(parseInt(dot.getAttribute('data-page'), 10)); });
+      });
+
+      // Auto-advance every 6 seconds
+      var autoplay = setInterval(function () { goTo(current + 1); }, 6000);
+      el.addEventListener('mouseenter', function () { clearInterval(autoplay); });
+      el.addEventListener('mouseleave', function () { autoplay = setInterval(function () { goTo(current + 1); }, 6000); });
+    }).catch(function () { el.innerHTML = ''; });
+  }
+
+  /* ================================================================
+     INLINE REVIEW MODAL
+     ================================================================ */
+  function injectModalCss() {
+    if (document.getElementById('ineezy-modal-css')) return;
+    var s = document.createElement('style');
+    s.id = 'ineezy-modal-css';
+    s.textContent =
+      '#ineezy-modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(28,25,21,.55);z-index:99999;display:flex;align-items:flex-start;justify-content:center;padding:24px 16px 40px;overflow-y:auto;}' +
+      '.ineezy-md{background:#fff;border-radius:14px;width:100%;max-width:520px;box-shadow:0 20px 60px rgba(28,25,21,.18);position:relative;margin:auto;}' +
+      '.ineezy-md-head{display:flex;align-items:center;justify-content:space-between;padding:20px 24px 0;}' +
+      '.ineezy-md-title{font-size:18px;font-weight:600;color:#1C1915;}' +
+      '.ineezy-md-close{background:none;border:none;font-size:24px;cursor:pointer;color:#ABA69F;line-height:1;padding:4px;}' +
+      '.ineezy-md-body{padding:20px 24px 28px;}' +
+      '.ineezy-md-body label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#6B6560;margin-bottom:6px;margin-top:18px;}' +
+      '.ineezy-md-body label:first-child{margin-top:0;}' +
+      '.ineezy-md-body input[type=text],.ineezy-md-body input[type=email],.ineezy-md-body textarea{width:100%;border:1px solid #E8E4DE;border-radius:8px;padding:10px 14px;font-size:14px;color:#1C1915;background:#FAFAF8;box-sizing:border-box;font-family:inherit;}' +
+      '.ineezy-md-body input:focus,.ineezy-md-body textarea:focus{outline:none;border-color:#C8A96E;}' +
+      '.ineezy-md-body textarea{min-height:90px;resize:vertical;line-height:1.6;}' +
+      '.ineezy-md-stars{display:flex;gap:6px;margin-top:4px;}' +
+      '.ineezy-md-star{background:none;border:none;font-size:30px;color:#E8E4DE;cursor:pointer;padding:0 2px;line-height:1;transition:color .12s;}' +
+      '.ineezy-md-star.on{color:#C8A96E;}' +
+      '.ineezy-md-products{display:flex;flex-direction:column;gap:6px;max-height:180px;overflow-y:auto;margin-top:4px;}' +
+      '.ineezy-md-product{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid #E8E4DE;border-radius:8px;cursor:pointer;}' +
+      '.ineezy-md-product input{width:15px;height:15px;accent-color:#C8A96E;flex-shrink:0;}' +
+      '.ineezy-md-product img{width:36px;height:36px;object-fit:cover;border-radius:5px;border:1px solid #E8E4DE;flex-shrink:0;}' +
+      '.ineezy-md-product-name{font-size:13px;font-weight:500;color:#1C1915;}' +
+      '.ineezy-md-product-price{font-size:11px;color:#ABA69F;}' +
+      '.ineezy-md-photos-label{border:1.5px dashed #E8E4DE;border-radius:8px;padding:14px;text-align:center;cursor:pointer;font-size:13px;color:#6B6560;margin-top:4px;display:block;}' +
+      '.ineezy-md-photos-label:hover{border-color:#C8A96E;}' +
+      '.ineezy-md-photo-previews{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}' +
+      '.ineezy-md-photo-wrap{position:relative;width:64px;height:64px;}' +
+      '.ineezy-md-photo-wrap img{width:64px;height:64px;object-fit:cover;border-radius:6px;border:1px solid #E8E4DE;}' +
+      '.ineezy-md-photo-rm{position:absolute;top:-5px;right:-5px;width:18px;height:18px;background:#1C1915;color:#fff;border:none;border-radius:50%;font-size:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;}' +
+      '.ineezy-md-submit{width:100%;background:#1C1915;color:#fff;border:none;border-radius:8px;padding:13px;font-size:14px;font-weight:600;letter-spacing:.04em;cursor:pointer;margin-top:22px;transition:background .12s;}' +
+      '.ineezy-md-submit:hover:not(:disabled){background:#3A3632;}' +
+      '.ineezy-md-submit:disabled{opacity:.5;cursor:not-allowed;}' +
+      '.ineezy-md-success{text-align:center;padding:40px 20px;}' +
+      '.ineezy-md-success-icon{font-size:44px;margin-bottom:14px;}' +
+      '.ineezy-md-success h3{font-size:20px;font-weight:600;margin-bottom:8px;color:#1C1915;}' +
+      '.ineezy-md-success p{font-size:14px;color:#6B6560;line-height:1.6;}';
+    document.head.appendChild(s);
+  }
+
+  function showReviewModal(appUrl, preProductId) {
+    injectModalCss();
+    var existing = document.getElementById('ineezy-modal');
+    if (existing) existing.remove();
+
+    var base = appUrl.replace(/\/$/, '');
+    var selRating = 0;
+    var selFiles = [];
+
+    var overlay = document.createElement('div');
+    overlay.id = 'ineezy-modal';
+
+    var dialog = document.createElement('div');
+    dialog.className = 'ineezy-md';
+    dialog.innerHTML =
+      '<div class="ineezy-md-head">' +
+        '<div class="ineezy-md-title">Write a Review</div>' +
+        '<button type="button" class="ineezy-md-close" id="ineezy-md-close">×</button>' +
+      '</div>' +
+      '<div class="ineezy-md-body" id="ineezy-md-body">' +
+        '<label>Your Rating <span style="color:#C8A96E">*</span></label>' +
+        '<div class="ineezy-md-stars" id="ineezy-md-stars">' +
+          '<button type="button" class="ineezy-md-star" data-v="1">★</button>' +
+          '<button type="button" class="ineezy-md-star" data-v="2">★</button>' +
+          '<button type="button" class="ineezy-md-star" data-v="3">★</button>' +
+          '<button type="button" class="ineezy-md-star" data-v="4">★</button>' +
+          '<button type="button" class="ineezy-md-star" data-v="5">★</button>' +
+        '</div>' +
+        '<label>Products You\'re Reviewing</label>' +
+        '<div class="ineezy-md-products" id="ineezy-md-products"><div style="font-size:13px;color:#ABA69F">Loading…</div></div>' +
+        '<label>Your Name <span style="color:#C8A96E">*</span></label>' +
+        '<input type="text" id="ineezy-md-name" placeholder="Full name">' +
+        '<label>Email (optional)</label>' +
+        '<input type="email" id="ineezy-md-email" placeholder="your@email.com">' +
+        '<label>Review Title (optional)</label>' +
+        '<input type="text" id="ineezy-md-rtitle" placeholder="Summarise your experience">' +
+        '<label>Your Review <span style="color:#C8A96E">*</span></label>' +
+        '<textarea id="ineezy-md-review" placeholder="Tell us about the quality and your experience…"></textarea>' +
+        '<label>Add Photos (optional, max 5)</label>' +
+        '<label class="ineezy-md-photos-label" for="ineezy-md-file">📷 Click to upload photos<br><span style="font-size:11px;color:#ABA69F">JPG, PNG or WebP — max 10 MB each</span>' +
+          '<input type="file" id="ineezy-md-file" accept="image/jpeg,image/jpg,image/png,image/webp" multiple style="display:none">' +
+        '</label>' +
+        '<div class="ineezy-md-photo-previews" id="ineezy-md-previews"></div>' +
+        '<button type="button" class="ineezy-md-submit" id="ineezy-md-submit">Submit Review</button>' +
+      '</div>';
+
+    overlay.appendChild(dialog);
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+
+    function closeModal() {
+      document.body.style.overflow = '';
+      overlay.remove();
+    }
+
+    document.getElementById('ineezy-md-close').addEventListener('click', closeModal);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+
+    // Stars
+    var starsEl = document.getElementById('ineezy-md-stars');
+    starsEl.addEventListener('click', function (e) {
+      var btn = e.target.closest ? e.target.closest('.ineezy-md-star') : e.target;
+      if (!btn || !btn.getAttribute('data-v')) return;
+      selRating = parseInt(btn.getAttribute('data-v'), 10);
+      [].forEach.call(starsEl.querySelectorAll('.ineezy-md-star'), function (s, i) {
+        s.classList.toggle('on', i < selRating);
+      });
+    });
+
+    // Load products
+    fetch(base + '/api/public/shop-products', { headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.json(); })
+      .then(function (json) {
+        var products = (json.data || []).slice(0, 20);
+        var listEl = document.getElementById('ineezy-md-products');
+        if (!listEl) return;
+        if (!products.length) { listEl.innerHTML = '<div style="font-size:13px;color:#ABA69F">No products found.</div>'; return; }
+        listEl.innerHTML = products.map(function (p) {
+          var checked = String(p.id) === String(preProductId) ? ' checked' : '';
+          return '<label class="ineezy-md-product">' +
+            '<input type="checkbox" name="ir-product" value="' + sanitize(String(p.id)) + '" data-title="' + sanitize(p.title || '') + '" data-handle="' + sanitize(p.handle || '') + '"' + checked + '>' +
+            (p.image ? '<img src="' + sanitize(p.image) + '" alt="" loading="lazy">' : '') +
+            '<div><div class="ineezy-md-product-name">' + sanitize(p.title || '') + '</div>' +
+            (p.price ? '<div class="ineezy-md-product-price">' + sanitize(p.currency || '') + ' ' + sanitize(String(p.price)) + '</div>' : '') +
+            '</div></label>';
+        }).join('');
+      })
+      .catch(function () {
+        var listEl2 = document.getElementById('ineezy-md-products');
+        if (listEl2) listEl2.innerHTML = '<div style="font-size:13px;color:#ABA69F">Could not load products.</div>';
+      });
+
+    // Photo upload
+    document.getElementById('ineezy-md-file').addEventListener('change', function (e) {
+      selFiles = selFiles.concat(Array.prototype.slice.call(e.target.files || [])).slice(0, 5);
+      renderPreviews();
+      e.target.value = '';
+    });
+
+    function renderPreviews() {
+      var wrap = document.getElementById('ineezy-md-previews');
+      if (!wrap) return;
+      wrap.innerHTML = selFiles.map(function (f, i) {
+        return '<div class="ineezy-md-photo-wrap">' +
+          '<img src="' + URL.createObjectURL(f) + '" alt="">' +
+          '<button type="button" class="ineezy-md-photo-rm" data-i="' + i + '">×</button>' +
+          '</div>';
+      }).join('');
+      [].forEach.call(wrap.querySelectorAll('.ineezy-md-photo-rm'), function (btn) {
+        btn.addEventListener('click', function () {
+          selFiles.splice(parseInt(btn.getAttribute('data-i'), 10), 1);
+          renderPreviews();
+        });
+      });
+    }
+
+    // Submit
+    document.getElementById('ineezy-md-submit').addEventListener('click', function () {
+      if (!selRating) { alert('Please select a star rating.'); return; }
+      var name = (document.getElementById('ineezy-md-name').value || '').trim();
+      if (!name) { alert('Please enter your name.'); return; }
+      var reviewText = (document.getElementById('ineezy-md-review').value || '').trim();
+      if (!reviewText) { alert('Please write your review.'); return; }
+
+      var checkedProducts = [];
+      [].forEach.call(document.querySelectorAll('input[name="ir-product"]:checked'), function (cb) {
+        checkedProducts.push({ product_id: cb.value, product_title: cb.getAttribute('data-title') || '', product_handle: cb.getAttribute('data-handle') || '' });
+      });
+
+      var submitBtn = document.getElementById('ineezy-md-submit');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting…';
+
+      var fd = new FormData();
+      fd.append('shop_domain', 'default');
+      fd.append('customer_name', name);
+      fd.append('customer_email', (document.getElementById('ineezy-md-email').value || '').trim());
+      fd.append('rating', String(selRating));
+      fd.append('title', (document.getElementById('ineezy-md-rtitle').value || '').trim());
+      fd.append('review', reviewText);
+      fd.append('products', JSON.stringify(checkedProducts));
+      selFiles.forEach(function (f) { fd.append('images', f); });
+
+      fetch(base + '/api/public/reviews/submit', { method: 'POST', body: fd })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, json: j }; }); })
+        .then(function (res) {
+          if (!res.ok || !res.json.success) throw new Error(res.json.errors ? res.json.errors.join(', ') : (res.json.message || 'Submission failed.'));
+          var body = document.getElementById('ineezy-md-body');
+          if (body) body.innerHTML = '<div class="ineezy-md-success"><div class="ineezy-md-success-icon">❤️</div><h3>Thank You!</h3><p>Your review has been submitted and will appear after approval.</p></div>';
+        })
+        .catch(function (err) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Review';
+          alert('Error: ' + err.message);
+        });
+    });
+  }
+
+  /* ================================================================
+     WRITE REVIEW BUTTON
+     ================================================================ */
+  function initWriteBtn(el, appUrl) {
+    var productId = el.getAttribute('data-product-id') || '';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'ineezy-write-btn';
+    btn.textContent = '✎ Write a Review';
+    btn.addEventListener('click', function () { showReviewModal(appUrl, productId); });
+    el.innerHTML = '';
+    el.appendChild(btn);
+  }
+
+  /* ================================================================
+     BOOT
+     ================================================================ */
+  function boot() {
+    // Find any widget that has data-app-url, or fall back to a <meta> tag
+    var appUrlEl = document.querySelector('[data-app-url]');
+    var appUrl = appUrlEl
+      ? appUrlEl.getAttribute('data-app-url')
+      : (document.querySelector('meta[name="ineezy-app-url"]') || {}).content;
+
+    if (!appUrl) {
+      console.warn('[INEEZY Reviews] data-app-url not found. Widgets will not load.');
+      return;
+    }
+
+    var api = buildApi(appUrl);
+
+    // Summary
+    [].forEach.call(document.querySelectorAll('[data-ineezy-summary]'), function (el) {
+      initSummary(el, api);
+    });
+
+    // Review widget
+    [].forEach.call(document.querySelectorAll('[data-ineezy-widget]'), function (el) {
+      initWidget(el, api, appUrl);
+    });
+
+    // Gallery
+    [].forEach.call(document.querySelectorAll('[data-ineezy-gallery]'), function (el) {
+      initGallery(el, api);
+    });
+
+    // Testimonials
+    [].forEach.call(document.querySelectorAll('[data-ineezy-testimonials]'), function (el) {
+      initTestimonials(el, api);
+    });
+
+    // Write-review buttons
+    [].forEach.call(document.querySelectorAll('[data-ineezy-write-btn]'), function (el) {
+      initWriteBtn(el, appUrl);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+
+})();
