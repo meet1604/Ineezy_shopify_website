@@ -19,30 +19,6 @@
       "id": "bg_color",
       "label": "Background Color",
       "default": "#F8F5EA"
-    },
-    {
-      "type": "text",
-      "id": "app_url",
-      "label": "INEEZY App URL",
-      "info": "Leave blank to use the theme's global INEEZY App URL setting."
-    },
-    {
-      "type": "range",
-      "id": "min_rating",
-      "min": 1,
-      "max": 5,
-      "step": 1,
-      "label": "Minimum Star Rating",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "max_reviews",
-      "min": 5,
-      "max": 50,
-      "step": 5,
-      "label": "Max Reviews to Show",
-      "default": 20
     }
   ],
   "blocks": [
@@ -87,7 +63,7 @@
 }
 {% endschema %}
 
-{%- assign ir_app_url = section.settings.app_url | default: settings.ineezy_app_url -%}
+{%- assign ir_app_url = settings.ineezy_app_url -%}
 
 <style>
   .ineezy-avatar-circle {
@@ -106,8 +82,6 @@
 <section
   class="ineezy-testimonial-section"
   data-app-url="{{ ir_app_url | escape }}"
-  data-min-rating="{{ section.settings.min_rating }}"
-  data-max-reviews="{{ section.settings.max_reviews }}"
   style="background-color: {{ section.settings.bg_color }};"
 >
   <div class="container-fluid p-0">
@@ -258,17 +232,13 @@
     var appUrl = root ? root.getAttribute('data-app-url') : '';
     if (!appUrl) { initSlick(); return; }
 
-    var minRating = parseInt(root.getAttribute('data-min-rating'), 10) || 1;
-    var maxReviews = parseInt(root.getAttribute('data-max-reviews'), 10) || 20;
     var base = appUrl.replace(/\/$/, '') + '/api/public';
 
     fetch(base + '/testimonials', { headers: { Accept: 'application/json' } })
       .then(function (r) { return r.json(); })
       .then(function (json) {
         if (!json.success) throw new Error(json.message || 'API error');
-        var items = (json.data || [])
-          .filter(function (t) { return (t.rating || 0) >= minRating; })
-          .slice(0, maxReviews);
+        var items = json.data || [];
 
         if (!items.length) { initSlick(); return; }
 
