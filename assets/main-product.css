@@ -176,7 +176,7 @@ position: relative;
   color: var(--neutral-9) !important;
   font-weight: 500;
 }
-.ineezy-new  .ineezy-product-rating__stars{
+.ineezy-new  .ineezy-product-rating__stars svg{
     width: 16px;
   height: 16px;
 }
