@@ -245,13 +245,27 @@
     },
     "new_ineezy_testimonial_slider_LmRFb8": {
       "type": "new-ineezy-testimonial-slider",
+      "blocks": {
+        "testimonial_VHyW7r": {
+          "type": "testimonial",
+          "settings": {
+            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
+            "name": "Anisha Chaudhry",
+            "rating": 4
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_VHyW7r"
+      ],
       "name": "N_WEB Testimonial Slider",
       "settings": {
         "subtitle": "SHOP BY THE CATEGORY",
         "title": "What Our Customers Say",
         "bg_color": "#f8f5ea",
-        "review_product": "lavender-heartlight-necklace",
-        "min_rating": 4
+        "app_url": "",
+        "min_rating": 4,
+        "max_reviews": 20
       }
     },
     "ineezy_testimonials_7ireER": {
@@ -261,7 +275,7 @@
         "app_url": "https://shopify-instagram.onrender.com",
         "heading": "What Our Customers Say",
         "subheading": "Real reviews from real customers",
-        "background_color": "#FAFAF8",
+        "background_color": "#fafaf8",
         "padding_top": 60,
         "padding_bottom": 60
       }
