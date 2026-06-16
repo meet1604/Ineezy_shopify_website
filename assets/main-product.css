@@ -172,8 +172,8 @@ position: relative;
   display: flex !important;
   align-items: center;
   gap: 6px;
-    font-size: 16px !important;
-  line-height: 140%
+  width: 16px;
+  height: 16px;
   color: var(--neutral-9) !important;
   font-weight: 500;
 }
