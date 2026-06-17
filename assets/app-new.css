@@ -238,7 +238,7 @@
 .product-title-action{
   display: flex;
   align-items: center;
-  width: 100%;
+  width: auto;
   gap: 16px;
 }
 
