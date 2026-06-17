@@ -3480,7 +3480,7 @@ text-align: center;
     gap: 0 20px;
 }
 .main-single-product .product-title-wrapper .product-title-action .product-title-item{
-    width: 37px;
+    width: 44px;
     height: 37px;
     padding: 10px;
     border-radius: 48px;
@@ -3488,7 +3488,7 @@ text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .main-single-product .product-title-wrapper .product-title-action .product-title-item:hover{
