@@ -133,6 +133,57 @@
 
 
 
+
+.ineezy-new  .btn.btn-primary-outline{
+  background-color: var(--secondary-shade-1);
+  color: var(--white);
+}
+
+.ineezy-new  .btn.btn-primary-outline img{
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.ineezy-new .btn-primary-outline:hover,
+.ineezy-new .btn-primary-outline.btn.active,
+.ineezy-new .btn-primary-outline.btn:active,
+.ineezy-new .btn-primary-outline:focus-visible,
+.ineezy-new .btn-primary-outline:first-child:active
+{
+	 background-color: var(--white);
+	 color: var(--white-color);
+	 outline: none;
+	 box-shadow: unset;
+}
+
+.ineezy-new  .btn-primary-outline:hover img,
+.ineezy-new  .btn-primary-outline.btn.active img,
+.ineezy-new  .btn-primary-outline.btn:active img,
+.ineezy-new  .btn-primary-outline:focus-visible img,
+.ineezy-new  .btn-primary-outline:first-child:active img,
+.ineezy-new  .btn-primary-outline:hover svg,
+.ineezy-new  .btn-primary-outline.btn.active svg,
+.ineezy-new  .btn-primary-outline.btn:active svg,
+.ineezy-new  .btn-primary-outline:focus-visible svg,
+.ineezy-new  .btn-primary-outline:first-child:active svg{
+  filter: brightness(0) saturate(100%) invert(100%) sepia(82%) saturate(0%) hue-rotate(156deg) brightness(115%) contrast(101%);
+}
+ .ineezy-new  .btn-primary-outline.disabled, .ineezy-new  .btn-primary-outline:disabled {
+	 background-color: var(--neutral-6);
+	 color: var(--neutral-8);
+	 outline: none;
+	 box-shadow: unset;
+	 pointer-events: none;
+}
+
+
+
+
+
+
+
+
 .ineezy-new  .btn.btn-white{
   background-color: var(--white);
   color: var(--neutral-black);
@@ -203,7 +254,7 @@
     display: flex !important;
     align-items: center;
     justify-content: center;
-  opacity: 1 !important;
+    opacity: 1 !important;
 }
 
 #wishlisthero-product-page-button-container button:hover{
