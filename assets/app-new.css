@@ -193,7 +193,7 @@
 #wishlisthero-product-page-button-container button{
   
     width: auto !important;
-    max-width: 44px !important;
+    max-width: 100% !important;
     min-width: 48px;
     min-height: auto;
     height: auto !important;
