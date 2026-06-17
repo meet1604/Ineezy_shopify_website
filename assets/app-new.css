@@ -180,6 +180,40 @@
 
 
 
+/* Wishlist Button  */
+#wishlisthero-product-page-button-container button::after,
+#wishlisthero-product-page-button-container button::before{
+  content: none;
+}
+
+
+#wishlisthero-product-page-button-container{
+  padding-top: 0px !important;
+}
+#wishlisthero-product-page-button-container button{
+
+    min-height: auto;
+    height: 37px !important;
+    padding: 10px !important;
+    border-radius: 48px !important;
+    border: 1px solid var(--stock-light) !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  opacity: 1 !important;
+}
+
+#wishlisthero-product-page-button-container button:hover{
+    background-color: var(--primary-color) !important;
+    border: 1px solid var(--stock-light) !important;
+    
+}
+#wishlisthero-product-page-button-container button:hover svg{
+  color: #fff !important;
+}
+/* Wishlist Button  */
+
+
 
 /* Header */
 .header__icon--menu .icon{
