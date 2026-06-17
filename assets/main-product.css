@@ -213,22 +213,6 @@ position: relative;
 }
 
 
-
-.ineezy-new #wishlisthero-product-page-button-container button {
-    width: 48px !important;
-    max-width: 48px !important;
-    min-width: 48px;
-    min-height: auto;
-    height: 48px !important;
-    padding: 10px !important;
-    border-radius: 48px !important;
-    border: 0px solid var(--stock-light) !important;
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    opacity: 1 !important;
-}
-
 .ineezy-new #wishlisthero-product-page-button-container button svg{
   width: 24px;
   height: 24px;
