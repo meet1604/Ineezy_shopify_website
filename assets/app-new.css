@@ -191,9 +191,12 @@
   padding-top: 0px !important;
 }
 #wishlisthero-product-page-button-container button{
-
+  
+    width: auto !important;
+    max-width: 44px !important;
+    min-width: 44px;
     min-height: auto;
-    height: 37px !important;
+    height: 44px !important;
     padding: 10px !important;
     border-radius: 48px !important;
     border: 1px solid var(--stock-light) !important;
