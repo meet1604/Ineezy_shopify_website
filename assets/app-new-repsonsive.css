@@ -437,7 +437,7 @@
     .ineezy-new .buy-action-wrapper {
         flex-direction: column;
     }
-    .ineezy-new .buy-action-wrapper .product__info-container .product-form{
+    .ineezy-new .product__info-container .product-form{
         margin-bottom: 0px;
     }
     .ineezy-new  #wishlisthero-product-page-button-container > div{
