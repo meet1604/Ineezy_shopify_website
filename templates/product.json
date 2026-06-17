@@ -57,7 +57,6 @@
         },
         "share": {
           "type": "share",
-          "disabled": true,
           "settings": {
             "share_label": "Share"
           }
@@ -94,11 +93,6 @@
             "description": "Designed for everyday wear."
           }
         },
-        "judge_me_reviews_preview_badge_Kz4xqa": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "disabled": true,
-          "settings": {}
-        },
         "wishlist_hero_custom_product_button_gKF7iE": {
           "type": "shopify://apps/wishlist-hero/blocks/custom-product-button/a9a5079b-59e8-47cb-b659-ecf1c60b9b72",
           "settings": {
@@ -129,7 +123,6 @@
         "icon_with_text_EiamU6",
         "icon_with_text_zaXi4K",
         "icon_with_text_WzWWzR",
-        "judge_me_reviews_preview_badge_Kz4xqa",
         "wishlist_hero_custom_product_button_gKF7iE"
       ],
       "settings": {
