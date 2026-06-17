@@ -135,8 +135,9 @@
 
 
 .ineezy-new  .btn.btn-primary-outline{
-  background-color: var(--secondary-shade-1);
-  color: var(--white);
+  background-color: var(--white);
+  border-color: var(--secondary-shade-1);
+  color: var(--secondary-shade-1);
 }
 
 .ineezy-new  .btn.btn-primary-outline img{
@@ -152,7 +153,7 @@
 .ineezy-new .btn-primary-outline:first-child:active
 {
 	 background-color: var(--white);
-	 color: var(--white-color);
+	 color: var(--secondary-shade-1);
 	 outline: none;
 	 box-shadow: unset;
 }
