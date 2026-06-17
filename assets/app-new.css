@@ -233,6 +233,11 @@
 
 
 /* Wishlist Button  */
+
+.product-title-action{
+  display: flex;
+  align-items: center;
+}
 #wishlisthero-product-page-button-container button::after,
 #wishlisthero-product-page-button-container button::before{
   content: none;
