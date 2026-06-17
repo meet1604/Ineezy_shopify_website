@@ -242,9 +242,7 @@
   gap: 16px;
 }
 
-.product-title-action > div{
-  width: 100% !important;
-}
+
 #wishlisthero-product-page-button-container button::after,
 #wishlisthero-product-page-button-container button::before{
   content: none;
