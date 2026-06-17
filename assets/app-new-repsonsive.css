@@ -437,9 +437,14 @@
     .buy-action-wrapper {
         flex-direction: column;
     }
+    .buy-action-wrapper .product__info-container .product-form{
+        margin-bottom: 0px;
+    }
     #wishlisthero-product-page-button-container > div{
         width: 100%;
     }
+
+    
 }
 
 
