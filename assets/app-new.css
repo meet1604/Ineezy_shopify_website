@@ -168,7 +168,7 @@
 .ineezy-new  .btn-primary-outline.btn:active svg,
 .ineezy-new  .btn-primary-outline:focus-visible svg,
 .ineezy-new  .btn-primary-outline:first-child:active svg{
-  filter: brightness(0) saturate(100%) invert(100%) sepia(82%) saturate(0%) hue-rotate(156deg) brightness(115%) contrast(101%);
+  /* filter: brightness(0) saturate(100%) invert(100%) sepia(82%) saturate(0%) hue-rotate(156deg) brightness(115%) contrast(101%); */
 }
  .ineezy-new  .btn-primary-outline.disabled, .ineezy-new  .btn-primary-outline:disabled {
 	 background-color: var(--neutral-6);
