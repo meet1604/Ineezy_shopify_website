@@ -443,6 +443,9 @@
     .ineezy-new  #wishlisthero-product-page-button-container > div{
         width: 100%;
     }
+    .ineezy-new  #wishlisthero-product-page-button-container .btn{
+        width: 100%
+    }
 
     
 }
