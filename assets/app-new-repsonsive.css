@@ -438,7 +438,7 @@
         flex-direction: column;
     }
     .ineezy-new .product__info-container .product-form{
-        margin-bottom: 0px;
+        margin: 0px;
     }
     .ineezy-new  #wishlisthero-product-page-button-container > div{
         width: 100%;
