@@ -1012,10 +1012,13 @@
       var productTitle = {{ product.title | json }};
       var imageUrl     = '{{ product.featured_image | img_url: "1200x1200" }}';
 
+      var isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
       btn.addEventListener('click', function (e) {
         e.stopPropagation();
 
-        if (navigator.share) {
+        // Native share only on mobile devices
+        if (isMobile && navigator.share) {
           var shareData = { title: productTitle, url: productUrl };
           if (imageUrl && typeof navigator.canShare === 'function') {
             fetch(imageUrl)
@@ -1034,6 +1037,7 @@
           return;
         }
 
+        // Desktop: toggle dropdown
         if (dropdown) dropdown.classList.toggle('open');
       });
 
