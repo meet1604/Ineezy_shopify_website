@@ -152,7 +152,7 @@
 .ineezy-new .btn-primary-outline:focus-visible,
 .ineezy-new .btn-primary-outline:first-child:active
 {
-	 background-color: var(----secondary-shade-1);
+	 background-color: var(--secondary-shade-1);
 	 color: var(--white);
 	 outline: none;
 	 box-shadow: unset;
