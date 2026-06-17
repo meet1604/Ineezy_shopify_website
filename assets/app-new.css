@@ -234,7 +234,7 @@
 
 /* Wishlist Button  */
 
-.buy-action-wrapper,
+
 .product-title-action{
   display: flex;
   align-items: center;
@@ -242,6 +242,15 @@
   gap: 16px;
 }
 
+.buy-action-wrapper {
+   display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+}
+.buy-action-wrapper > div{
+  width: 100%;
+}
 
 #wishlisthero-product-page-button-container button::after,
 #wishlisthero-product-page-button-container button::before{
