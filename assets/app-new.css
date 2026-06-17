@@ -194,9 +194,9 @@
   
     width: auto !important;
     max-width: 44px !important;
-    min-width: 44px;
+    min-width: 48px;
     min-height: auto;
-    height: 44px !important;
+    height: auto !important;
     padding: 12px 24px !important;
     border-radius: 48px !important;
     border: 1px solid var(--stock-light) !important;
