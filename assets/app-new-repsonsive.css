@@ -433,6 +433,10 @@
          mask-image: linear-gradient( to bottom, transparent 0%, rgba(0,0,0,0.4) 65%, black 100%);
 
     }
+
+    .buy-action-wrapper {
+        flex-direction: column;
+    }
 }
 
 
