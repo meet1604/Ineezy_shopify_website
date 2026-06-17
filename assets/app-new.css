@@ -237,6 +237,11 @@
 .product-title-action{
   display: flex;
   align-items: center;
+  width: 100%
+}
+
+.product-title-action .btn{
+  width: 100% !important;
 }
 #wishlisthero-product-page-button-container button::after,
 #wishlisthero-product-page-button-container button::before{
