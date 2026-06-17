@@ -248,7 +248,7 @@
   width: 100%;
   gap: 16px;
 }
-.buy-action-wrapper > div{
+.buy-action-wrapper .main-buy-button{
   width: 100%;
 }
 
