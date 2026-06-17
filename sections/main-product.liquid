@@ -189,11 +189,28 @@
                       ></button>
                     </div>
 
-                    {% comment %}
-                      <div class="product-title-item" >
-                        <i class="svg-wrapper">{{ 'new-icon-share.svg' | inline_asset_content }}</i>
+                    <div class="product-share-wrap">
+                      <button class="product-title-item product-share-btn" type="button" aria-label="Share product" title="Share">
+                        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M18 8C19.6569 8 21 6.65685 21 5C21 3.34315 19.6569 2 18 2C16.3431 2 15 3.34315 15 5C15 5.12548 15.0077 5.24917 15.0227 5.37061L8.08261 9.19946C7.54305 8.46705 6.8246 8 6 8C4.34315 8 3 9.34315 3 11C3 12.6569 4.34315 14 6 14C6.82489 14 7.54358 13.5327 8.08319 12.8L15.0228 16.6294C15.0077 16.7508 15 16.8745 15 17C15 18.6569 16.3431 20 18 20C19.6569 20 21 18.6569 21 17C21 15.3431 19.6569 14 18 14C17.1754 14 16.4569 14.4673 15.9172 15.2L8.97737 11.3706C8.99234 11.2492 9 11.1255 9 11C9 10.8745 8.99234 10.7508 8.97737 10.6294L15.9172 6.80005C16.4569 7.53295 17.1754 8 18 8Z" fill="currentColor"/>
+                        </svg>
+                      </button>
+                      <div class="product-share-dropdown" id="productShareDropdown-{{ section.id }}">
+                        <a href="https://wa.me/?text={{ product.title | url_encode }}%0A{{ product.url | prepend: request.origin | url_encode }}" target="_blank" rel="noopener noreferrer" class="share-opt">
+                          <svg width="16" height="16" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg" fill="#25D366"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-23.1-115-65-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+                          WhatsApp
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ product.url | prepend: request.origin | url_encode }}" target="_blank" rel="noopener noreferrer" class="share-opt">
+                          <svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                          Facebook
+                        </a>
+                        <button class="share-opt share-copy-btn" type="button">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.828 10.172a4 4 0 0 0-5.656 0l-4 4a4 4 0 1 0 5.656 5.656l1.102-1.101m-.758-4.899a4 4 0 0 0 5.656 0l4-4a4 4 0 0 0-5.656-5.656l-1.1 1.1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                          Copy Link
+                        </button>
+                        <span class="share-copied-msg">&#10003; Copied!</span>
                       </div>
-                    {% endcomment %}
+                    </div>
                   </div>
                 </div>
 
@@ -982,6 +999,65 @@
 
     <script type="application/ld+json">
       {{ product | structured_data }}
+    </script>
+
+    <script>
+    (function () {
+      var sid        = '{{ section.id }}';
+      var btn        = document.querySelector('#shopify-section-' + sid + ' .product-share-btn');
+      var dropdown   = document.getElementById('productShareDropdown-' + sid);
+      if (!btn) return;
+
+      var productUrl   = {{ product.url | prepend: request.origin | json }};
+      var productTitle = {{ product.title | json }};
+      var imageUrl     = '{{ product.featured_image | img_url: "1200x1200" }}';
+
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+
+        if (navigator.share) {
+          var shareData = { title: productTitle, url: productUrl };
+          if (imageUrl && typeof navigator.canShare === 'function') {
+            fetch(imageUrl)
+              .then(function (r) { return r.blob(); })
+              .then(function (blob) {
+                var file = new File([blob], 'product.jpg', { type: blob.type });
+                if (navigator.canShare({ files: [file] })) {
+                  return navigator.share({ files: [file], title: productTitle, url: productUrl });
+                }
+                return navigator.share(shareData);
+              })
+              .catch(function () { navigator.share(shareData).catch(function () {}); });
+          } else {
+            navigator.share(shareData).catch(function () {});
+          }
+          return;
+        }
+
+        if (dropdown) dropdown.classList.toggle('open');
+      });
+
+      if (dropdown) {
+        var copyBtn   = dropdown.querySelector('.share-copy-btn');
+        var copiedMsg = dropdown.querySelector('.share-copied-msg');
+        if (copyBtn) {
+          copyBtn.addEventListener('click', function () {
+            navigator.clipboard.writeText(productUrl).then(function () {
+              if (copiedMsg) copiedMsg.style.display = 'block';
+              setTimeout(function () {
+                if (copiedMsg) copiedMsg.style.display = 'none';
+                dropdown.classList.remove('open');
+              }, 2000);
+            });
+          });
+        }
+        document.addEventListener('click', function (e) {
+          if (!btn.contains(e.target) && !dropdown.contains(e.target)) {
+            dropdown.classList.remove('open');
+          }
+        });
+      }
+    })();
     </script>
   </div>
 </product-info>
