@@ -240,7 +240,7 @@
   width: 100%
 }
 
-.product-title-action .btn{
+.product-title-action > div{
   width: 100% !important;
 }
 #wishlisthero-product-page-button-container button::after,
