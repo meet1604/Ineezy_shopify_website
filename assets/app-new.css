@@ -234,6 +234,7 @@
 
 /* Wishlist Button  */
 
+.buy-action-wrapper,
 .product-title-action{
   display: flex;
   align-items: center;
