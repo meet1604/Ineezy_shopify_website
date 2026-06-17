@@ -136,7 +136,7 @@
 
 .ineezy-new  .btn.btn-primary-outline{
   background-color: var(--white);
-  border-color: var(--secondary-shade-1);
+  border: 1px solid var(--secondary-shade-1);
   color: var(--secondary-shade-1);
 }
 
