@@ -250,9 +250,6 @@ position: relative;
   align-items: center;
 }
 
-.ineezy-new .product-share-btn {
-  background: var(--neutral-2) !important;
-}
 
 .ineezy-new .product-share-dropdown {
   display: none;
