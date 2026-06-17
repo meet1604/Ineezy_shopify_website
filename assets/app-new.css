@@ -77,8 +77,8 @@
   margin-bottom: 16px;
 }
 
-.ineezy-new  .btn.btn-round{
-  border-radius: 50px;
+.ineezy-new  .btn-round{
+  border-radius: 50px !important;
 }
 .ineezy-new  .btn.btn-primary{
   background-color: var(--secondary-shade-1);
