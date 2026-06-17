@@ -440,6 +440,7 @@
     .ineezy-new .product__info-container .product-form{
         margin: 0px;
     }
+    .ineezy-new  .product-title-action,
     .ineezy-new  .product-title-action > div,
     .ineezy-new  #wishlisthero-product-page-button-container > div{
         width: 100%;
