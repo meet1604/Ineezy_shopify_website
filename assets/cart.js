@@ -43,7 +43,7 @@ class CartItems extends HTMLElement {
   }
 
   resetQuantityInput(id) {
-    const input = this.querySelector(`#Quantity-${id}`);
+    const input = this.querySelector(`#Quantity-${id}`) || this.querySelector(`#Drawer-quantity-${id}`);
     input.value = input.getAttribute('value');
     this.isEnterPressed = false;
   }
@@ -60,7 +60,9 @@ class CartItems extends HTMLElement {
     const index = event.target.dataset.index;
     let message = '';
 
-    if (inputValue < event.target.dataset.min) {
+    if (inputValue === 0) {
+      // Quantity 0 always removes the line item, so the minimum order quantity doesn't apply.
+    } else if (inputValue < event.target.dataset.min) {
       message = window.quickOrderListStrings.min_error.replace('[min]', event.target.dataset.min);
     } else if (inputValue > parseInt(event.target.max)) {
       message = window.quickOrderListStrings.max_error.replace('[max]', event.target.max);
