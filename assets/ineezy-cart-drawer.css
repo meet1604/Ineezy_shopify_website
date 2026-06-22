@@ -211,12 +211,12 @@ width: 24px;
     gap: 8px
   }
   .ineezy-new .ineezy-cart-card__bottom .cart-item__totals  .cart-item__discounted-prices .price.cart-item__old-price{
-    font-size: 12px;
+    font-size: 10px;
     line-height: 140%;
     color: var(--neutral-6);
   }
   .ineezy-new .ineezy-cart-card__bottom .cart-item__totals  .cart-item__discounted-prices .price {
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     line-height: 140%;
     color: var(--neutral-black);
