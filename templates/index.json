@@ -73,8 +73,8 @@
       "type": "new-ineezy-category",
       "name": "N_WEB Ineezy Category Showcase",
       "settings": {
-        "subtitle": "SHOP BY THE CATEGORY",
-        "title": "EVERYDAY DEMIFINE JEWELLERY",
+        "subtitle": "",
+        "title": "",
         "women_title": "For Her",
         "women_desc": "Discover the latest designs crafted to redefine elegance.",
         "women_link": "",
@@ -234,7 +234,7 @@
       "settings": {
         "heading": "Shop our Instagram moments",
         "subheading": "Curated posts and reels selected from the InstaLayer dashboard.",
-        "api_base_url": "https://shopify-instagram.onrender.com/",
+        "api_base_url": "https://admin.ineezy.in",
         "layout": "slider",
         "columns_desktop": 4,
         "columns_mobile": 2,
@@ -245,19 +245,6 @@
     },
     "new_ineezy_testimonial_slider_LmRFb8": {
       "type": "new-ineezy-testimonial-slider",
-      "blocks": {
-        "testimonial_bFrXLM": {
-          "type": "testimonial",
-          "settings": {
-            "review": "Beautiful necklace! Completely in love with the design and will definitely buy more from Ineezy!",
-            "name": "Anisha Chaudhry",
-            "rating": 4
-          }
-        }
-      },
-      "block_order": [
-        "testimonial_bFrXLM"
-      ],
       "name": "N_WEB Testimonial Slider",
       "settings": {
         "subtitle": "SHOP BY THE CATEGORY",
