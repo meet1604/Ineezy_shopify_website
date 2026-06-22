@@ -1175,7 +1175,7 @@ body.ineezy-new span.jdgm-star{
   height: stretch;
 }
 .ineezy-new .testimonial-slider .slick-slide > div{
-  height: auto;
+  height: fit-content;
 } 
 
 .ineezy-new .testimonial-item {
