@@ -183,7 +183,7 @@ width: 24px;
   width: fit-content;
   margin-top: 0px;
 }
-.ineezy-new .discounts  .discounts__discount{
+.ineezy-new .discounts .discounts__discount{
   margin-bottom: 0px;
   font-size: 14px;
   line-height: 140%;
@@ -195,7 +195,7 @@ width: 24px;
   
 }
 
-.ineezy-new .discounts  .discounts__discount .icon-discount{
+.ineezy-new .discounts .discounts__discount .icon-discount{
      color: var(--primary);
 }
 
