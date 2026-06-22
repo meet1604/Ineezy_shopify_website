@@ -1258,6 +1258,7 @@ body.ineezy-new span.jdgm-star{
 
 .ineezy-new .testimonial-slider {
   margin-bottom: 24px;
+  min-height: fit-content;
 }
 
 .ineezy-new .testimonial-slider-bottom {
