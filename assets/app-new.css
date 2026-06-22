@@ -246,7 +246,7 @@
    display: flex;
   align-items: center;
   width: 100%;
-  gap: 16px;
+  gap: 4px;
 }
 .buy-action-wrapper .main-buy-button{
   width: 100%;
