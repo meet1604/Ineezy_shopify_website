@@ -1205,10 +1205,7 @@ body.ineezy-new span.jdgm-star{
   line-height: 140%;
   margin-bottom: 24px;
 
-   display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
-  overflow: hidden;
+
 }
 
 /* BOTTOM */
