@@ -116,8 +116,8 @@
       ],
       "name": "N_WEB Ineezy Best Seller Tabs",
       "settings": {
-        "title": "BEST SELLER COLLECTION",
-        "subtitle": "",
+        "title": "Our Best Seller",
+        "subtitle": "Shop Our Best Seller",
         "bg_color": "#ffffff",
         "layout_type": "slider",
         "products_limit": 8,
