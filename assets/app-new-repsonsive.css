@@ -415,7 +415,7 @@
         position: absolute;
         top: 85%;
         transform: translateY(-85%);
-        padding: 0px;
+        padding: 0px 20px;
     }
 
     .offer-banner-image{
