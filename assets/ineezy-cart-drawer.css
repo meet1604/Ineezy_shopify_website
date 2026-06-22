@@ -3,6 +3,12 @@
     padding: 0px;
 }
 
+.ineezy-cart-card.is-removing {
+  opacity: 0.3;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
 .ineezy-new .drawer__header {
   padding: 16px;
   border-bottom: 1px solid var(--neutral-3);

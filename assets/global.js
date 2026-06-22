@@ -261,6 +261,11 @@ class QuantityInput extends HTMLElement {
     if (this.input.dataset.min === previousValue && event.target.name === 'minus') {
       this.input.value = parseInt(this.input.min);
     }
+
+    if (event.target.name === 'minus' && parseInt(this.input.value) === 0) {
+      const cartItemRow = this.closest('.cart-item') || this.closest('.ineezy-cart-card');
+      if (cartItemRow) cartItemRow.classList.add('is-removing');
+    }
   }
 
   validateQtyRules() {
