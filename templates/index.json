@@ -78,8 +78,8 @@
         "women_title": "For Her",
         "women_desc": "Discover the latest designs crafted to redefine elegance.",
         "women_link": "",
-        "men_title": "",
-        "men_desc": "",
+        "men_title": "For Him",
+        "men_desc": "Discover the latest designs crafted to redefine elegance.",
         "men_link": "",
         "women_collections": [
           "necklace",
@@ -87,7 +87,12 @@
           "earrings",
           "rings"
         ],
-        "men_collections": []
+        "men_collections": [
+          "mens-chain",
+          "mens-earring",
+          "mens-rings",
+          "mens-kada"
+        ]
       }
     },
     "new_ineezy_best_seller_tabs_ganXRm": {
