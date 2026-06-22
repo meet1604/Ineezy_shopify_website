@@ -106,7 +106,7 @@
           settings: {
             slidesToShow: parseInt(mobileColumns) || 1,
             arrows: false,
-            dots: true,
+            dots: false,
           },
         },
       ],
