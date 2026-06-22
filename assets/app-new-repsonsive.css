@@ -164,6 +164,7 @@
 
   .ineezy-new .best-seller-tabs {
     overflow-x: auto;
+    overflow-y: hidden;
     flex-wrap: nowrap;
   }
 
