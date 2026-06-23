@@ -258,7 +258,9 @@
         padding: 16px;
         border-radius: 16px;
         background-image: var(--hero-bg-mobile);
-        justify-content: flex-end;
+        justify-content: center !important;
+        align-items: flex-end !important;
+        text-align: center;
     }
     .ineezy-new .header__inline-menu{
         order: 3;
