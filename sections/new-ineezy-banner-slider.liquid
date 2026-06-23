@@ -98,9 +98,11 @@
         {%- assign overlay_bg = overlay_solid -%}
       {%- endif -%}
 
+      {%- assign overlay_bg_mobile = 'linear-gradient(to top, ' | append: overlay_solid | append: ' 0%, ' | append: overlay_solid | append: ' 25%, ' | append: overlay_clear | append: ' 85%)' -%}
+
       <div class="slide-item">
         <div class="hero-bg"
-          style="--hero-bg-desktop: {{ overlay_bg }}, url('{{ block.settings.bg_image | image_url: width: 1800 }}'); --hero-bg-mobile: {{ overlay_bg }}, url('{{ mobile_bg_image | image_url: width: 900 }}'); justify-content: {{ justify }};">
+          style="--hero-bg-desktop: {{ overlay_bg }}, url('{{ block.settings.bg_image | image_url: width: 1800 }}'); --hero-bg-mobile: {{ overlay_bg_mobile }}, url('{{ mobile_bg_image | image_url: width: 900 }}'); justify-content: {{ justify }};">
 
           <div class="hero-content" style="text-align: {{ text_align }};">
             <p class="subtitle" style="color: {{ block.settings.subtitle_color }};">{{ block.settings.subtitle }}</p>
