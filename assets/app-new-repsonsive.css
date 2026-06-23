@@ -320,7 +320,7 @@
 
     .ineezy-new .header-logo,
     .ineezy-new .header__icons{
-        padding: 8px;
+        padding: 8px 16px;
         background-color: #fafafa;
     }
     .ineezy-new .main-header.header .list-menu .list-menu__item:hover{
