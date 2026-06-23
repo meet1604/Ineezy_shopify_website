@@ -7,6 +7,12 @@
       "name": "Slide",
       "settings": [
         { "type": "image_picker", "id": "bg_image", "label": "Background Image" },
+        {
+          "type": "image_picker",
+          "id": "bg_image_mobile",
+          "label": "Mobile Background Image",
+          "info": "Shown below 767px screen width. Falls back to the desktop image if left empty."
+        },
         { "type": "text", "id": "subtitle", "label": "Subtitle", "default": "More Shine, Less Spend" },
         { "type": "text", "id": "title", "label": "Title", "default": "CHARM YOUR WAY" },
         { "type": "text", "id": "button_text", "label": "Button Text", "default": "BUY 2, GET 1 FREE" },
@@ -79,6 +85,7 @@
         {%- assign btn_margin = '0' -%}
       {%- endif -%}
 
+      {%- assign mobile_bg_image = block.settings.bg_image_mobile | default: block.settings.bg_image -%}
       {%- assign alpha = block.settings.overlay_opacity | times: 1.0 | divided_by: 100 -%}
       {%- assign overlay_solid = block.settings.overlay_color | color_modify: 'alpha', alpha -%}
       {%- assign overlay_clear = block.settings.overlay_color | color_modify: 'alpha', 0 -%}
@@ -93,7 +100,7 @@
 
       <div class="slide-item">
         <div class="hero-bg"
-          style="background-image: {{ overlay_bg }}, url('{{ block.settings.bg_image | image_url: width: 1800 }}'); justify-content: {{ justify }};">
+          style="--hero-bg-desktop: {{ overlay_bg }}, url('{{ block.settings.bg_image | image_url: width: 1800 }}'); --hero-bg-mobile: {{ overlay_bg }}, url('{{ mobile_bg_image | image_url: width: 900 }}'); background-image: var(--hero-bg-desktop); justify-content: {{ justify }};">
 
           <div class="hero-content" style="text-align: {{ text_align }};">
             <p class="subtitle" style="color: {{ block.settings.subtitle_color }};">{{ block.settings.subtitle }}</p>
