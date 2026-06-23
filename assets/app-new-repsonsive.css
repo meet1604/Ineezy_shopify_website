@@ -253,6 +253,10 @@
         .ineezy-new .hero-content {
         max-width: 100%;
     }
+    .ineezy-new .hero-content .btn{
+        display: block;
+        margin: 0 auto;
+    }
     .ineezy-new .hero-bg {
         height: 400px;
         padding: 16px;
