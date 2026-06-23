@@ -16,6 +16,7 @@
           "type": "slide",
           "settings": {
             "bg_image": "shopify://shop_images/ineezy-banner-3.3.png",
+            "bg_image_mobile": "shopify://shop_images/ChatGPT_Image_May_28_2026_01_35_36_PM_2.png",
             "subtitle": "Everyday Luxury",
             "title": "Delicate Necklaces, Endless Elegance",
             "button_text": "Explore Our Collection",
@@ -32,6 +33,7 @@
           "type": "slide",
           "settings": {
             "bg_image": "shopify://shop_images/Firefly.png",
+            "bg_image_mobile": "shopify://shop_images/mob_1.png",
             "subtitle": "New Summer Collection",
             "title": "Jewelry That Blooms With You",
             "button_text": "Explore Our Collection",
@@ -48,6 +50,7 @@
           "type": "slide",
           "settings": {
             "bg_image": "shopify://shop_images/image_73.png",
+            "bg_image_mobile": "shopify://shop_images/mob_3.png",
             "subtitle": "Timeless Necklaces",
             "title": "A Necklace as Unique as You",
             "button_text": "Explore Our Collection",
