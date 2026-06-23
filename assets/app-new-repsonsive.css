@@ -266,6 +266,7 @@
         justify-content: center !important;
         align-items: flex-end !important;
         text-align: center;
+        background-position: bottom;
     }
     .ineezy-new .header__inline-menu{
         order: 3;
