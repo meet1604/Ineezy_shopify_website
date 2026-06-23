@@ -258,6 +258,7 @@
         padding: 16px;
         border-radius: 16px;
         background-image: var(--hero-bg-mobile);
+        justify-content: flex-end;
     }
     .ineezy-new .header__inline-menu{
         order: 3;
