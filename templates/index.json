@@ -74,6 +74,7 @@
     },
     "new_ineezy_category_mNfE8d": {
       "type": "new-ineezy-category",
+      "disabled": true,
       "name": "N_WEB Ineezy Category Showcase",
       "settings": {
         "subtitle": "",
@@ -96,6 +97,21 @@
           "mens-rings",
           "mens-kada"
         ]
+      }
+    },
+    "instagram_feed_Hn84Q6": {
+      "type": "instagram-feed",
+      "name": "N_WEB Instagram Feed",
+      "settings": {
+        "heading": "Shop our Instagram moments",
+        "subheading": "Curated posts and reels selected from the InstaLayer dashboard.",
+        "api_base_url": "https://admin.ineezy.in",
+        "layout": "slider",
+        "columns_desktop": 4,
+        "columns_mobile": 2,
+        "grid_gap": 18,
+        "autoplay_reels": true,
+        "enable_dark_mode": false
       }
     },
     "new_ineezy_best_seller_tabs_ganXRm": {
@@ -136,6 +152,7 @@
     },
     "new_ineezy_offer_banner_LTwwMU": {
       "type": "new-ineezy-offer-banner",
+      "disabled": true,
       "name": "N_WEB Ineezy Offer Banner",
       "settings": {
         "desk_banner_image": "shopify://shop_images/Firefly.png",
@@ -236,21 +253,6 @@
       "name": "N_WEB Ineezy Feature Boxes",
       "settings": {}
     },
-    "instagram_feed_Hn84Q6": {
-      "type": "instagram-feed",
-      "name": "N_WEB Instagram Feed",
-      "settings": {
-        "heading": "Shop our Instagram moments",
-        "subheading": "Curated posts and reels selected from the InstaLayer dashboard.",
-        "api_base_url": "https://admin.ineezy.in",
-        "layout": "slider",
-        "columns_desktop": 4,
-        "columns_mobile": 2,
-        "grid_gap": 18,
-        "autoplay_reels": true,
-        "enable_dark_mode": false
-      }
-    },
     "new_ineezy_testimonial_slider_LmRFb8": {
       "type": "new-ineezy-testimonial-slider",
       "name": "N_WEB Testimonial Slider",
@@ -264,11 +266,11 @@
   "order": [
     "new_ineezy_banner_slider_D9mzKP",
     "new_ineezy_category_mNfE8d",
+    "instagram_feed_Hn84Q6",
     "new_ineezy_best_seller_tabs_ganXRm",
     "new_ineezy_offer_banner_LTwwMU",
     "new_ineezy_best_seller_tabs_h7xF88",
     "new_ineezy_feature_boxes_iwj9WA",
-    "instagram_feed_Hn84Q6",
     "new_ineezy_testimonial_slider_LmRFb8"
   ]
 }
