@@ -28,15 +28,15 @@
 }
 .ineezy-new .drawer__header .drawer__heading{
   margin: 0;
-  font-size: 24px;
+  font-size: 16px;
   line-height: 140%;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--neutral-black);
 }
 
 .ineezy-new .ineezy-cart-count {
   color: var(--neutral-8);
-  font-size: 20px;
+  font-size: 16px;
   line-height: 140%;
   margin-bottom: 0px;
 }

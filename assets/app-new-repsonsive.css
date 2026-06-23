@@ -117,7 +117,7 @@
         
     }
     .ineezy-new .hero-bg {
-        height: 500px;
+        height: 400px;
         padding: 24px;
         border-radius: 16px;
     }
@@ -249,7 +249,7 @@
     }
 
     .ineezy-new .hero-bg {
-        height: 500px;
+        height: 400px;
         padding: 16px;
         border-radius: 16px;
         background-image: var(--hero-bg-mobile);
