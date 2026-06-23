@@ -256,7 +256,7 @@
     }
     .ineezy-new .hero-content .btn{
         display: block;
-        margin: 0 auto;
+        margin: 0 auto !important;
     }
     .ineezy-new .hero-bg {
         height: 400px;
