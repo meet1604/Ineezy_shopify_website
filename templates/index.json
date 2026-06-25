@@ -249,7 +249,7 @@
       "settings": {
         "title": "New In Women's",
         "subtitle": "SHOP BY THE CATEGORY",
-        "bg_color": "#ffffff",
+        "bg_color": "#F5F5F5",
         "layout_type": "grid",
         "products_limit": 8,
         "grid_columns": 4,
