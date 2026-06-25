@@ -72,48 +72,6 @@
       "name": "N_WEB Ineezy Hero Slider",
       "settings": {}
     },
-    "new_ineezy_category_mNfE8d": {
-      "type": "new-ineezy-category",
-      "disabled": true,
-      "name": "N_WEB Ineezy Category Showcase",
-      "settings": {
-        "subtitle": "",
-        "title": "",
-        "women_title": "For Her",
-        "women_desc": "Discover the latest designs crafted to redefine elegance.",
-        "women_link": "",
-        "men_title": "For Him",
-        "men_desc": "Discover the latest designs crafted to redefine elegance.",
-        "men_link": "",
-        "women_collections": [
-          "necklace",
-          "bracelet",
-          "earrings",
-          "rings"
-        ],
-        "men_collections": [
-          "mens-chain",
-          "mens-earring",
-          "mens-rings",
-          "mens-kada"
-        ]
-      }
-    },
-    "instagram_feed_Hn84Q6": {
-      "type": "instagram-feed",
-      "name": "N_WEB Instagram Feed",
-      "settings": {
-        "heading": "Shop our Instagram moments",
-        "subheading": "Curated posts and reels selected from the InstaLayer dashboard.",
-        "api_base_url": "https://admin.ineezy.in",
-        "layout": "slider",
-        "columns_desktop": 4,
-        "columns_mobile": 2,
-        "grid_gap": 18,
-        "autoplay_reels": true,
-        "enable_dark_mode": false
-      }
-    },
     "new_ineezy_best_seller_tabs_ganXRm": {
       "type": "new-ineezy-best-seller-tabs",
       "blocks": {
@@ -150,6 +108,32 @@
         "view_more_text": "View More"
       }
     },
+    "new_ineezy_category_mNfE8d": {
+      "type": "new-ineezy-category",
+      "name": "N_WEB Ineezy Category Showcase",
+      "settings": {
+        "subtitle": "",
+        "title": "",
+        "women_title": "For Her",
+        "women_desc": "Discover the latest designs crafted to redefine elegance.",
+        "women_link": "",
+        "men_title": "For Him",
+        "men_desc": "Discover the latest designs crafted to redefine elegance.",
+        "men_link": "",
+        "women_collections": [
+          "necklace",
+          "bracelet",
+          "earrings",
+          "rings"
+        ],
+        "men_collections": [
+          "mens-chain",
+          "mens-earring",
+          "mens-rings",
+          "mens-kada"
+        ]
+      }
+    },
     "new_ineezy_offer_banner_LTwwMU": {
       "type": "new-ineezy-offer-banner",
       "disabled": true,
@@ -169,12 +153,68 @@
         "tab_FEp4V4": {
           "type": "tab",
           "settings": {
+            "tab_title": "CHAIN",
+            "collection": "mens-chain",
+            "view_more_url": ""
+          }
+        },
+        "tab_efe9cL": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "EARRING'S",
+            "collection": "mens-earring",
+            "view_more_url": ""
+          }
+        },
+        "tab_G9dL6h": {
+          "type": "tab",
+          "disabled": true,
+          "settings": {
+            "tab_title": "RING'S",
+            "collection": "rings",
+            "view_more_url": ""
+          }
+        },
+        "tab_tCihq8": {
+          "type": "tab",
+          "disabled": true,
+          "settings": {
+            "tab_title": "BRACELTES",
+            "collection": "bracelet",
+            "view_more_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_FEp4V4",
+        "tab_efe9cL",
+        "tab_G9dL6h",
+        "tab_tCihq8"
+      ],
+      "name": "N_WEB Ineezy Best Seller Tabs",
+      "settings": {
+        "title": "New In Men's",
+        "subtitle": "SHOP BY THE CATEGORY",
+        "bg_color": "#ffffff",
+        "layout_type": "grid",
+        "products_limit": 8,
+        "grid_columns": 4,
+        "show_view_more": true,
+        "view_more_text": "View More"
+      }
+    },
+    "new_ineezy_best_seller_tabs_McjGCT": {
+      "type": "new-ineezy-best-seller-tabs",
+      "blocks": {
+        "tab_pUixXz": {
+          "type": "tab",
+          "settings": {
             "tab_title": "NECKALCE",
             "collection": "necklace",
             "view_more_url": ""
           }
         },
-        "tab_tCihq8": {
+        "tab_E9z9pt": {
           "type": "tab",
           "settings": {
             "tab_title": "BRACELTES",
@@ -182,7 +222,7 @@
             "view_more_url": ""
           }
         },
-        "tab_G9dL6h": {
+        "tab_8rTJgK": {
           "type": "tab",
           "settings": {
             "tab_title": "RING'S",
@@ -190,7 +230,7 @@
             "view_more_url": ""
           }
         },
-        "tab_efe9cL": {
+        "tab_N4BxQT": {
           "type": "tab",
           "settings": {
             "tab_title": "EARRING'S",
@@ -200,10 +240,10 @@
         }
       },
       "block_order": [
-        "tab_FEp4V4",
-        "tab_tCihq8",
-        "tab_G9dL6h",
-        "tab_efe9cL"
+        "tab_pUixXz",
+        "tab_E9z9pt",
+        "tab_8rTJgK",
+        "tab_N4BxQT"
       ],
       "name": "N_WEB Ineezy Best Seller Tabs",
       "settings": {
@@ -253,6 +293,21 @@
       "name": "N_WEB Ineezy Feature Boxes",
       "settings": {}
     },
+    "instagram_feed_Hn84Q6": {
+      "type": "instagram-feed",
+      "name": "N_WEB Instagram Feed",
+      "settings": {
+        "heading": "Shop our Instagram moments",
+        "subheading": "Curated posts and reels selected from the InstaLayer dashboard.",
+        "api_base_url": "https://admin.ineezy.in",
+        "layout": "slider",
+        "columns_desktop": 4,
+        "columns_mobile": 2,
+        "grid_gap": 18,
+        "autoplay_reels": true,
+        "enable_dark_mode": false
+      }
+    },
     "new_ineezy_testimonial_slider_LmRFb8": {
       "type": "new-ineezy-testimonial-slider",
       "name": "N_WEB Testimonial Slider",
@@ -265,12 +320,13 @@
   },
   "order": [
     "new_ineezy_banner_slider_D9mzKP",
-    "new_ineezy_category_mNfE8d",
-    "instagram_feed_Hn84Q6",
     "new_ineezy_best_seller_tabs_ganXRm",
+    "new_ineezy_category_mNfE8d",
     "new_ineezy_offer_banner_LTwwMU",
     "new_ineezy_best_seller_tabs_h7xF88",
+    "new_ineezy_best_seller_tabs_McjGCT",
     "new_ineezy_feature_boxes_iwj9WA",
+    "instagram_feed_Hn84Q6",
     "new_ineezy_testimonial_slider_LmRFb8"
   ]
 }
