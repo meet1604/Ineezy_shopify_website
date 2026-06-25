@@ -147,6 +147,60 @@
         "button_link": ""
       }
     },
+    "new_ineezy_best_seller_tabs_McjGCT": {
+      "type": "new-ineezy-best-seller-tabs",
+      "blocks": {
+        "tab_pUixXz": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "NECKALCE",
+            "collection": "necklace",
+            "view_more_url": ""
+          }
+        },
+        "tab_E9z9pt": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "BRACELTES",
+            "collection": "bracelet",
+            "view_more_url": ""
+          }
+        },
+        "tab_8rTJgK": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "RING'S",
+            "collection": "rings",
+            "view_more_url": ""
+          }
+        },
+        "tab_N4BxQT": {
+          "type": "tab",
+          "settings": {
+            "tab_title": "EARRING'S",
+            "collection": "earrings",
+            "view_more_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_pUixXz",
+        "tab_E9z9pt",
+        "tab_8rTJgK",
+        "tab_N4BxQT"
+      ],
+      "name": "N_WEB Ineezy Best Seller Tabs",
+      "settings": {
+        "title": "New In Women's",
+        "subtitle": "SHOP BY THE CATEGORY",
+        "bg_color": "#F5F5F5",
+        "layout_type": "grid",
+        "products_limit": 8,
+        "grid_columns": 4,
+        "show_view_more": true,
+        "view_more_text": "View More"
+      }
+    },
     "new_ineezy_best_seller_tabs_h7xF88": {
       "type": "new-ineezy-best-seller-tabs",
       "blocks": {
@@ -198,60 +252,6 @@
         "bg_color": "#ffffff",
         "layout_type": "grid",
         "products_limit": 4,
-        "grid_columns": 4,
-        "show_view_more": true,
-        "view_more_text": "View More"
-      }
-    },
-    "new_ineezy_best_seller_tabs_McjGCT": {
-      "type": "new-ineezy-best-seller-tabs",
-      "blocks": {
-        "tab_pUixXz": {
-          "type": "tab",
-          "settings": {
-            "tab_title": "NECKALCE",
-            "collection": "necklace",
-            "view_more_url": ""
-          }
-        },
-        "tab_E9z9pt": {
-          "type": "tab",
-          "settings": {
-            "tab_title": "BRACELTES",
-            "collection": "bracelet",
-            "view_more_url": ""
-          }
-        },
-        "tab_8rTJgK": {
-          "type": "tab",
-          "settings": {
-            "tab_title": "RING'S",
-            "collection": "rings",
-            "view_more_url": ""
-          }
-        },
-        "tab_N4BxQT": {
-          "type": "tab",
-          "settings": {
-            "tab_title": "EARRING'S",
-            "collection": "earrings",
-            "view_more_url": ""
-          }
-        }
-      },
-      "block_order": [
-        "tab_pUixXz",
-        "tab_E9z9pt",
-        "tab_8rTJgK",
-        "tab_N4BxQT"
-      ],
-      "name": "N_WEB Ineezy Best Seller Tabs",
-      "settings": {
-        "title": "New In Women's",
-        "subtitle": "SHOP BY THE CATEGORY",
-        "bg_color": "#F5F5F5",
-        "layout_type": "grid",
-        "products_limit": 8,
         "grid_columns": 4,
         "show_view_more": true,
         "view_more_text": "View More"
@@ -323,8 +323,8 @@
     "new_ineezy_best_seller_tabs_ganXRm",
     "new_ineezy_category_mNfE8d",
     "new_ineezy_offer_banner_LTwwMU",
-    "new_ineezy_best_seller_tabs_h7xF88",
     "new_ineezy_best_seller_tabs_McjGCT",
+    "new_ineezy_best_seller_tabs_h7xF88",
     "new_ineezy_feature_boxes_iwj9WA",
     "instagram_feed_Hn84Q6",
     "new_ineezy_testimonial_slider_LmRFb8"
