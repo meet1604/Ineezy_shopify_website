@@ -62,9 +62,9 @@
                 onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
                 <source src="${esc(item.media_url)}">
                </video>
-               <img src="${esc(thumb)}" alt="${esc(item.caption || 'Instagram media')}" style="display:none" loading="lazy">`
+               <img src="${esc(thumb)}" alt="${esc(item.caption || 'Instagram media')}" style="display:none" loading="lazy" decoding="async">`
             : thumb
-              ? `<img src="${esc(thumb)}" alt="${esc(item.caption || 'Instagram media')}" loading="lazy">`
+              ? `<img src="${esc(thumb)}" alt="${esc(item.caption || 'Instagram media')}" loading="lazy" decoding="async">`
               : `<div class="instagram-feed-thumb-placeholder"></div>`
           }
         </div>
@@ -116,7 +116,7 @@
   sections.forEach(async (section) => {
     const apiBase = (section.dataset.apiBase || '').replace(/\/$/, '');
     const layout = section.dataset.layout || 'grid';
-    const desktopColumns = section.dataset.columnsDesktop || '4';
+    const desktopColumns = parseInt(section.dataset.columnsDesktop || '4');
     const mobileColumns = section.dataset.columnsMobile || '1';
     const gap = section.dataset.gap || '18';
     const autoplay = section.dataset.autoplay === 'true';
@@ -128,10 +128,24 @@
       track.style.setProperty('--if-gap', `${gap}px`);
     }
 
+    // Show skeleton while fetching
+    const skeletonCount = desktopColumns;
+    const skeleton = document.createElement('div');
+    skeleton.className = 'instagram-feed-skeleton';
+    skeleton.style.setProperty('--if-columns-desktop', desktopColumns);
+    skeleton.style.setProperty('--if-columns-mobile', mobileColumns);
+    skeleton.style.setProperty('--if-gap', `${gap}px`);
+    skeleton.innerHTML = Array.from({ length: skeletonCount }, () =>
+      '<div class="instagram-feed-skeleton-item"></div>'
+    ).join('');
+    track.parentNode.insertBefore(skeleton, track);
+
     try {
       const response = await fetch(`${apiBase}/api/selected-media`);
       const payload = await response.json();
       const items = Array.isArray(payload.data) ? payload.data : [];
+
+      skeleton.remove();
 
       if (!items.length) {
         emptyState.hidden = false;
@@ -168,6 +182,7 @@
         }
       });
     } catch (error) {
+      skeleton.remove();
       emptyState.hidden = false;
       emptyState.innerHTML = '<p>Unable to load Instagram media right now.</p>';
     }

@@ -62,6 +62,10 @@
 }
 {% endschema %}
 
+{%- if section.blocks.first and section.blocks.first.settings.bg_image -%}
+  <link rel="preload" as="image" href="{{ section.blocks.first.settings.bg_image | image_url: width: 1800 }}">
+{%- endif -%}
+
 <section class="ineezy-hero-slider">
   <div class="ineezy-slider">
 

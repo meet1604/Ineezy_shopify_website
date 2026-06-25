@@ -15,18 +15,28 @@
       {% if product.featured_image %}
         <img
           class="main-image"
-          src="{{ product.featured_image | image_url: width: 800 }}"
+          src="{{ product.featured_image | image_url: width: 600 }}"
+          srcset="{{ product.featured_image | image_url: width: 400 }} 400w,
+                  {{ product.featured_image | image_url: width: 600 }} 600w,
+                  {{ product.featured_image | image_url: width: 800 }} 800w"
+          sizes="(max-width: 767px) calc(50vw - 24px), (max-width: 992px) calc(33vw - 24px), 300px"
           alt="{{ product.title }}"
           loading="lazy"
+          decoding="async"
+          width="600"
+          height="{{ 600 | divided_by: product.featured_image.aspect_ratio | ceil }}"
         >
       {% endif %}
 
       {% if product.images[1] %}
         <img
           class="hover-image"
-          src="{{ product.images[1] | image_url: width: 800 }}"
+          src="{{ product.images[1] | image_url: width: 600 }}"
           alt="{{ product.title }}"
           loading="lazy"
+          decoding="async"
+          width="600"
+          height="{{ 600 | divided_by: product.images[1].aspect_ratio | ceil }}"
         >
       {% endif %}
     </a>
