@@ -23,8 +23,6 @@
           alt="{{ product.title }}"
           loading="lazy"
           decoding="async"
-          width="600"
-          height="{{ 600 | divided_by: product.featured_image.aspect_ratio | ceil }}"
         >
       {% endif %}
 
@@ -35,8 +33,6 @@
           alt="{{ product.title }}"
           loading="lazy"
           decoding="async"
-          width="600"
-          height="{{ 600 | divided_by: product.images[1].aspect_ratio | ceil }}"
         >
       {% endif %}
     </a>
