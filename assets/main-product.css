@@ -2,6 +2,20 @@
   background-color: var(--neutral-1)
 }
 
+/* Zoom / lightbox modal: image was rendering at its raw width attribute
+   (e.g. 1100px) with no CSS constraint, causing it to overflow the
+   viewport and appear zoomed-in/cropped instead of fitting the screen. */
+.ineezy-new .product-media-modal__content img,
+.ineezy-new .product-media-modal__content video,
+.ineezy-new .product-media-modal__content model-viewer {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 100vh;
+  object-fit: contain;
+  margin: 0 auto;
+}
+
 
 .ineezy-new .ineezy-anniversary-banner {
   width: 100%;
