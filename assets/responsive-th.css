@@ -993,6 +993,15 @@
 }
 @media (max-width: 767px) {
 
+  .main-single-product .product__media-wrapper {
+    padding: 0 8px;
+  }
+
+  .product-media-container.constrain-height {
+    --viewport-offset: 280px;
+    --constrained-min-height: 420px;
+  }
+
   .ineezy-image-banner-wrapper::before {
     background: linear-gradient(0, var(--primary-color) 0%, rgb(92 148 136 / 0%) 43%, rgb(237 221 83 / 0%) 100%);
 }
