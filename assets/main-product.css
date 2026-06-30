@@ -2,19 +2,62 @@
   background-color: var(--neutral-1)
 }
 
-/* Zoom / lightbox modal: image was rendering at its raw width attribute
-   (e.g. 1100px) with no CSS constraint, causing it to overflow the
-   viewport and appear zoomed-in/cropped instead of fitting the screen. */
+/* ── Zoom / lightbox modal ────────────────────────────────────── */
+
+/* Dark overlay instead of solid white */
+.ineezy-new .product-media-modal {
+  background-color: rgba(0, 0, 0, 0.88) !important;
+}
+
+/* Centre dialog vertically & horizontally with breathing room */
+.ineezy-new .product-media-modal__dialog {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 70px 16px 24px;
+  box-sizing: border-box;
+}
+
+/* Let content flex-centre the image */
+.ineezy-new .product-media-modal__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  max-height: 100%;
+  width: 100%;
+}
+
+/* Image fits screen, object-fit contain so full photo is always visible */
 .ineezy-new .product-media-modal__content img,
 .ineezy-new .product-media-modal__content video,
 .ineezy-new .product-media-modal__content model-viewer {
-  width: 100%;
+  width: auto;
   max-width: 100%;
+  max-height: calc(100vh - 110px);
   height: auto;
-  max-height: 100vh;
   object-fit: contain;
+  display: block;
   margin: 0 auto;
+  border-radius: 12px;
 }
+
+/* Close button visible on dark background */
+.ineezy-new .product-media-modal__toggle {
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: #fff !important;
+  backdrop-filter: blur(4px);
+}
+.ineezy-new .product-media-modal__toggle:hover {
+  background-color: rgba(255, 255, 255, 0.28) !important;
+}
+.ineezy-new .product-media-modal__toggle svg path,
+.ineezy-new .product-media-modal__toggle svg line {
+  stroke: #fff;
+}
+/* ─────────────────────────────────────────────────────────────── */
 
 
 .ineezy-new .ineezy-anniversary-banner {
