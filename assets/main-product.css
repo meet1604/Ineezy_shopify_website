@@ -19,81 +19,77 @@
 
 /* ── Zoom / lightbox modal ────────────────────────────────────── */
 
-/* Dark overlay */
+/* Dark full-screen overlay */
 .ineezy-new .product-media-modal {
-  background-color: rgba(0, 0, 0, 0.9) !important;
+  background-color: rgba(0, 0, 0, 0.92) !important;
 }
 
-/* Dialog: flex column so close button sits above, image centred below */
+/* Dialog fills viewport, centres the single image */
 .ineezy-new .product-media-modal__dialog {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100vh;
   width: 100%;
-  padding: 0;
+  padding: 72px 16px 24px;
   box-sizing: border-box;
   background: transparent;
 }
 
-/* Content: block scroll (stock), but centred & capped to viewport */
+/* Content: flex so the one active image is centred */
 .ineezy-new .product-media-modal__content {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  max-height: calc(100vh - 80px);
-  overflow-y: auto;
-  overflow-x: hidden;
+  max-height: 100%;
+  overflow: hidden;
   background: transparent;
+  padding: 0 !important;
 }
 
-/* Each media item: fill full width and centre */
-.ineezy-new .product-media-modal__content > * {
-  width: 100% !important;
-  margin: 0 auto;
+/* Only ever show the active (clicked) image — hide all others on ALL screen sizes */
+.ineezy-new .product-media-modal__content > *:not(.active) {
+  display: none !important;
 }
 
-/* Images and video: constrained to viewport, never overflow */
+/* Active item fills the content area */
+.ineezy-new .product-media-modal__content > *.active {
+  display: block !important;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Image/video: fit within available space, never overflow */
 .ineezy-new .product-media-modal__content img,
 .ineezy-new .product-media-modal__content video {
   display: block;
-  width: 100% !important;
+  width: 100%;
   max-width: 100%;
   height: auto;
-  max-height: calc(100vh - 80px);
+  max-height: calc(100vh - 110px);
   object-fit: contain;
   margin: 0 auto;
   border-radius: 12px;
 }
 
-/* Desktop: stack images vertically with gap (stock Dawn scroll behaviour) */
-@media screen and (min-width: 750px) {
-  .ineezy-new .product-media-modal__content {
-    padding: 2rem 8rem;
-  }
-  .ineezy-new .product-media-modal__content > * + * {
-    margin-top: 2rem;
-  }
-}
-
-/* Close button: white & visible on dark background */
+/* Close button: fixed top-right, white on dark */
 .ineezy-new .product-media-modal__toggle {
-  position: fixed;
+  position: fixed !important;
   top: 1.6rem;
   right: 1.6rem;
-  z-index: 10;
+  z-index: 200;
   background-color: rgba(255, 255, 255, 0.18) !important;
   border-color: rgba(255, 255, 255, 0.35) !important;
   color: #fff !important;
   backdrop-filter: blur(6px);
+  width: 4rem;
 }
 .ineezy-new .product-media-modal__toggle:hover {
   background-color: rgba(255, 255, 255, 0.32) !important;
 }
-.ineezy-new .product-media-modal__toggle .icon,
 .ineezy-new .product-media-modal__toggle svg {
   color: #fff;
-  stroke: #fff;
 }
 /* ─────────────────────────────────────────────────────────────── */
 
