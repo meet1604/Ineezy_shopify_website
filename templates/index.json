@@ -24,9 +24,9 @@
             "content_position": "right",
             "text_align": "right",
             "subtitle_color": "#ffffff",
-            "title_color": "#ecce7a",
-            "overlay_color": "#ecce7a",
-            "overlay_opacity": 30
+            "title_color": "#FFFFFF",
+            "overlay_color": "#323F56",
+            "overlay_opacity": 60
           }
         },
         "slide_Xh3NLN": {
