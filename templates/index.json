@@ -15,8 +15,8 @@
         "slide_NxEcd7": {
           "type": "slide",
           "settings": {
-            "bg_image": "shopify://shop_images/desk_4.png",
-            "bg_image_mobile": "shopify://shop_images/mob_4.png",
+            "bg_image": "shopify://shop_images/Rakhi_1800_900_8317e9d9-2566-41e9-939c-5e90476b5aaf.png",
+            "bg_image_mobile": "shopify://shop_images/Rakhi_mob500_700.png",
             "subtitle": "Just Dropped",
             "title": "The New Men's Collection",
             "button_text": "Explore Collection",
@@ -24,9 +24,9 @@
             "content_position": "right",
             "text_align": "right",
             "subtitle_color": "#ffffff",
-            "title_color": "#ECCE7A",
-            "overlay_color": "#ECCE7A",
-            "overlay_opacity": 0
+            "title_color": "#ecce7a",
+            "overlay_color": "#ecce7a",
+            "overlay_opacity": 30
           }
         },
         "slide_Xh3NLN": {
@@ -193,7 +193,7 @@
       "settings": {
         "title": "New In Women's",
         "subtitle": "SHOP BY THE CATEGORY",
-        "bg_color": "#F5F5F5",
+        "bg_color": "#f5f5f5",
         "layout_type": "grid",
         "products_limit": 8,
         "grid_columns": 4,
