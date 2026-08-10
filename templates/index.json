@@ -24,18 +24,18 @@
             "content_position": "right",
             "text_align": "right",
             "subtitle_color": "#ffffff",
-            "title_color": "#FFFFFF",
-            "overlay_color": "#323F56",
+            "title_color": "#ffffff",
+            "overlay_color": "#323f56",
             "overlay_opacity": 55
           }
         },
         "slide_Xh3NLN": {
           "type": "slide",
           "settings": {
-            "bg_image": "shopify://shop_images/Firefly.png",
-            "bg_image_mobile": "shopify://shop_images/mob_1.png",
-            "subtitle": "New Summer Collection",
-            "title": "Jewelry That Blooms With You",
+            "bg_image": "shopify://shop_images/Rakhi2_1800_900.png",
+            "bg_image_mobile": "shopify://shop_images/Rakhi2_mob500_700.png",
+            "subtitle": "For The Sister Who’s Always Been There.",
+            "title": "Make Her Rakhi A Little More Special.",
             "button_text": "Explore Collection",
             "button_link": "shopify://collections/bracelet",
             "content_position": "right",
