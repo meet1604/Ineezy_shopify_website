@@ -442,7 +442,7 @@
       
         <div class="cart_discounts-block" style="margin: 0 auto; max-width: 80vw">
           <div class="custom-discount-form">
-            <form class="form " action="/cart" method="post">
+            <form class="form " action="{{ routes.cart_url }}" method="post">
               <div class="form-group mt-5 d-flex align-items-center gap-2 cupon-group" >
                 <input class="form-control" type="text" name="discount" placeholder="Enter coupon code" />
                 <button class="btn btn-primary" type="submit">Apply</button>

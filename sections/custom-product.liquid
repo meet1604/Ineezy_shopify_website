@@ -5,7 +5,7 @@
 
 {% assign current_product = product %}
 <section class="custom-product-wrapper">
-  <form method="post" action="/cart/add">
+  <form method="post" action="{{ routes.cart_add_url }}">
     <input type="hidden" name="id" id="product-select" value="">
 
     <!-- Diamond Section -->

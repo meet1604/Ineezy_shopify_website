@@ -783,7 +783,7 @@
                           role="tabpanel"
                           aria-labelledby="passwordreset-tab"
                         >
-                          <form method="post" action="/account/recover" accept-charset="UTF-8">
+                          <form method="post" action="{{ routes.account_recover_url }}" accept-charset="UTF-8">
                             <input type="hidden" name="form_type" value="recover_customer_password">
                             <input type="hidden" name="utf8" value="✓">
                             <div id="recover_email" class="form-group">
@@ -1018,7 +1018,7 @@
   });
   </script>
 {% else %}
-  <p>Please <a href="/account/login">log in</a> to update your profile.</p>
+  <p>Please <a href="{{ routes.account_login_url }}">log in</a> to update your profile.</p>
 {% endif %}
 {% schema %}
 {

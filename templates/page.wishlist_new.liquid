@@ -9,7 +9,7 @@
 <div class="wishlist-container">
   <h2>Your Wishlist</h2>
   {% unless customer %}
-    <p>Please <a href="/account/login">login</a> to view your wishlist.</p>
+    <p>Please <a href="{{ routes.account_login_url }}">login</a> to view your wishlist.</p>
   {% else %}
     <div class="wishlist-controls">
       <button id="clear-wishlist" class="btn">Clear Wishlist</button>

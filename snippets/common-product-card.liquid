@@ -131,7 +131,7 @@
             Add to Cart
           </button>
         {% else %}
-          <form action="/cart/add" method="post" class="add-to-cart-form w-100">
+          <form action="{{ routes.cart_add_url }}" method="post" class="add-to-cart-form w-100">
             <input type="hidden" name="id" value="{{ product.variants.first.id }}">
             <input type="hidden" name="quantity" value="1">
             <button

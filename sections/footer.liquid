@@ -62,9 +62,9 @@
           {% when 'footer_branding' %}
             <div class="footer-col width-30">
               <div class="footer-logo">
-                <a href="/">
+                <a href="{{ routes.root_url }}">
                   {% if block.settings.logo %}
-                    <a href="/">
+                    <a href="{{ routes.root_url }}">
                       <img src="{{ block.settings.logo | img_url: 'master' }}" alt="footer-logo">
                     </a>
                   {% endif %}

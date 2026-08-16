@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div class="my-account-title-right">
-                <form action="/account/logout" method="post">
+                <form action="{{ routes.account_logout_url }}" method="post">
                     <button type="submit" class="btn btn-outline-primary">
                         Log Out <i class="svg-wrapper">{{ 'arrow-right-2.svg' | inline_asset_content }}</i>
                     </button>
@@ -75,7 +75,7 @@
                             <div class="profile-card-text">
                                 <div class="profile-card-name">
                                     <h4>{{ customer.name }}</h4>
-                                    <a href="/account/addresses" class="btn btn-primary"> <i class="svg-wrapper">{{ "new-icon-edit.svg" | inline_asset_content }}</i> Edit Profile</a>
+                                    <a href="{{ routes.account_addresses_url }}" class="btn btn-primary"> <i class="svg-wrapper">{{ "new-icon-edit.svg" | inline_asset_content }}</i> Edit Profile</a>
                                 </div>
                                 <p> {{ customer.email }}</p>
                                 <p>{{ customer.default_address.phone}}</p>
@@ -195,14 +195,14 @@
                                 {{ address.address1 }}, {{ address.city }}, {{ address.province_code }} {{ address.zip
                                 }} {{ address.country }}
                             </p>
-                            <a href="/account/addresses/{{ address.id }}" class="btn btn-secondary">Edit</a>
-                            <form action="/account/addresses/{{ address.id }}" method="post">
+                            <a href="{{ routes.account_addresses_url }}/{{ address.id }}" class="btn btn-secondary">Edit</a>
+                            <form action="{{ routes.account_addresses_url }}/{{ address.id }}" method="post">
                                 <input type="hidden" name="_method" value="delete">
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
                         </div>
                         {% endfor %}
-                        <a href="/account/addresses" class="btn btn-primary">Add Address</a>
+                        <a href="{{ routes.account_addresses_url }}" class="btn btn-primary">Add Address</a>
                     </div>
                 </div>
             </div>
