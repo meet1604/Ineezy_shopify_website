@@ -1,13 +1,13 @@
-<section class="ijl-home-testimonials">
+<section class="ineezy-home-testimonials">
   <div class="container">
     <div class="main-title">
       <p class="mt-0 mb-2">Client Testimonials</p>
       <h2>Customer Review</h2>
     </div>
 
-    <div class="ijl-home-testimonials-slider custom-slick-slider">
+    <div class="ineezy-home-testimonials-slider custom-slick-slider">
       {% for block in section.blocks %}
-        <div class="ijl-home-testimonials-slider-card">
+        <div class="ineezy-home-testimonials-slider-card">
           <div class="testimonials-ratings">
             {% for i in (1..block.settings.rating) %}
               <img src="{{ 'new-icon-star.svg' | asset_url }}" alt="star" />
@@ -29,7 +29,7 @@
 
 {% schema %}
 {
-  "name": "IJL Home Testimonials",
+  "name": "Ineezy Home Testimonials",
   "settings": [],
   "blocks": [
     {
@@ -75,7 +75,7 @@
   "max_blocks": 10,
   "presets": [
     {
-      "name": "IJL Home Testimonials",
+      "name": "Ineezy Home Testimonials",
       "blocks": [
         { "type": "testimonial" },
         { "type": "testimonial" },

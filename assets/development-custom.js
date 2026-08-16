@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.ijl-product-card').forEach(card => {
-    const mainImage = card.querySelector('.ijl-product-image-one');
-    const hoverImage = card.querySelector('.ijl-product-image-two');
+  document.querySelectorAll('.ineezy-product-card-v1').forEach(card => {
+    const mainImage = card.querySelector('.ineezy-product-image-one');
+    const hoverImage = card.querySelector('.ineezy-product-image-two');
     const swatches = card.querySelectorAll('.variant-swatch');
 
     swatches.forEach(swatch => {
@@ -31,12 +31,12 @@ document.addEventListener('DOMContentLoaded', function () {
 // JavaScript to handle variant image swapping
 document.addEventListener('DOMContentLoaded', function() {
    // Select all product cards
-   const productCards = document.querySelectorAll('.ijl-product-card');
+   const productCards = document.querySelectorAll('.ineezy-product-card-v1');
 
    productCards.forEach(card => {
       // Find all variant swatches in this card
       const swatches = card.querySelectorAll('.variant-swatch');
-      const productImage = card.querySelector('.ijl-product-card-image img.active-image');
+      const productImage = card.querySelector('.ineezy-product-card-v1-image img.active-image');
       const defaultImage = productImage.getAttribute('data-default-image');
 
       swatches.forEach(swatch => {
@@ -224,7 +224,7 @@ function trySetVariant() {
     }
 
     // Dynamically append color swatches and description
-    const $variationWrapper = $('#quickViewModal .ijl-product-variation-metal-wrapper');
+    const $variationWrapper = $('#quickViewModal .ineezy-product-variation-metal-wrapper');
     let variationHtml = '';
 
     // Check if product has a "Color" option
@@ -238,13 +238,13 @@ function trySetVariant() {
     });
     
     if (hasColorOption) {
-      variationHtml += '<span class="product-color">Color</span><div class="ijl-product-variation">';
+      variationHtml += '<span class="product-color">Color</span><div class="ineezy-product-variation">';
       product.variants.forEach(variant => {
         const colorValue = variant[`option${colorOptionIndex}`];
         if (variant.available && colorValue) {
           const imageUrl = variant.featured_image ? variant.featured_image.src : product.featured_image;
           variationHtml += `
-            <div class="ijl-product-variation-item">
+            <div class="ineezy-product-variation-item">
               <span class="variant-swatch" 
                     style="background-color: ${colorValue.toLowerCase()};" 
                     title="${colorValue}"
@@ -260,7 +260,7 @@ function trySetVariant() {
     // Append description (truncate to 100 characters)
     // const descriptionText = product.description.replace(/(<([^>]+)>)/gi, '').substring(0, 100);
     // variationHtml += `
-    //   <div class="ijl-product-metal-text">
+    //   <div class="ineezy-product-metal-text">
     //     <p>${descriptionText}</p>
     //   </div>
     // `;
@@ -777,7 +777,7 @@ $(document).on('click', '.delete-address-button', function (e) {
         cartDrawer &&
         cartDrawer.classList.contains('active') &&
         !cartDrawer.contains(event.target) &&
-        !event.target.closest('[data-cart-toggle], .ijl-product-card-action-button, .cart-icon-bubble')
+        !event.target.closest('[data-cart-toggle], .ineezy-product-card-v1-action-button, .cart-icon-bubble')
       ) {
         cartDrawer.classList.remove('active');
         document.body.classList.remove('overflow-hidden');

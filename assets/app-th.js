@@ -208,7 +208,7 @@ $('.spring-collection-slider').slick({
   ]
 });
 
-$('.ijl-home-testimonials-slider').slick({ 
+$('.ineezy-home-testimonials-slider').slick({ 
     slidesToShow: 3,
     slidesToScroll: 1,
     dots: false,
@@ -244,7 +244,7 @@ $('.ijl-home-testimonials-slider').slick({
   ]
 });
 
-$('.ijl-home-journal-slider').slick({ 
+$('.ineezy-home-journal-slider').slick({ 
     slidesToShow: 3,
     slidesToScroll: 1,
     dots: false,

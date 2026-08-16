@@ -1,18 +1,18 @@
-<section class="ijl-home-popular">
+<section class="ineezy-home-popular">
   {% for block in section.blocks %}
-    <div class="ijl-home-popular-card">
-      <div class="ijl-home-popular-image">
+    <div class="ineezy-home-popular-card">
+      <div class="ineezy-home-popular-image">
         {% if block.settings.image %}
           <img src="{{ block.settings.image | img_url: 'master' }}" alt="Popular Image">
         {% endif %}
       </div>
-      <div class="ijl-home-popular-shape {% if block.settings.shape == 'round' %}ijl-home-popular-shape-round{% else %}ijl-home-popular-shape-square{% endif %}">
+      <div class="ineezy-home-popular-shape {% if block.settings.shape == 'round' %}ineezy-home-popular-shape-round{% else %}ineezy-home-popular-shape-square{% endif %}">
         {% comment %}
           You can also enable shape image if needed
-          <img src="{{ 'ijl-home-popular-shape-1.svg' | asset_url }}" alt="shape">
+          <img src="{{ 'ineezy-home-popular-shape-1.svg' | asset_url }}" alt="shape">
         {% endcomment %}
       </div>
-      <div class="ijl-home-popular-text">
+      <div class="ineezy-home-popular-text">
         <h6>{{ block.settings.title }}</h6>
         <p>{{ block.settings.description }}</p>
         {% if block.settings.button_link != blank %}
@@ -78,7 +78,7 @@
   "max_blocks": 2,
   "presets": [
     {
-      "name": "IJL Home Popular",
+      "name": "Ineezy Home Popular",
       "blocks": [
         { "type": "popular_item" },
         { "type": "popular_item" }

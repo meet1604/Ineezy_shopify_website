@@ -19,7 +19,7 @@
         "subtext": "Timeless jewelry for everyday styling."
       }
     },
-    "ijl_shop_grid_Nz33Ct": {
+    "ineezy_shop_grid_Nz33Ct": {
       "type": "new-ineezy-shop-grid",
       "settings": {}
     },
@@ -56,7 +56,7 @@
   },
   "order": [
     "new_ineezy_small_banner_exWTDP",
-    "ijl_shop_grid_Nz33Ct",
+    "ineezy_shop_grid_Nz33Ct",
     "banner",
     "product-grid"
   ]

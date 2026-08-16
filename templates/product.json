@@ -161,9 +161,9 @@
         "padding_bottom": 28
       }
     },
-    "ijl_related_product_8Q8WCr": {
-      "type": "ijl-related-product",
-      "name": "IJL Related Products",
+    "ineezy_related_product_8Q8WCr": {
+      "type": "ineezy-related-product",
+      "name": "Ineezy Related Products",
       "settings": {}
     },
     "ineezy_product_reviews_86Abet": {
@@ -183,7 +183,7 @@
   "order": [
     "main",
     "related-products",
-    "ijl_related_product_8Q8WCr",
+    "ineezy_related_product_8Q8WCr",
     "ineezy_product_reviews_86Abet"
   ]
 }

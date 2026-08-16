@@ -1,5 +1,5 @@
-<div class="ijl-product-card" data-product-id="{{ product.id }}">
-  <div class="ijl-product-card-image-action">
+<div class="ineezy-product-card-v1" data-product-id="{{ product.id }}">
+  <div class="ineezy-product-card-v1-image-action">
     <a 
       {% if product.available %}
         href="
@@ -10,10 +10,10 @@
       
       
       style="text-decoration:none">
-      <div class="ijl-product-card-image">
+      <div class="ineezy-product-card-v1-image">
         {% if product.featured_image %}
           <img
-            class="ijl-product-image-one active-image"
+            class="ineezy-product-image-one active-image"
             src="{{ product.featured_image | img_url: 'grande' }}"
             alt="{{ product.title | escape }}"
             data-default-image="{{ product.featured_image | img_url: 'grande' }}"
@@ -21,18 +21,18 @@
         {% endif %}
         {% if product.images[1] %}
           <img
-            class="ijl-product-image-two"
+            class="ineezy-product-image-two"
             src="{{ product.images[1] | img_url: 'grande' }}"
             alt="{{ product.title | escape }}"
           >
         {% endif %}
       </div>
     </a>
-    <div class="ijl-product-card-imae-action-wrapper">
-      <div class="ijl-product-card-action">
-        <div class="ijl-product-card-action-tag-wrapper">
+    <div class="ineezy-product-card-v1-imae-action-wrapper">
+      <div class="ineezy-product-card-v1-action">
+        <div class="ineezy-product-card-v1-action-tag-wrapper">
           {% if product.compare_at_price > product.price %}
-            <div class="ijl-product-card-action-tag tag tag-primary">
+            <div class="ineezy-product-card-v1-action-tag tag tag-primary">
               Sale
               {{ product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price }}%
             </div>
@@ -40,7 +40,7 @@
 
           {% if product.available %}
             {% else %}
-            <div class="ijl-product-card-action-tag tag tag-danger">
+            <div class="ineezy-product-card-v1-action-tag tag tag-danger">
               Out Of Stock
             </div>
           {% endif %}
@@ -49,12 +49,12 @@
 
 
           {% if product.tags contains 'new' %}
-            <div class="ijl-product-card-action-tag tag tag-secondary">New</div>
+            <div class="ineezy-product-card-v1-action-tag tag tag-secondary">New</div>
           {% endif %}
         </div>
-        <div class="ijl-product-card-action-icon-wrapper">
+        <div class="ineezy-product-card-v1-action-icon-wrapper">
           <!-- <button
-            class="wishlist-btn ijl-product-card-action-icon "
+            class="wishlist-btn ineezy-product-card-v1-action-icon "
             data-product-handle="{{ product.handle }}"
             data-product-price="{{ product.price | money_without_currency }}"
             data-product-image="{{ product.featured_image | img_url: '300x300' }}"
@@ -64,7 +64,7 @@
             <img class="wishlist-icon" src="{{ 'new-icon-wishlight.svg' | asset_url }}" alt="Add to wishlist">
           </button> -->
 
-          <div class="ijl-product-card-action-icon wishlist-main">
+          <div class="ineezy-product-card-v1-action-icon wishlist-main">
              {% render 'wishlisthero-collection-product' with product: product %}
           </div>
 
@@ -72,24 +72,24 @@
           {% comment %} <button
             type="button"
             id="quick-view-btn"
-            class="ijl-product-card-action-icon btn-icon-hover-action"
+            class="ineezy-product-card-v1-action-icon btn-icon-hover-action"
             data-product-handle="{{ product.handle }}"
           >
             <img src="{{ 'new-icon-quick-view.svg' | asset_url }}" alt="Quick View">
           </button> {% endcomment %}
         </div>
       </div>
-      <div class="ijl-product-card-action-button-wrapper d-none">
+      <div class="ineezy-product-card-v1-action-button-wrapper d-none">
     
 
 
       </div>
     </div>
   </div>
-  <div class="ijl-product-card-content">
-    <div class="ijl-product-title cursor-pointer" onclick="window.location.href='{{ product.url }}'">
+  <div class="ineezy-product-card-v1-content">
+    <div class="ineezy-product-title cursor-pointer" onclick="window.location.href='{{ product.url }}'">
       <h6>{{ product.title }}</h6>
-      <div class="ijl-product-price">
+      <div class="ineezy-product-price">
         <h5>
           {% if product.price_varies %}
             {{ product.price_min | money }} - {{ product.price_max | money }}
@@ -104,11 +104,11 @@
         </h5>
       </div>
     </div>
-    <div class="ijl-product-main-button">
+    <div class="ineezy-product-main-button">
 
             {% comment %} <button
           type="button"
-          class="ijl-product-card-action-button btn  btn-light-primary {% unless product.available %}disabled{% endunless %}"
+          class="ineezy-product-card-v1-action-button btn  btn-light-primary {% unless product.available %}disabled{% endunless %}"
           onclick="window.location.href='{{ product.url }}'"
           {% unless product.available %}
             disabled
@@ -122,7 +122,7 @@
         {% if product.variants.size > 1 %}
           <button
             type="button"
-            class="ijl-product-card-action-button btn  btn-light-primary {% unless product.available %}disabled{% endunless %}"
+            class="ineezy-product-card-v1-action-button btn  btn-light-primary {% unless product.available %}disabled{% endunless %}"
             onclick="window.location.href='{{ product.url }}'"
             {% unless product.available %}
               disabled
@@ -136,7 +136,7 @@
             <input type="hidden" name="quantity" value="1">
             <button
               type="button"
-              class="ijl-product-card-action-button btn btn-light-primary {% unless product.available %}disabled{% endunless %}"
+              class="ineezy-product-card-v1-action-button btn btn-light-primary {% unless product.available %}disabled{% endunless %}"
               onclick="{% if product.available %}addToCartWithDawn('{{ product.variants.first.id }}'){% endif %}"
               {% unless product.available %}
                 disabled
@@ -158,12 +158,12 @@
     </div>
 
     
-    <div class="ijl-product-variation-metal-wrapper d-none">
+    <div class="ineezy-product-variation-metal-wrapper d-none">
       {% if product.options contains 'Color' %}
-        <div class="ijl-product-variation">
+        <div class="ineezy-product-variation">
           {% for variant in product.variants %}
             {% if variant.available and variant.option1 %}
-              <div class="ijl-product-variation-item">
+              <div class="ineezy-product-variation-item">
                 <span
                   class="variant-swatch"
                   style="background-color: {{ variant.option1 | downcase }};"
@@ -178,7 +178,7 @@
         </div>
       {% endif %}
       <!--
-        <div class="ijl-product-metal-text">
+        <div class="ineezy-product-metal-text">
            <p>{{ product.description | strip_html | truncate: 100 }}</p>
         </div>
       -->      

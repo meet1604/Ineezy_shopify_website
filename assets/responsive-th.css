@@ -240,9 +240,9 @@
   .main-blog,
   .contact,
   .our-story,
-  .ijl-home-journal,
-  .ijl-home-testimonials,
-  .ijl-home-feature-products,
+  .ineezy-home-journal,
+  .ineezy-home-testimonials,
+  .ineezy-home-feature-products,
   .explore-product {
     padding: 80px 0px;
   }
@@ -574,7 +574,7 @@
   }
 
 
-  .ijl-product-card .ijl-product-card-image{
+  .ineezy-product-card-v1 .ineezy-product-card-v1-image{
         height: 350px;
   }
 
@@ -609,9 +609,9 @@
   .contact,
   .certified,
   .our-story,
-  .ijl-home-journal,
-  .ijl-home-testimonials,
-  .ijl-home-feature-products,
+  .ineezy-home-journal,
+  .ineezy-home-testimonials,
+  .ineezy-home-feature-products,
   .explore-product {
     padding: 60px 0px;
   }
@@ -689,19 +689,19 @@
     margin-bottom: 20px;
   }
 
-  .ijl-home-popular {
+  .ineezy-home-popular {
     flex-wrap: wrap;
   }
-  .ijl-home-popular .ijl-home-popular-card {
+  .ineezy-home-popular .ineezy-home-popular-card {
     width: 100%;
     height: 300px;
     overflow: hidden;
   }
 
-  .ijl-home-popular
-    .ijl-home-popular-shape.ijl-home-popular-shape-round::before,
-  .ijl-home-popular
-    .ijl-home-popular-shape.ijl-home-popular-shape-round::after {
+  .ineezy-home-popular
+    .ineezy-home-popular-shape.ineezy-home-popular-shape-round::before,
+  .ineezy-home-popular
+    .ineezy-home-popular-shape.ineezy-home-popular-shape-round::after {
     width: 100%;
     height: 100%;
   }
@@ -982,7 +982,7 @@
     margin-bottom: 0px;
   }
 
-  .ijl-product-card{
+  .ineezy-product-card-v1{
     margin-bottom: 10px;
   }
 
@@ -1037,10 +1037,10 @@
       text-align: center;
   }
 
-  .ijl-product-card .ijl-product-card-image{
+  .ineezy-product-card-v1 .ineezy-product-card-v1-image{
         height: 250px;
   }
-  .ijl-product-card .ijl-product-card-content .ijl-product-title h6{
+  .ineezy-product-card-v1 .ineezy-product-card-v1-content .ineezy-product-title h6{
     font-size: 16px;
   }
 
@@ -1062,9 +1062,9 @@
   .contact,
   .certified,
   .our-story,
-  .ijl-home-journal,
-  .ijl-home-testimonials,
-  .ijl-home-feature-products,
+  .ineezy-home-journal,
+  .ineezy-home-testimonials,
+  .ineezy-home-feature-products,
   .explore-product {
     padding: 50px 0px;
   }
@@ -1165,7 +1165,7 @@
     padding: 30px 30px 70px 30px;
   }
 
-  .ijl-home-popular .ijl-home-popular-text {
+  .ineezy-home-popular .ineezy-home-popular-text {
     width: 80%;
   }
 
@@ -1393,8 +1393,8 @@
   .spring-collection-slider.custom-slick-slider .slick-next {
     left: 80px;
   }
-  .ijl-home-journal-slider.custom-slick-slider .slick-next,
-  .ijl-home-testimonials-slider.custom-slick-slider .slick-next {
+  .ineezy-home-journal-slider.custom-slick-slider .slick-next,
+  .ineezy-home-testimonials-slider.custom-slick-slider .slick-next {
     right: calc(50% - 40px);
   }
 
