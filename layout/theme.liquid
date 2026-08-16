@@ -504,18 +504,18 @@ src="https://www.facebook.com/tr?id=720131227719693&ev=PageView&noscript=1"/>
       }
     </script>
 
-    {{ 'jquery-3.7.1.min.js' | asset_url | script_tag }}
-    {{ 'bootstrap.bundle.min.js' | asset_url | script_tag }}
+    <script src="{{ 'jquery-3.7.1.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'bootstrap.bundle.min.js' | asset_url }}" defer="defer"></script>
     {% comment %} {{ 'popper.min.js' | asset_url | script_tag }} {% endcomment %}
     {% comment %} {{ 'bootstrap.min.js' | asset_url | script_tag }} {% endcomment %}
-    {{ 'slick.min.js' | asset_url | script_tag }}
-    {{ 'app-th.js' | asset_url | script_tag }}
-    {{ 'app-new.js' | asset_url | script_tag }}
-    {{ 'development-custom.js' | asset_url | script_tag }}
-    {{ 'wishlist.js' | asset_url | script_tag }}
-    {{ 'custom-api.js' | asset_url | script_tag }}
-    {{ 'custom-login.js' | asset_url | script_tag }}
-    {{ 'range-slider.js' | asset_url | script_tag }}
+    <script src="{{ 'slick.min.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'app-th.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'app-new.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'development-custom.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'wishlist.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'custom-api.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'custom-login.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'range-slider.js' | asset_url }}" defer="defer"></script>
 
     {%- if settings.predictive_search_enabled -%}
       <script src="{{ 'predictive-search.js' | asset_url }}" defer="defer"></script>
