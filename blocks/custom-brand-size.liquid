@@ -20,7 +20,7 @@
               name="{{ option.name | handleize }}-{{ block.id }}" 
               value="{{ value | escape }}"
               {% if option.selected_value == value %}checked{% endif %}
-              data-variant-id="{{ product.variants | where: option.name, value | first | id }}"
+              data-variant-id="{{ product.variants | where: option.name, value | map: 'id' | first }}"
             >
             <label for="{{ product.handle }}-{{ block.id }}-{{ option.name | handleize }}-{{ value | handleize }}">{{ value }}</label>
           </div>

@@ -338,7 +338,7 @@ $(document).ready(function () {
   function getAccessToken(email, password) {
     return new Promise(function (resolve, reject) {
       $.ajax({
-        url: 'https://ineezy.myshopify.com/api/2025-07/graphql.json',
+        url: '/api/2025-07/graphql.json',
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -489,7 +489,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     };
 
-    const res = await fetch('https://ineezy.myshopify.com/api/2025-07/graphql.json', {
+    const res = await fetch('/api/2025-07/graphql.json', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,0 +1,14 @@
+# Shopify CLI local state (auth, dev theme id, cache)
+.shopify/
+
+# Dependencies
+node_modules/
+
+# Environment / secrets
+.env
+.env.*
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+*.log

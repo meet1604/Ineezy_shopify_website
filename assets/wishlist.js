@@ -3,7 +3,7 @@
 //   const Wishlist = {
 //     storageKey: 'shopify_wishlist',
 //     storefrontApiUrl: '/api/2025-01/graphql.json',
-//     storefrontAccessToken: '98de43688c0e42838a69f3caacd1e0de', // Your Storefront API token
+//     storefrontAccessToken: '881ac94b12f00d73ce71dfbfc410a115', // Your Storefront API token
 
 //     init() {
 //       this.loadWishlist();

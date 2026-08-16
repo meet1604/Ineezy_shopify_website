@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         lastName: lastName
       }
     };
-    const response = await fetch('https://ineezy.myshopify.com/api/2025-07/graphql.json', {
+    const response = await fetch('/api/2025-07/graphql.json', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
